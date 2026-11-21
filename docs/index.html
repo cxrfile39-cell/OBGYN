@@ -7,21 +7,25 @@
 <meta name="description" content="每週一自動更新的婦產科各次專科最新期刊論文、綜論與臨床指引（PubMed）。">
 <style>
   :root{
-    --bg:#f7f5f2; --card:#fff; --ink:#1f2328; --muted:#5f6670; --line:#e4e0da;
-    --accent:#8a2846; --accent-soft:#f6e9ee; --rev:#1f6f8b; --rev-soft:#e5f2f7;
-    --gl:#2f7a3a; --gl-soft:#e7f4e8; --art:#55606b; --art-soft:#eef0f2;
+    --bg:#faf7f4; --card:#fffdfb; --ink:#3a3633; --muted:#7a726c; --line:#ebe4dd;
+    --accent:#94636c; --on-accent:#fff; --accent-soft:#f5ebec;
+    --rev:#4f7f84; --rev-soft:#e8f1f1; --gl:#5d8263; --gl-soft:#ebf2ea;
+    --art:#756e68; --art-soft:#f1eeea;
+    --head-bg:linear-gradient(135deg,#f3e6e4 0%,#eef0e8 100%); --head-ink:#5e4148;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --bg:#16181b; --card:#1f2226; --ink:#e8e6e3; --muted:#a2a8b0; --line:#30343a;
-      --accent:#e07a9a; --accent-soft:#3a2330; --rev:#7cc3dc; --rev-soft:#1d3139;
-      --gl:#86cf8f; --gl-soft:#1f3322; --art:#b5bcc4; --art-soft:#2a2e33; }
+    :root{ --bg:#1c1b1a; --card:#252321; --ink:#e9e4df; --muted:#a59d96; --line:#36322f;
+      --accent:#d4a5ad; --on-accent:#2a2224; --accent-soft:#3a2e30;
+      --rev:#9cc4c7; --rev-soft:#233132; --gl:#a7c4a9; --gl-soft:#26302a;
+      --art:#c2bab3; --art-soft:#2e2b28;
+      --head-bg:linear-gradient(135deg,#2e2729 0%,#262c27 100%); --head-ink:#ecd9dc; }
   }
   *{box-sizing:border-box}
   body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
        background:var(--bg);color:var(--ink);line-height:1.55}
-  header{background:var(--accent);color:#fff;padding:22px 18px 18px}
+  header{background:var(--head-bg);color:var(--head-ink);padding:22px 18px 18px;border-bottom:1px solid var(--line)}
   header h1{margin:0;font-size:1.45rem;letter-spacing:.02em}
-  header p{margin:6px 0 0;opacity:.9;font-size:.92rem}
+  header p{margin:6px 0 0;opacity:.85;font-size:.92rem}
   .wrap{max-width:1180px;margin:0 auto;padding:0 16px}
   .layout{display:grid;grid-template-columns:300px 1fr;gap:20px;margin:20px auto}
   @media (max-width:860px){.layout{grid-template-columns:1fr}}
@@ -33,7 +37,7 @@
   button{font:inherit;font-size:.85rem;border:1px solid var(--accent);background:var(--card);color:var(--accent);
          padding:5px 12px;border-radius:999px;cursor:pointer}
   button:hover{background:var(--accent-soft)}
-  button.primary{background:var(--accent);color:#fff}
+  button.primary{background:var(--accent);color:var(--on-accent)}
   label.opt{display:flex;align-items:flex-start;gap:8px;padding:5px 4px;border-radius:6px;cursor:pointer;font-size:.9rem}
   label.opt:hover{background:var(--accent-soft)}
   label.opt input{margin-top:4px;accent-color:var(--accent)}
@@ -43,13 +47,13 @@
   input[type=search]{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
   .seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
   .seg button{flex:1;border:0;border-radius:0;color:var(--ink)}
-  .seg button.on{background:var(--accent);color:#fff}
+  .seg button.on{background:var(--accent);color:var(--on-accent)}
   .status{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;color:var(--muted);font-size:.88rem;margin-bottom:12px}
   .status b{color:var(--ink)}
   section.cat{margin-bottom:22px}
-  section.cat>h3{font-size:1.05rem;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid var(--accent);display:flex;gap:8px;align-items:baseline}
+  section.cat>h3{font-size:1.05rem;margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--accent);display:flex;gap:8px;align-items:baseline}
   section.cat>h3 span{color:var(--muted);font-weight:400;font-size:.85rem}
-  article{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+  article{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;box-shadow:0 1px 2px rgba(80,60,50,.04)}
   article h4{margin:0 0 4px;font-size:1rem;line-height:1.4}
   article h4 a{color:var(--ink);text-decoration:none}
   article h4 a:hover{color:var(--accent);text-decoration:underline}
