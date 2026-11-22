@@ -137,6 +137,20 @@
     .egg .sp2{animation-delay:-1.4s}
     @keyframes swim{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
   }
+
+  .weekbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;background:var(--card);border:1px solid var(--line);
+    border-left:4px solid var(--accent2);border-radius:12px;padding:10px 14px;margin-bottom:12px}
+  .weekbar label{font-weight:600}
+  .weekbar select{font:inherit;padding:5px 30px 5px 10px;border:1px solid var(--accent2);border-radius:8px;background:var(--bg);color:var(--ink);
+    appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--accent2) 50%),linear-gradient(135deg,var(--accent2) 50%,transparent 50%);
+    background-position:calc(100% - 15px) 52%,calc(100% - 10px) 52%;background-size:5px 5px;background-repeat:no-repeat}
+  .weekbar .wnav{display:flex;gap:6px}
+  .weekbar .wnav button{border-color:var(--accent2);color:var(--accent2);padding:4px 10px}
+  .weekbar .wnav button:hover{background:var(--accent2-soft)}
+  .weekbar button:disabled{opacity:.35;cursor:default;background:none}
+  .weekbar .range{color:var(--muted);font-size:.85rem;flex-basis:100%}
+  .weekbar[hidden]{display:none}
+  #list{transition:opacity .15s}
 </style>
 </head>
 <body>
@@ -207,6 +221,12 @@
   </aside>
 
   <main>
+    <div class="weekbar" id="weekbar" hidden>
+      <label for="week">📅 週次</label>
+      <select id="week"></select>
+      <span class="wnav"><button id="prevW" title="上一週">‹ 上一週</button><button id="nextW" title="下一週">下一週 ›</button></span>
+      <span class="range" id="range"></span>
+    </div>
     <div class="status" id="status">載入中…</div>
     <div id="list"></div>
   </main>
@@ -234,9 +254,22 @@ const state = { data:null, cats:new Set(), types:new Set(TYPES.map(t=>t.id)), co
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
+const getJSON = url => fetch(url + '?v=' + Date.now()).then(r => { if(!r.ok) throw new Error(r.status); return r.json(); });
+const fmtD = s => s ? s.replaceAll('-', '/') : '';
+const weekLabel = w => `${fmtD(w.week)} 那週（${w.count} 篇）`;
+let weeks = [], bound = false;
+
 function load(){
-  fetch('data.json?v=' + Date.now()).then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
-    .then(d => { state.data = d; d.categories.forEach(c => state.cats.add(c.id)); showUpdate(d.updated); buildControls(); render(); })
+  getJSON('archive/index.json')
+    .then(idx => {
+      weeks = idx.weeks || [];
+      if(!weeks.length) throw new Error('no weeks');
+      $('week').innerHTML = weeks.map((w, i) => `<option value="${i}">${i === 0 ? '本週 · ' : ''}${weekLabel(w)}</option>`).join('');
+      $('weekbar').hidden = false;
+      showUpdate(weeks[0].updated);
+      return selectWeek(0);
+    })
+    .catch(() => getJSON('data.json').then(d => { showUpdate(d.updated); useData(d); }))
     .catch(() => { $('updTime').textContent = '尚未更新'; $('nextTime').textContent = fmtTW(nextMonday()); $('status').textContent = ''; $('list').innerHTML = '<div class="empty">尚無資料：第一次執行的自動更新通常幾分鐘內就會完成，請稍後重新整理。</div>'; });
 }
 
@@ -280,23 +313,47 @@ function showUpdate(iso){
   $('nextTime').textContent = fmtTW(nextMonday()) + ' 左右';
 }
 
+function selectWeek(i){
+  i = Math.max(0, Math.min(weeks.length - 1, i));
+  $('week').value = i;
+  $('prevW').disabled = i >= weeks.length - 1;
+  $('nextW').disabled = i <= 0;
+  $('list').style.opacity = .4;
+  return getJSON(weeks[i].file).then(d => { $('list').style.opacity = 1; useData(d); window.scrollTo({top:0, behavior:'smooth'}); })
+    .catch(() => { $('list').style.opacity = 1; $('list').innerHTML = '<div class="empty">這一週的資料讀取失敗，請稍後再試。</div>'; });
+}
+
+function useData(d){
+  const first = !state.data;
+  state.data = d;
+  if(first) d.categories.forEach(c => state.cats.add(c.id));
+  const r = d.range_start ? `收錄 ${fmtD(d.range_start)} – ${fmtD(d.range_end)} 新進 PubMed 的文獻` : '';
+  $('range').textContent = r;
+  buildControls();
+  render();
+}
+
 function buildControls(){
   const d = state.data;
   const counts = {};
   d.articles.forEach(a => a.cats.forEach(c => counts[c] = (counts[c]||0) + 1));
   $('catList').innerHTML = d.categories.map(c => `
-    <label class="opt"><input type="checkbox" data-cat="${c.id}" checked>
+    <label class="opt"><input type="checkbox" data-cat="${c.id}" ${state.cats.has(c.id) ? 'checked' : ''}>
       ${icon(c.id)}<span>${esc(c.en)}<small>${esc(c.zh)}</small></span><span class="cnt">${counts[c.id]||0}</span></label>`).join('');
   const tcounts = {};
   d.articles.forEach(a => tcounts[a.type] = (tcounts[a.type]||0) + 1);
   $('typeList').innerHTML = TYPES.map(t => `
-    <label class="opt"><input type="checkbox" data-type="${t.id}" checked>
+    <label class="opt"><input type="checkbox" data-type="${t.id}" ${state.types.has(t.id) ? 'checked' : ''}>
       <span>${t.zh}<small>${t.en}</small></span><span class="cnt">${tcounts[t.id]||0}</span></label>`).join('');
 
+  if(bound) return; bound = true;
+  $('week').onchange = e => selectWeek(+e.target.value);
+  $('prevW').onclick = () => selectWeek(+$('week').value + 1);
+  $('nextW').onclick = () => selectWeek(+$('week').value - 1);
   $('catList').addEventListener('change', e => { const c = e.target.dataset.cat; e.target.checked ? state.cats.add(c) : state.cats.delete(c); render(); });
   $('typeList').addEventListener('change', e => { const t = e.target.dataset.type; e.target.checked ? state.types.add(t) : state.types.delete(t); render(); });
   const setAll = (sel, set, ids, on) => { document.querySelectorAll(sel).forEach(cb => cb.checked = on); set.clear(); if(on) ids.forEach(i => set.add(i)); render(); };
-  $('allOn').onclick  = () => setAll('[data-cat]',  state.cats,  d.categories.map(c=>c.id), true);
+  $('allOn').onclick  = () => setAll('[data-cat]',  state.cats,  state.data.categories.map(c=>c.id), true);
   $('allOff').onclick = () => setAll('[data-cat]',  state.cats,  [], false);
   $('typeAllOn').onclick  = () => setAll('[data-type]', state.types, TYPES.map(t=>t.id), true);
   $('typeAllOff').onclick = () => setAll('[data-type]', state.types, [], false);
@@ -335,7 +392,7 @@ function card(a, showCats){
 function render(){
   const d = state.data; if(!d) return;
   const shown = d.articles.filter(a => a.cats.some(c => state.cats.has(c)) && passes(a));
-  $('status').innerHTML = `<span>收錄範圍：最近 <b>${d.window_days}</b> 天新收錄文獻</span><span>目前顯示 <b>${shown.length}</b> / ${d.articles.length} 篇</span>`;
+  $('status').innerHTML = `${weeks.length ? '' : `<span>收錄範圍：最近 <b>${d.window_days}</b> 天新收錄文獻</span>`}<span>目前顯示 <b>${shown.length}</b> / ${d.articles.length} 篇</span>`;
   if(!shown.length){ $('list').innerHTML = '<div class="empty">沒有符合條件的文獻。請勾選次專科或調整篩選條件。</div>'; return; }
   if(state.view === 'date'){ $('list').innerHTML = shown.map(a => card(a, true)).join(''); return; }
   $('list').innerHTML = d.categories.filter(c => state.cats.has(c.id)).map(c => {
