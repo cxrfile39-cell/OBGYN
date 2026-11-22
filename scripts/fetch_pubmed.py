@@ -17,11 +17,14 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "docs" / "data.json"
+ARCHIVE = ROOT / "docs" / "archive"
+KEEP_WEEKS = int(os.environ.get("KEEP_WEEKS", "104"))   # 保留最近幾週（預設 2 年）
+TPE = timezone(timedelta(hours=8))
 
 EUTILS = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 API_KEY = os.environ.get("NCBI_API_KEY", "").strip()
@@ -321,8 +324,13 @@ def main():
                 details[pmid]["cats"].append(cid)
 
     articles = sorted(details.values(), key=lambda a: (a["sort"], a["pmid"]), reverse=True)
+    now_tpe = datetime.now(TPE)
+    week = (now_tpe.date() - timedelta(days=now_tpe.weekday())).isoformat()  # 該週的週一（台北時間）
     data = {
         "updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "week": week,
+        "range_start": (now_tpe.date() - timedelta(days=DAYS)).isoformat(),
+        "range_end": now_tpe.date().isoformat(),
         "window_days": DAYS,
         "categories": [{k: c[k] for k in ("id", "en", "zh")} | {"total": counts.get(c["id"], 0)}
                        for c in CATEGORIES],
@@ -332,7 +340,32 @@ def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"完成：{len(articles)} 篇 → {OUT.relative_to(ROOT)}")
+    save_archive(data)
     return 0
+
+
+def save_archive(data):
+    """每週存一份 docs/archive/<週一日期>.json，並更新 docs/archive/index.json。
+    同一週內重複執行（例如修改網頁後自動重跑）會覆寫同一週的檔案。"""
+    ARCHIVE.mkdir(parents=True, exist_ok=True)
+    payload = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
+    (ARCHIVE / f"{data['week']}.json").write_text(payload, encoding="utf-8")
+
+    files = sorted((f for f in ARCHIVE.glob("????-??-??.json")), reverse=True)
+    for old in files[KEEP_WEEKS:]:
+        old.unlink()
+    weeks = []
+    for f in files[:KEEP_WEEKS]:
+        try:
+            d = json.loads(f.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        weeks.append({"week": f.stem, "file": f"archive/{f.name}", "count": len(d.get("articles", [])),
+                      "range_start": d.get("range_start", ""), "range_end": d.get("range_end", ""),
+                      "updated": d.get("updated", "")})
+    (ARCHIVE / "index.json").write_text(
+        json.dumps({"weeks": weeks}, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"歷史週次：{len(weeks)} 週（{data['week']} 已存檔）")
 
 
 if __name__ == "__main__":
