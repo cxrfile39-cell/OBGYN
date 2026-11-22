@@ -182,6 +182,38 @@
     .more{width:calc(100% - 16px);margin:2px 8px 10px}
     .thead{padding:12px 12px}
   }
+
+  /* ── 搜尋邏輯說明 ── */
+  .method{margin:34px auto 0;padding-top:24px;border-top:1px solid var(--line);position:relative;z-index:1}
+  .method h2{font-size:1.2rem;margin:0 0 14px;color:var(--accent)}
+  .method h3{font-size:1rem;margin:0 0 8px;color:var(--ink)}
+  .method h3.msub{margin:22px 0 6px}
+  .mgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .mcard{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent2);border-radius:12px;padding:14px 16px;font-size:.9rem}
+  .mcard:nth-child(odd){border-top-color:var(--accent)}
+  .mcard ul,.mcard ol{margin:0;padding-left:1.2em} .mcard li{margin:4px 0}
+  .mtypes{list-style:none;padding:0 !important} .mtypes li{margin:8px 0 !important}
+  .mtypes .tag{display:inline-block;margin-right:6px}
+  .mnote{color:var(--muted);font-size:.85rem;margin:0 0 8px}
+  .mlimit{margin-top:14px}
+  .mjournals{display:flex;flex-wrap:wrap;gap:5px;margin:0}
+  .mjournals span{font-size:.78rem;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+  .mjournals span:nth-child(even){background:var(--accent2-soft);color:var(--accent2)}
+  .raw summary{cursor:pointer;color:var(--accent2);font-size:.85rem;margin-top:8px}
+  .raw code{display:block;margin-top:6px;padding:8px 10px;background:var(--bg);border:1px solid var(--line);border-radius:8px;
+    font-size:.75rem;line-height:1.5;word-break:break-word;white-space:pre-wrap;color:var(--ink)}
+  .raw a{display:inline-block;margin-top:6px;font-size:.82rem;color:var(--accent2)}
+  .mcats{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:8px}
+  .mcat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:.88rem;align-self:start}
+  .mcat summary{display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:600;list-style:none}
+  .mcat summary::-webkit-details-marker{display:none}
+  .mcat summary::after{content:"▾";margin-left:auto;color:var(--muted);transition:transform .15s}
+  .mcat[open] summary::after{transform:rotate(180deg)}
+  .mcat summary small{display:block;font-weight:400;color:var(--muted);font-size:.78rem}
+  .mcat:nth-child(even) .ic{color:var(--accent2)}
+  .mcat p{margin:8px 0 0;line-height:1.6}
+  .mcat .raw b{display:block;margin-top:8px;font-size:.8rem;color:var(--muted)}
+  @media (max-width:560px){.mgrid,.mcats{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -263,6 +295,51 @@
   </main>
 </div>
 
+<section class="method wrap" id="method" aria-labelledby="mTitle">
+  <h2 id="mTitle">🔎 搜尋邏輯說明</h2>
+  <div class="mgrid">
+    <div class="mcard">
+      <h3>資料來源與時間</h3>
+      <ul>
+        <li>資料庫：<b>PubMed</b>（美國國家醫學圖書館，透過 NCBI E-utilities 自動擷取）。</li>
+        <li>更新時間：<b>每週一 06:00（台北時間）</b>自動執行。</li>
+        <li>收錄範圍：執行當下往前 <b id="mDays">7</b> 天內<b>新進 PubMed</b> 的文獻（依 PubMed 收錄日期 Entrez Date，而非期刊出刊日）。</li>
+        <li>每個次專科最多取 <b id="mRetmax">60</b> 篇，依出版日期由新到舊。</li>
+        <li>同一篇文章若符合多個次專科，會同時出現在各次專科之下。</li>
+      </ul>
+    </div>
+    <div class="mcard">
+      <h3>共同篩選條件</h3>
+      <ul>
+        <li>語言：英文。</li>
+        <li>文章類型：Journal Article、Review、Systematic Review、Meta-Analysis、Guideline、Practice Guideline、Randomized Controlled Trial。</li>
+        <li>必須有摘要（臨床指引除外，因許多指引沒有摘要）。</li>
+        <li>排除：Comment、Editorial、Letter、Erratum、News、Case Reports、撤回文章、預印本。</li>
+      </ul>
+      <details class="raw"><summary>PubMed 篩選語法</summary><code id="mFilter"></code></details>
+    </div>
+    <div class="mcard">
+      <h3>四類文章的分類規則</h3>
+      <p class="mnote">依 PubMed 文章類型標記與標題關鍵字判斷，由上而下，符合第一個就歸類：</p>
+      <ol class="mtypes">
+        <li><span class="tag t-guideline">共識 / 臨床指引</span>類型為 Guideline、Practice Guideline、Consensus Development Conference；或標題含 guideline、consensus、committee opinion、practice bulletin、position statement / paper、Green-top。</li>
+        <li><span class="tag t-meta">統合分析 / 系統性回顧</span>類型為 Meta-Analysis、Systematic Review、Network Meta-Analysis；或標題含 meta-analysis、systematic review。</li>
+        <li><span class="tag t-review">綜論</span>類型為 Review、Scoping Review、Narrative Review。</li>
+        <li><span class="tag t-original">原著研究</span>以上皆非（含隨機對照試驗、世代研究等）。</li>
+      </ol>
+    </div>
+    <div class="mcard">
+      <h3>重點期刊</h3>
+      <p class="mnote">勾選「只看重點期刊」時，只顯示下列期刊（PubMed 期刊縮寫）：</p>
+      <p class="mjournals" id="mJournals"></p>
+    </div>
+  </div>
+  <h3 class="msub">各次專科搜尋條件</h3>
+  <p class="mnote">每個次專科以 MeSH 主題詞、標題／摘要關鍵字（[tiab]）及專科期刊（[ta]）組合搜尋，再套用上方共同篩選條件。點開可看完整 PubMed 語法，並可直接在 PubMed 執行同樣的搜尋。</p>
+  <div id="mCats" class="mcats"></div>
+  <p class="mnote mlimit">⚠️ 限制：新文章常尚未完成 MeSH 標引，主要靠關鍵字與期刊名稱比對，可能有少數漏收或歸錯次專科；分類皆為自動判定，僅供文獻追蹤參考，臨床決策請以原文為準。</p>
+</section>
+
 <footer>
   <svg class="egg" viewBox="0 0 160 40" aria-hidden="true">
     <g fill="none" stroke-linecap="round">
@@ -336,6 +413,42 @@ const ICONS = {
   hro:      '<circle cx="9" cy="4" r="2.2"/><path d="M8.4 7.4 8 21M8.4 9.6c6 .6 7.4 7 1 7.6"/><path d="M19 4v5.4"/><circle cx="19" cy="12.4" r=".5"/>',
 };
 const icon = (id, cls='ic') => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[id]||ICONS.general}</svg>`;
+
+const SUMMARY = {
+  general:  '婦產科綜合期刊的所有新文章：Obstet Gynecol、AJOG、BJOG、IJGO、Acta Obstet Gynecol Scand、EJOGRB、JOGC、Arch Gynecol Obstet、Taiwan J Obstet Gynecol、JOGR、ANZJOG、Obstet Gynecol Surv。',
+  mfm:      'MeSH：妊娠併發症、胎兒疾病、產前診斷。關鍵字：子癲前症、胎兒生長遲滯、早產、胎兒醫學、maternal-fetal。期刊：AJOG MFM、UOG、Fetal Diagn Ther。',
+  rei:      'MeSH：不孕症、人工生殖技術、多囊性卵巢症候群。關鍵字：不孕、IVF、胚胎植入、卵巢刺激、卵巢庫存。期刊：Hum Reprod、Fertil Steril、RBMO、Hum Reprod Update。',
+  gynonc:   'MeSH：女性生殖器腫瘤。關鍵字：卵巢癌、子宮內膜癌、子宮頸癌、外陰癌、子宮肉瘤、妊娠滋養層疾病。期刊：Gynecol Oncol、IJGC、J Gynecol Oncol。',
+  urogyn:   'MeSH：骨盆器官脫垂、尿失禁、膀胱過動症。關鍵字：urogynecology、骨盆底肌肉訓練。期刊：Int Urogynecol J、Urogynecology、Neurourol Urodyn。',
+  migs:     '（腹腔鏡、機器手臂、微創、vNOTES／經自然孔道）且（子宮切除、肌瘤切除、婦科、子宮內膜異位症、附屬器、卵巢囊腫）；或期刊 J Minim Invasive Gynecol。',
+  endoscopy:'MeSH／關鍵字：子宮鏡、陰道鏡；婦科疾病的腹腔鏡。期刊：Facts Views Vis ObGyn、Gynecol Minim Invasive Ther。',
+  fp:       'MeSH：避孕、避孕藥物、人工流產、家庭計畫服務。關鍵字：避孕、子宮內避孕器、藥物流產、人工流產、family planning。期刊：Contraception。',
+  menopause:'MeSH：停經、停經後、荷爾蒙補充療法。關鍵字：更年期、停經前後、血管舒縮症狀、熱潮紅、停經泌尿生殖症候群、停經荷爾蒙療法。期刊：Menopause、Climacteric、Maturitas。',
+  pag:      '期刊 J Pediatr Adolesc Gynecol；或（兒童／青少年／女童）且（女性生殖器疾病、月經異常、性早熟、初經、經痛、經血過多、卵巢扭轉、苗勒氏管異常）。',
+  obmed:    '期刊 Obstet Med；MeSH：妊娠糖尿病、孕前糖尿病、妊娠心血管／血液／感染併發症；或（懷孕／產後，標題）且（紅斑性狼瘡、甲狀腺、癲癇、腎臟病、心肌病變、心臟病、血栓、氣喘、發炎性腸道疾病、慢性高血壓）。',
+  fpmrs:    'MeSH：骨盆底功能障礙、大便失禁、膀胱陰道瘻管、尿道下吊帶。關鍵字：薦骨陰道固定術、中段尿道吊帶、經陰道網片、產科肛門括約肌損傷（OASIS）、陰道閉合術、骨盆底功能障礙。',
+  genetics: 'MeSH：胚胎著床前診斷、非侵入性產前檢測；懷孕或不孕相關的基因檢測。關鍵字：PGT-A／PGT-M、cell-free DNA、NIPT、帶因者篩檢、產前外顯子定序／染色體微陣列。期刊：Prenat Diagn。',
+  hro:      'MeSH：高危險妊娠、植入性胎盤、產後出血、多胎妊娠、早產、死產。關鍵字：前置胎盤、雙胞胎妊娠、嚴重孕產婦併發症、孕產婦死亡。',
+};
+let methodDone = false;
+function renderMethod(d){
+  if(methodDone && !(d.method)) return;
+  const m = d.method || {};
+  if(d.window_days) $('mDays').textContent = d.window_days;
+  if(m.retmax) $('mRetmax').textContent = m.retmax;
+  $('mFilter').textContent = m.type_filter || 'AND english[la] AND (journal article[pt] OR review[pt] OR systematic review[pt] OR meta-analysis[pt] OR guideline[pt] OR practice guideline[pt] OR randomized controlled trial[pt]) AND (hasabstract OR guideline[pt] OR practice guideline[pt]) NOT (comment[pt] OR editorial[pt] OR letter[pt] OR erratum[pt] OR news[pt] OR case reports[pt] OR retracted publication[pt] OR preprint[pt])';
+  const cj = m.core_journals || [];
+  $('mJournals').innerHTML = cj.length ? cj.map(j => `<span>${esc(j)}</span>`).join('') : '（資料更新後顯示）';
+  $('mCats').innerHTML = d.categories.map(c => {
+    const full = c.q ? `${c.q} ${$('mFilter').textContent}` : '';
+    const link = full ? `<a href="https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(full)}&sort=date" target="_blank" rel="noopener">在 PubMed 執行此搜尋 ↗</a>` : '';
+    return `<details class="mcat"><summary>${icon(c.id)}<span>${esc(c.en)}<small>${esc(c.zh)}</small></span></summary>
+      <p>${esc(SUMMARY[c.id] || '')}</p>
+      ${c.q ? `<div class="raw"><b>PubMed 語法</b><code>${esc(c.q)}</code>${link}</div>` : ''}
+    </details>`;
+  }).join('');
+  methodDone = true;
+}
 const WD = ['日','一','二','三','四','五','六'];
 function fmtTW(dt){
   const p = Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit',
@@ -375,6 +488,7 @@ function useData(d){
   if(first) d.categories.forEach(c => state.cats.add(c.id));
   const r = d.range_start ? `收錄 ${fmtD(d.range_start)} – ${fmtD(d.range_end)} 新進 PubMed 的文獻` : '';
   $('range').textContent = r;
+  if(!methodDone) renderMethod(d);   // 以最新一週的設定為準，只產生一次
   buildControls();
   render();
 }
