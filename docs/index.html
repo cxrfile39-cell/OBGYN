@@ -11,7 +11,7 @@
     --accent:#94636c; --on-accent:#fff; --accent-soft:#f5ebec;
     --accent2:#5c7c66; --on-accent2:#fff; --accent2-soft:#e8f0e9;
     --rev:#4f7f84; --rev-soft:#e8f1f1; --gl:#5d8263; --gl-soft:#ebf2ea;
-    --art:#756e68; --art-soft:#f1eeea;
+    --art:#756e68; --art-soft:#f1eeea; --meta:#8a6d3b; --meta-soft:#f5eedf;
     --head-bg:linear-gradient(120deg,#f1e0e2 0%,#f6eeee 46%,#edf3ec 54%,#dde9de 100%); --head-ink:#5e4148;
   }
   @media (prefers-color-scheme: dark){
@@ -19,7 +19,7 @@
       --accent:#d4a5ad; --on-accent:#2a2224; --accent-soft:#3a2e30;
       --accent2:#a9c7ae; --on-accent2:#1f2a22; --accent2-soft:#26302a;
       --rev:#9cc4c7; --rev-soft:#233132; --gl:#a7c4a9; --gl-soft:#26302a;
-      --art:#c2bab3; --art-soft:#2e2b28;
+      --art:#c2bab3; --art-soft:#2e2b28; --meta:#d8bd85; --meta-soft:#332c1f;
       --head-bg:linear-gradient(120deg,#33282b 0%,#2a2627 46%,#262a26 54%,#24302a 100%); --head-ink:#ecd9dc; }
   }
   *{box-sizing:border-box}
@@ -75,7 +75,8 @@
   .tag{font-size:.74rem;padding:2px 8px;border-radius:999px;background:var(--art-soft);color:var(--art)}
   .t-guideline{background:var(--gl-soft);color:var(--gl);font-weight:600}
   .t-review{background:var(--rev-soft);color:var(--rev);font-weight:600}
-  .t-article{background:var(--art-soft);color:var(--art);font-weight:600}
+  .t-original{background:var(--art-soft);color:var(--art);font-weight:600}
+  .t-meta{background:var(--meta-soft);color:var(--meta);font-weight:600}
   .t-core{background:var(--accent-soft);color:var(--accent)}
   details{margin-top:6px}
   details summary{cursor:pointer;color:var(--accent);font-size:.85rem}
@@ -151,6 +152,24 @@
   .weekbar .range{color:var(--muted);font-size:.85rem;flex-basis:100%}
   .weekbar[hidden]{display:none}
   #list{transition:opacity .15s}
+
+  /* ── 四類文章區塊 ── */
+  .tgrid{display:flex;flex-direction:column;gap:10px}
+  .tblock{--c:var(--art);--cs:var(--art-soft);border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--card) 70%,transparent);padding:8px 10px 10px}
+  .tb-original{--c:var(--art);--cs:var(--art-soft)} .tb-review{--c:var(--rev);--cs:var(--rev-soft)}
+  .tb-meta{--c:var(--meta);--cs:var(--meta-soft)} .tb-guideline{--c:var(--gl);--cs:var(--gl-soft)}
+  .thead{display:flex;align-items:center;gap:8px;padding:4px 4px 8px;font-weight:600;color:var(--c)}
+  .thead[data-toggle]{cursor:pointer}
+  .thead .tdot{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
+  .thead .tname small{font-weight:400;color:var(--muted);margin-left:8px;font-size:.82rem}
+  .thead .tcount{margin-left:auto;min-width:28px;text-align:center;padding:1px 9px;border-radius:999px;background:var(--cs);color:var(--c);font-size:.85rem}
+  .tblock.empty{padding:4px 10px;opacity:.55;background:none;border-style:dashed}
+  .tblock.empty .thead{padding:4px}
+  .tblock article{margin-bottom:8px}
+  section.cat .tblock article, #list .tblock article{border-left:3px solid var(--c)}
+  .tblock .t-original,.tblock .t-review,.tblock .t-meta,.tblock .t-guideline{display:none}
+  .more{display:block;width:100%;margin-top:2px;border:1px dashed var(--c);color:var(--c);background:var(--cs);border-radius:8px;padding:7px}
+  .more:hover{background:var(--cs);filter:brightness(.97)}
 </style>
 </head>
 <body>
@@ -188,7 +207,7 @@
   <svg class="head-art" aria-hidden="true"><use href="#uterus"/></svg>
   <div class="wrap">
     <h1><span class="venus" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M12 14v7M8.5 18h7"/></svg></span>婦產科次專科每週文獻</h1>
-    <p>OB/GYN Subspecialty Weekly Literature — 期刊論文 · 綜論 · 臨床指引，每週一自動更新（資料來源：PubMed）</p>
+    <p>OB/GYN Subspecialty Weekly Literature — 原著 · 綜論 · 統合分析 · 共識／指引，每週一自動更新（資料來源：PubMed）</p>
     <div class="upd" id="updBox"><span>🕒 上次更新：<b id="updTime">讀取中…</b></span><span class="sep">｜</span><span>⏭ 下次更新：<b id="nextTime">—</b></span></div>
   </div>
 </header>
@@ -246,11 +265,25 @@
 
 <script>
 const TYPES = [
-  {id:'guideline', zh:'臨床指引', en:'Guideline'},
-  {id:'review',    zh:'綜論 / 系統性回顧', en:'Review'},
-  {id:'article',   zh:'期刊論文', en:'Journal article'},
+  {id:'original',  zh:'原著研究', en:'Original article'},
+  {id:'review',    zh:'綜論', en:'Review'},
+  {id:'meta',      zh:'統合分析 / 系統性回顧', en:'Meta-analysis'},
+  {id:'guideline', zh:'共識 / 臨床指引', en:'Consensus / Guideline'},
 ];
-const state = { data:null, cats:new Set(), types:new Set(TYPES.map(t=>t.id)), core:false, q:'', view:'group' };
+const PREVIEW = { group: 2, date: 5 };   // 每區塊一開始顯示幾篇
+// 前端也重新分類一次，舊週次的存檔也能分成四區
+function classify(a){
+  const pts = new Set((a.pubtypes || []).map(p => p.toLowerCase()));
+  const t = (a.title || '').toLowerCase();
+  const has = (...k) => k.some(x => pts.has(x));
+  const tin = (...k) => k.some(x => t.includes(x));
+  if(has('guideline','practice guideline','consensus development conference','consensus development conference, nih')
+     || tin('guideline','committee opinion','practice bulletin','consensus','position statement','position paper','green-top')) return 'guideline';
+  if(has('meta-analysis','systematic review','network meta-analysis') || tin('meta-analysis','metaanalysis','meta analysis','systematic review')) return 'meta';
+  if(has('review','scoping review','narrative review')) return 'review';
+  return 'original';
+}
+const state = { expanded:new Set(), data:null, cats:new Set(), types:new Set(TYPES.map(t=>t.id)), core:false, q:'', view:'group' };
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
@@ -325,6 +358,7 @@ function selectWeek(i){
 
 function useData(d){
   const first = !state.data;
+  d.articles.forEach(a => a.type = classify(a));
   state.data = d;
   if(first) d.categories.forEach(c => state.cats.add(c.id));
   const r = d.range_start ? `收錄 ${fmtD(d.range_start)} – ${fmtD(d.range_end)} 新進 PubMed 的文獻` : '';
@@ -347,6 +381,15 @@ function buildControls(){
       <span>${t.zh}<small>${t.en}</small></span><span class="cnt">${tcounts[t.id]||0}</span></label>`).join('');
 
   if(bound) return; bound = true;
+  $('list').addEventListener('click', e => {
+    const b = e.target.closest('[data-toggle]'); if(!b) return;
+    const k = b.dataset.toggle;
+    state.expanded.has(k) ? state.expanded.delete(k) : state.expanded.add(k);
+    const blk = b.closest('.tblock'); const top = blk.getBoundingClientRect().top;
+    render();
+    const nb = document.querySelector(`.tblock[data-key="${CSS.escape(k)}"]`);
+    if(nb) window.scrollBy(0, nb.getBoundingClientRect().top - top);   // 畫面位置不跳動
+  });
   $('week').onchange = e => selectWeek(+e.target.value);
   $('prevW').onclick = () => selectWeek(+$('week').value + 1);
   $('nextW').onclick = () => selectWeek(+$('week').value - 1);
@@ -389,16 +432,29 @@ function card(a, showCats){
   </article>`;
 }
 
+function blocks(items, scope, showCats, n){
+  return `<div class="tgrid">` + TYPES.filter(t => state.types.has(t.id)).map(t => {
+    const list = items.filter(a => a.type === t.id);
+    const key = scope + '|' + t.id, open = state.expanded.has(key), rest = list.length - n;
+    const head = `<div class="thead"${rest > 0 ? ` data-toggle="${key}" role="button" tabindex="0"` : ''}>
+        <span class="tdot"></span><span class="tname">${t.en}<small>${t.zh}</small></span><b class="tcount">${list.length}</b></div>`;
+    if(!list.length) return `<div class="tblock tb-${t.id} empty" data-key="${key}">${head}</div>`;
+    const visible = open ? list : list.slice(0, n);
+    const more = rest > 0 ? `<button class="more" data-toggle="${key}">${open ? '收合 ▴' : `展開其餘 ${rest} 篇 ▾`}</button>` : '';
+    return `<div class="tblock tb-${t.id}" data-key="${key}">${head}${visible.map(a => card(a, showCats)).join('')}${more}</div>`;
+  }).join('') + `</div>`;
+}
+
 function render(){
   const d = state.data; if(!d) return;
   const shown = d.articles.filter(a => a.cats.some(c => state.cats.has(c)) && passes(a));
   $('status').innerHTML = `${weeks.length ? '' : `<span>收錄範圍：最近 <b>${d.window_days}</b> 天新收錄文獻</span>`}<span>目前顯示 <b>${shown.length}</b> / ${d.articles.length} 篇</span>`;
   if(!shown.length){ $('list').innerHTML = '<div class="empty">沒有符合條件的文獻。請勾選次專科或調整篩選條件。</div>'; return; }
-  if(state.view === 'date'){ $('list').innerHTML = shown.map(a => card(a, true)).join(''); return; }
+  if(state.view === 'date'){ $('list').innerHTML = blocks(shown, 'all', true, PREVIEW.date); return; }
   $('list').innerHTML = d.categories.filter(c => state.cats.has(c.id)).map(c => {
     const items = shown.filter(a => a.cats.includes(c.id));
     if(!items.length) return '';
-    return `<section class="cat"><h3><i class="badge">${icon(c.id,'ic-lg')}</i>${esc(c.en)} <span>${esc(c.zh)} · ${items.length} 篇</span></h3>${items.map(a => card(a, false)).join('')}</section>`;
+    return `<section class="cat"><h3><i class="badge">${icon(c.id,'ic-lg')}</i>${esc(c.en)} <span>${esc(c.zh)} · ${items.length} 篇</span></h3>${blocks(items, c.id, false, PREVIEW.group)}</section>`;
   }).join('');
 }
 load();
