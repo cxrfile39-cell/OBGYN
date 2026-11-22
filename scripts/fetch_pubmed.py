@@ -210,15 +210,20 @@ def parse_date(art, pmdata):
 
 
 def classify(pubtypes, title):
+    """四類：guideline（共識/指引）、meta（統合分析/系統性回顧）、review（綜論）、original（原著）。"""
     pts = {p.lower() for p in pubtypes}
     t = title.lower()
-    if pts & {"guideline", "practice guideline", "consensus development conference"} or any(
-            k in t for k in ("guideline", "committee opinion", "practice bulletin", "consensus statement",
-                             "clinical consensus", "position statement")):
+    if pts & {"guideline", "practice guideline", "consensus development conference",
+              "consensus development conference, nih"} or any(
+            k in t for k in ("guideline", "committee opinion", "practice bulletin", "consensus",
+                             "position statement", "position paper", "green-top")):
         return "guideline"
-    if pts & {"review", "systematic review", "meta-analysis", "scoping review"}:
+    if pts & {"meta-analysis", "systematic review", "network meta-analysis"} or any(
+            k in t for k in ("meta-analysis", "metaanalysis", "meta analysis", "systematic review")):
+        return "meta"
+    if pts & {"review", "scoping review", "narrative review"}:
         return "review"
-    return "article"
+    return "original"
 
 
 def parse_article(pa):
