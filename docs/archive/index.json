@@ -1,6 +1,14 @@
 {
  "weeks": [
   {
+   "week": "2026-11-23",
+   "file": "archive/2026-11-23.json",
+   "count": 563,
+   "range_start": "2026-11-16",
+   "range_end": "2026-11-23",
+   "updated": "2026-11-22T16:29:23+00:00"
+  },
+  {
    "week": "2026-11-16",
    "file": "archive/2026-11-16.json",
    "count": 563,
