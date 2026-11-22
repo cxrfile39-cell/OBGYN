@@ -125,7 +125,8 @@ CATEGORIES = [
 ]
 
 # 重點期刊（MedlineTA 縮寫，小寫比對），網頁可勾選「只看重點期刊」
-CORE_JOURNALS = {s.lower() for s in [
+
+CORE_JOURNALS_DISPLAY = [
     "N Engl J Med", "Lancet", "JAMA", "BMJ", "Nat Med", "Ann Intern Med", "JAMA Intern Med",
     "Lancet Oncol", "J Clin Oncol", "JAMA Oncol", "Cochrane Database Syst Rev", "PLoS Med",
     "Obstet Gynecol", "Am J Obstet Gynecol", "BJOG", "Am J Obstet Gynecol MFM",
@@ -137,7 +138,8 @@ CORE_JOURNALS = {s.lower() for s in [
     "Eur J Obstet Gynecol Reprod Biol", "J Obstet Gynaecol Can", "Taiwan J Obstet Gynecol",
     "Lancet Glob Health", "Lancet Diabetes Endocrinol", "Diabetes Care", "Hypertension",
     "J Clin Endocrinol Metab", "Eur Urol",
-]}
+]
+CORE_JOURNALS = {s.lower() for s in CORE_JOURNALS_DISPLAY}
 
 MONTHS = {m: i for i, m in enumerate(
     ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"], 1)}
@@ -337,8 +339,10 @@ def main():
         "range_start": (now_tpe.date() - timedelta(days=DAYS)).isoformat(),
         "range_end": now_tpe.date().isoformat(),
         "window_days": DAYS,
-        "categories": [{k: c[k] for k in ("id", "en", "zh")} | {"total": counts.get(c["id"], 0)}
+        "categories": [{k: c[k] for k in ("id", "en", "zh", "q")} | {"total": counts.get(c["id"], 0)}
                        for c in CATEGORIES],
+        "method": {"type_filter": TYPE_FILTER.strip(), "retmax": RETMAX, "date_type": "edat",
+                   "core_journals": sorted(CORE_JOURNALS_DISPLAY)},
         "failed": failed,
         "articles": articles,
     }
