@@ -29,9 +29,9 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -49,10 +49,17 @@ jobs:
           git add -A docs
           if git diff --cached --quiet; then
             echo "資料沒有變動"
-          else
-            git commit -m "Weekly literature update $(date -u +%Y-%m-%d)"
-            git push
+            exit 0
           fi
+          git commit -m "Weekly literature update $(date -u +%Y-%m-%d)"
+          # 執行期間若有人修改 repo，先合併最新版本再推送（最多重試 5 次）
+          for i in 1 2 3 4 5; do
+            if git push; then echo "推送成功"; exit 0; fi
+            echo "推送被拒（repo 已有新的 commit），合併後重試 $i/5"
+            git pull --rebase -X theirs || { git rebase --abort; git pull --no-rebase -X ours --no-edit; }
+            sleep $((i * 3))
+          done
+          echo "多次推送失敗" && exit 1
 
       - uses: actions/configure-pages@v5
 
