@@ -8,6 +8,7 @@
   NCBI_EMAIL    聯絡 email（NCBI 建議提供）
   DAYS          抓取最近幾天新收錄的文獻，預設 7
   RETMAX        每個次專科最多幾篇，預設 60
+  OPENALEX_API_KEY  OpenAlex API key（免費；用來取得期刊 2 年平均被引次數，作為 IF 近似值）
 """
 import json
 import os
@@ -27,6 +28,10 @@ KEEP_WEEKS = int(os.environ.get("KEEP_WEEKS", "104"))   # 保留最近幾週（�
 TPE = timezone(timedelta(hours=8))
 
 EUTILS = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
+OPENALEX = "https://api.openalex.org/sources"
+OPENALEX_KEY = os.environ.get("OPENALEX_API_KEY", "").strip()
+JOURNAL_CACHE = ROOT / "docs" / "journals.json"          # 期刊指標快取（OpenAlex 失敗時沿用）
+JIF_OVERRIDE = ROOT / "scripts" / "jif_override.json"   # 手動填入的官方 JCR JIF（優先使用）
 API_KEY = os.environ.get("NCBI_API_KEY", "").strip()
 EMAIL = os.environ.get("NCBI_EMAIL", "").strip()
 DAYS = int(os.environ.get("DAYS", "7"))
@@ -256,6 +261,10 @@ def parse_article(pa):
     au_str = ", ".join(authors[:3]) + (" et al." if len(authors) > 3 else "")
 
     pubtypes = [text(p) for p in art.findall("PublicationTypeList/PublicationType")]
+    issns = [text(i) for i in art.findall("Journal/ISSN") if text(i)]
+    link = text(mc.find("MedlineJournalInfo/ISSNLinking"))
+    if link and link not in issns:
+        issns.append(link)
     ta = text(mc.find("MedlineJournalInfo/MedlineTA")) or text(art.find("Journal/ISOAbbreviation"))
     doi = ""
     for e in art.findall("ELocationID"):
@@ -285,9 +294,85 @@ def parse_article(pa):
         "pubtypes": pubtypes,
         "doi": doi,
         "pmc": pmc,
+        "issn": issns,
         "abstract": abstract,
         "cats": [],
     }
+
+
+def get_json(url, params, retries=3):
+    q = urllib.parse.urlencode(params)
+    last = None
+    for attempt in range(retries):
+        try:
+            time.sleep(0.2)
+            req = urllib.request.Request(f"{url}?{q}", headers={"User-Agent": "obgyn-weekly/1.0"})
+            with urllib.request.urlopen(req, timeout=60) as r:
+                return json.loads(r.read())
+        except (urllib.error.URLError, TimeoutError, ConnectionError, ValueError) as e:
+            last = e
+            time.sleep(2 ** attempt * 2)
+    raise RuntimeError(f"OpenAlex 失敗：{last}")
+
+
+def journal_metrics(articles):
+    """以 ISSN 向 OpenAlex 查詢期刊 2 年平均被引次數（計算方式同 IF，但非 Clarivate 官方 JIF）。
+    查不到或連線失敗時，沿用上次的快取。"""
+    cache = {}
+    if JOURNAL_CACHE.exists():
+        try:
+            cache = json.loads(JOURNAL_CACHE.read_text(encoding="utf-8")).get("by_issn", {})
+        except Exception:
+            cache = {}
+    issns = sorted({i for a in articles for i in a.get("issn", [])})
+    fresh, ok = {}, 0
+    for k in range(0, len(issns), 50):
+        chunk = issns[k:k + 50]
+        params = {"filter": "issn:" + "|".join(chunk), "per_page": 100,
+                  "select": "display_name,issn_l,issn,summary_stats"}
+        if OPENALEX_KEY:
+            params["api_key"] = OPENALEX_KEY
+        try:
+            res = get_json(OPENALEX, params)
+            ok += 1
+        except Exception as e:
+            print(f"  ! {e}", file=sys.stderr)
+            continue
+        for src in res.get("results", []):
+            v = (src.get("summary_stats") or {}).get("2yr_mean_citedness")
+            if v is None:
+                continue
+            rec = {"name": src.get("display_name", ""), "if": round(float(v), 1)}
+            for i in (src.get("issn") or []) + [src.get("issn_l") or ""]:
+                if i:
+                    fresh[i] = rec
+    merged = cache | fresh
+    JOURNAL_CACHE.write_text(json.dumps({
+        "updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "source": "OpenAlex summary_stats.2yr_mean_citedness",
+        "by_issn": merged}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    print(f"期刊指標：OpenAlex 查詢 {ok} 批，取得 {len(fresh)} 個 ISSN（快取共 {len(merged)}）")
+
+    overrides, jcr_year = {}, ""
+    if JIF_OVERRIDE.exists():
+        try:
+            raw = json.loads(JIF_OVERRIDE.read_text(encoding="utf-8"))
+            jcr_year = str(raw.get("_jcr_year", ""))
+            overrides = {k.lower(): v for k, v in raw.items()
+                         if not k.startswith("_") and isinstance(v, (int, float))}
+        except Exception as e:
+            print(f"  ! jif_override.json 格式錯誤：{e}", file=sys.stderr)
+
+    for a in articles:
+        jcr = overrides.get(a["ta"].lower())
+        if jcr is not None:
+            a["if"], a["if_src"] = round(float(jcr), 1), "jcr"
+            continue
+        for i in a.get("issn", []):
+            if i in merged:
+                a["if"], a["if_src"] = merged[i]["if"], "openalex"
+                break
+    return jcr_year
 
 
 def fetch_details(pmids):
@@ -331,6 +416,11 @@ def main():
                 details[pmid]["cats"].append(cid)
 
     articles = sorted(details.values(), key=lambda a: (a["sort"], a["pmid"]), reverse=True)
+    try:
+        jcr_year = journal_metrics(articles)
+    except Exception as e:  # IF 取得失敗不影響文獻更新
+        jcr_year = ""
+        print(f"  ! 期刊 IF 取得失敗：{e}", file=sys.stderr)
     now_tpe = datetime.now(TPE)
     week = (now_tpe.date() - timedelta(days=now_tpe.weekday())).isoformat()  # 該週的週一（台北時間）
     data = {
@@ -342,6 +432,7 @@ def main():
         "categories": [{k: c[k] for k in ("id", "en", "zh", "q")} | {"total": counts.get(c["id"], 0)}
                        for c in CATEGORIES],
         "method": {"type_filter": TYPE_FILTER.strip(), "retmax": RETMAX, "date_type": "edat",
+                   "jcr_year": jcr_year,
                    "core_journals": sorted(CORE_JOURNALS_DISPLAY)},
         "failed": failed,
         "articles": articles,
