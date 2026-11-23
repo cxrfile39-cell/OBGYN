@@ -1,0 +1,5 @@
+{
+  "_說明": "選填：在這裡填入官方 Clarivate JCR 的 Journal Impact Factor，網頁會優先顯示為「JIF」。鍵為 PubMed 期刊縮寫（網頁卡片上顯示的期刊名稱），值為數字。沒填的期刊會自動使用 OpenAlex 的 2 年平均被引次數（顯示為「IF≈」）。",
+  "_jcr_year": "",
+  "_範例": "\"Obstet Gynecol\": 0.0"
+}
