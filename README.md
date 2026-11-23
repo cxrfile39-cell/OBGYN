@@ -5,6 +5,7 @@
 製作者：**JH CHIU MD · Claude 5.5**
 
 ## 功能
+- 搜尋區間可選 7 天（每週，可回看各週）／30 天／1 年／2 年
 - 14 個次專科分類，附「全選／全不選」按鈕
 - 文章類型篩選：臨床指引、綜論／系統性回顧、期刊論文（也有全選／全不選）
 - 「只看重點期刊」、關鍵字搜尋、依次專科或依日期排列
@@ -40,6 +41,7 @@
 - 更新時間：`.github/workflows/update.yml` 中的 `cron`（UTC 時間）
 - 每類篇數上限：環境變數 `RETMAX`（預設 150）；補建最近幾週：`BACKFILL_WEEKS`（預設 4）
 - 每週範圍固定為上週一～上週日（台北時間），各週不重疊
+- 長區間（30 天／1 年／2 年）每區塊顯示篇數：`RANGE_N`（預設 40）
 
 ## 檔案結構
 ```
@@ -49,6 +51,7 @@ docs/index.html                網頁
 docs/data.json                 自動產生的文獻資料
 docs/archive/                  每週存檔
 docs/journals.json             期刊 IF 快取
+docs/range/                    30 天／1 年／2 年區間資料
 scripts/jif_override.json      手動填寫的官方 JIF（選填）
 ```
 
