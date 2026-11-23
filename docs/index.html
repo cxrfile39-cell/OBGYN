@@ -314,8 +314,8 @@
       <ul>
         <li>資料庫：<b>PubMed</b>（美國國家醫學圖書館，透過 NCBI E-utilities 自動擷取）。</li>
         <li>更新時間：<b>每週一 06:00（台北時間）</b>自動執行。</li>
-        <li>收錄範圍：執行當下往前 <b id="mDays">7</b> 天內<b>新進 PubMed</b> 的文獻（依 PubMed 收錄日期 Entrez Date，而非期刊出刊日）。</li>
-        <li>每個次專科最多取 <b id="mRetmax">60</b> 篇，依出版日期由新到舊。</li>
+        <li>收錄範圍：每一週固定為<b>上週一 ～ 上週日</b>（共 <b id="mDays">7</b> 天）<b>新進 PubMed</b> 的文獻（依 PubMed 收錄日期 Entrez Date，而非期刊出刊日）。各週範圍不重疊，同一週不論何時執行結果都相同。</li>
+        <li>每個次專科每週最多取 <b id="mRetmax">150</b> 篇，依出版日期由新到舊；若超過上限，次專科標題會註明實際總數。</li>
         <li>同一篇文章若符合多個次專科，會同時出現在各次專科之下。</li>
       </ul>
     </div>
@@ -397,7 +397,8 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt
 
 const getJSON = url => fetch(url + '?v=' + Date.now()).then(r => { if(!r.ok) throw new Error(r.status); return r.json(); });
 const fmtD = s => s ? s.replaceAll('-', '/') : '';
-const weekLabel = w => `${fmtD(w.week)} 那週（${w.count} 篇）`;
+const md = s => s ? s.slice(5).replace('-', '/') : '';
+const weekLabel = w => w.range_start ? `${fmtD(w.range_start)} – ${md(w.range_end)}（${w.count} 篇）` : `${fmtD(w.week)} 那週（${w.count} 篇）`;
 let weeks = [], bound = false;
 
 function load(){
@@ -405,7 +406,7 @@ function load(){
     .then(idx => {
       weeks = idx.weeks || [];
       if(!weeks.length) throw new Error('no weeks');
-      $('week').innerHTML = weeks.map((w, i) => `<option value="${i}">${i === 0 ? '本週 · ' : ''}${weekLabel(w)}</option>`).join('');
+      $('week').innerHTML = weeks.map((w, i) => `<option value="${i}">${i === 0 ? '最新 · ' : ''}${weekLabel(w)}</option>`).join('');
       $('weekbar').hidden = false;
       showUpdate(weeks[0].updated);
       return selectWeek(0);
@@ -506,7 +507,7 @@ function useData(d){
   d.articles.forEach(a => a.type = classify(a));
   state.data = d;
   if(first) d.categories.forEach(c => state.cats.add(c.id));
-  const r = d.range_start ? `收錄 ${fmtD(d.range_start)} – ${fmtD(d.range_end)} 新進 PubMed 的文獻` : '';
+  const r = d.range_start ? `收錄 ${fmtD(d.range_start)}（一）– ${fmtD(d.range_end)}（日）新進 PubMed 的文獻` : '';
   $('range').textContent = r;
   if(!methodDone) renderMethod(d);   // 以最新一週的設定為準，只產生一次
   buildControls();
@@ -613,7 +614,7 @@ function render(){
   $('list').innerHTML = d.categories.filter(c => state.cats.has(c.id)).map(c => {
     const items = shown.filter(a => a.cats.includes(c.id));
     if(!items.length) return '';
-    return `<section class="cat"><h3><i class="badge">${icon(c.id,'ic-lg')}</i>${esc(c.en)} <span>${esc(c.zh)} · ${items.length} 篇</span></h3>${blocks(items, c.id, false, PREVIEW.group)}</section>`;
+    return `<section class="cat"><h3><i class="badge">${icon(c.id,'ic-lg')}</i>${esc(c.en)} <span>${esc(c.zh)} · ${items.length} 篇${c.total > (c.fetched ?? c.total) ? `（本週共 ${c.total} 篇，取最新 ${c.fetched} 篇）` : ''}</span></h3>${blocks(items, c.id, false, PREVIEW.group)}</section>`;
   }).join('');
 }
 load();
