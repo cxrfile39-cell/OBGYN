@@ -540,7 +540,11 @@ def build_ranges(this_monday):
         if range_is_current(key, end):
             print(f"\n== 區間 {label}：本週已更新，略過 ==")
             continue
-        data = build_range(key, label, days, end)
+        try:
+            data = build_range(key, label, days, end)
+        except Exception as e:
+            print(f"  ! 區間 {label} 建立失敗：{e}", file=sys.stderr)
+            data = None
         if data:
             (RANGE_DIR / f"{key}.json").write_text(
                 json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
@@ -570,7 +574,11 @@ def main():
         if not needs_build(w, w == this_monday):
             print(f"\n== {w}：已有正確存檔，略過 ==")
             continue
-        data = build_week(w)
+        try:
+            data = build_week(w)
+        except Exception as e:      # 單一週失敗不影響其他週
+            print(f"  ! {w} 建立失敗：{e}", file=sys.stderr)
+            data = None
         if data is None:
             continue
         save_archive(data)
