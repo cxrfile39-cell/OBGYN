@@ -6,8 +6,11 @@
 環境變數（可選）：
   NCBI_API_KEY  NCBI API key（有的話速率上限較高）
   NCBI_EMAIL    聯絡 email（NCBI 建議提供）
-  DAYS          抓取最近幾天新收錄的文獻，預設 7
-  RETMAX        每個次專科最多幾篇，預設 60
+  RETMAX        每個次專科每週最多幾篇，預設 150
+  BACKFILL_WEEKS  每次執行時，檢查並補建最近幾週的存檔，預設 4
+
+每一週的資料範圍固定為「上週一 ～ 上週日」（台北時間，依 PubMed 收錄日期）。
+不論在一週中的哪一天、執行幾次，同一週的結果都相同，各週之間不會重疊。
   OPENALEX_API_KEY  OpenAlex API key（免費；用來取得期刊 2 年平均被引次數，作為 IF 近似值）
 """
 import json
@@ -34,8 +37,10 @@ JOURNAL_CACHE = ROOT / "docs" / "journals.json"          # 期刊指標快取（
 JIF_OVERRIDE = ROOT / "scripts" / "jif_override.json"   # 手動填入的官方 JCR JIF（優先使用）
 API_KEY = os.environ.get("NCBI_API_KEY", "").strip()
 EMAIL = os.environ.get("NCBI_EMAIL", "").strip()
-DAYS = int(os.environ.get("DAYS", "7"))
-RETMAX = int(os.environ.get("RETMAX", "60"))
+DAYS = 7
+RETMAX = int(os.environ.get("RETMAX", "150"))
+BACKFILL_WEEKS = int(os.environ.get("BACKFILL_WEEKS", "4"))
+SCHEME = 2   # 存檔格式版本：2 = 固定「週一～週日」範圍
 SLEEP = 0.12 if API_KEY else 0.4  # NCBI 速率限制：無 key 3 次/秒，有 key 10 次/秒
 
 # 共用篩選：英文、文章類型、排除評論/社論/勘誤/個案報告
@@ -174,11 +179,12 @@ def http(endpoint, params, retries=4):
     raise RuntimeError(f"{endpoint} 多次失敗：{last}")
 
 
-def search(cat):
+def search(cat, start, end):
     term = cat["q"] + TYPE_FILTER
     raw = http("esearch.fcgi", {
         "db": "pubmed", "term": term, "retmax": RETMAX, "sort": "pub_date",
-        "datetype": "edat", "reldate": DAYS, "retmode": "json",
+        "datetype": "edat", "mindate": start.strftime("%Y/%m/%d"), "maxdate": end.strftime("%Y/%m/%d"),
+        "retmode": "json",
     })
     res = json.loads(raw)["esearchresult"]
     return res.get("idlist", []), int(res.get("count", 0))
@@ -391,12 +397,16 @@ def fetch_details(pmids):
     return out
 
 
-def main():
-    print(f"抓取最近 {DAYS} 天的文獻，每類最多 {RETMAX} 篇")
+def build_week(week_monday):
+    """產生某一週的資料。week_monday = 該週的週一（存檔名稱），
+    資料範圍 = 前一週的週一 ～ 週日（固定 7 天，各週不重疊）。"""
+    start = week_monday - timedelta(days=7)
+    end = week_monday - timedelta(days=1)
+    print(f"\n== {week_monday}：收錄 {start} ～ {end}，每類最多 {RETMAX} 篇 ==")
     cat_ids, counts, failed = {}, {}, []
     for cat in CATEGORIES:
         try:
-            ids, total = search(cat)
+            ids, total = search(cat, start, end)
             cat_ids[cat["id"]] = ids
             counts[cat["id"]] = total
             print(f"- {cat['en']}: {len(ids)}（共 {total}）")
@@ -406,8 +416,8 @@ def main():
 
     all_ids = {i for ids in cat_ids.values() for i in ids}
     if not all_ids:
-        print("沒有取得任何文獻（可能是網路或 NCBI 暫時故障），保留舊資料不覆寫。", file=sys.stderr)
-        return 0
+        print("沒有取得任何文獻（可能是網路或 NCBI 暫時故障），此週不覆寫。", file=sys.stderr)
+        return None
 
     details = fetch_details(all_ids)
     for cid, ids in cat_ids.items():
@@ -421,15 +431,15 @@ def main():
     except Exception as e:  # IF 取得失敗不影響文獻更新
         jcr_year = ""
         print(f"  ! 期刊 IF 取得失敗：{e}", file=sys.stderr)
-    now_tpe = datetime.now(TPE)
-    week = (now_tpe.date() - timedelta(days=now_tpe.weekday())).isoformat()  # 該週的週一（台北時間）
-    data = {
+    return {
+        "scheme": SCHEME,
         "updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "week": week,
-        "range_start": (now_tpe.date() - timedelta(days=DAYS)).isoformat(),
-        "range_end": now_tpe.date().isoformat(),
+        "week": week_monday.isoformat(),
+        "range_start": start.isoformat(),
+        "range_end": end.isoformat(),
         "window_days": DAYS,
-        "categories": [{k: c[k] for k in ("id", "en", "zh", "q")} | {"total": counts.get(c["id"], 0)}
+        "categories": [{k: c[k] for k in ("id", "en", "zh", "q")}
+                       | {"total": counts.get(c["id"], 0), "fetched": len(cat_ids.get(c["id"], []))}
                        for c in CATEGORIES],
         "method": {"type_filter": TYPE_FILTER.strip(), "retmax": RETMAX, "date_type": "edat",
                    "jcr_year": jcr_year,
@@ -437,10 +447,41 @@ def main():
         "failed": failed,
         "articles": articles,
     }
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-    print(f"完成：{len(articles)} 篇 → {OUT.relative_to(ROOT)}")
-    save_archive(data)
+
+
+def needs_build(week_monday, is_current):
+    """本週一律重建；過去的週次只有在缺檔、舊格式或上次有失敗時才補建。"""
+    if is_current:
+        return True
+    f = ARCHIVE / f"{week_monday.isoformat()}.json"
+    if not f.exists():
+        return True
+    try:
+        d = json.loads(f.read_text(encoding="utf-8"))
+    except Exception:
+        return True
+    return d.get("scheme") != SCHEME or bool(d.get("failed"))
+
+
+def main():
+    today = datetime.now(TPE).date()
+    this_monday = today - timedelta(days=today.weekday())
+    weeks = [this_monday - timedelta(weeks=k) for k in range(BACKFILL_WEEKS + 1)]
+    latest = None
+    for w in reversed(weeks):          # 由舊到新，最後處理本週
+        if not needs_build(w, w == this_monday):
+            print(f"\n== {w}：已有正確存檔，略過 ==")
+            continue
+        data = build_week(w)
+        if data is None:
+            continue
+        save_archive(data)
+        if w == this_monday:
+            latest = data
+    if latest:
+        OUT.parent.mkdir(parents=True, exist_ok=True)
+        OUT.write_text(json.dumps(latest, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        print(f"\n完成：本週 {len(latest['articles'])} 篇 → {OUT.relative_to(ROOT)}")
     return 0
 
 
@@ -452,6 +493,13 @@ def save_archive(data):
     (ARCHIVE / f"{data['week']}.json").write_text(payload, encoding="utf-8")
 
     files = sorted((f for f in ARCHIVE.glob("????-??-??.json")), reverse=True)
+    for f in list(files):
+        try:
+            if json.loads(f.read_text(encoding="utf-8")).get("scheme") != SCHEME:
+                f.unlink()          # 舊版「往前 7 天」格式，範圍會重疊，移除
+                files.remove(f)
+        except Exception:
+            pass
     for old in files[KEEP_WEEKS:]:
         old.unlink()
     weeks = []
