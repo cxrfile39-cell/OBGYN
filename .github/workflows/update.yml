@@ -9,6 +9,7 @@ on:
       - "docs/data.json"
       - "docs/archive/**"
       - "docs/journals.json"
+      - "docs/range/**"
       - "README.md"
   workflow_dispatch:       # 保留手動執行按鈕（非必要）
 
