@@ -223,6 +223,22 @@
   .mcard .ifb{margin:0 4px 0 0}
   .mcard.wide{grid-column:1/-1}
   .mcard code{font-size:.8rem;background:var(--bg);padding:1px 5px;border-radius:4px}
+
+  /* ── 搜尋區間 ── */
+  .weekbar{flex-direction:column;align-items:stretch}
+  .rrow,.wrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+  .rrow[hidden],.wrow[hidden]{display:none}
+  .rlabel{font-weight:600}
+  .rseg{display:flex;border:1.5px solid var(--accent);border-radius:999px;overflow:hidden}
+  .rseg button{border:0;border-radius:0;color:var(--accent);background:var(--card);padding:6px 14px;font-weight:600}
+  .rseg button+button{border-left:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
+  .rseg button.on{background:var(--accent);color:var(--on-accent)}
+  .weekbar .range{flex-basis:auto}
+  .pmall{display:block;margin:0 10px 10px;padding:7px 10px;border-radius:10px;text-align:center;font-size:.85rem;font-weight:600;
+    color:var(--c);border:1.5px solid color-mix(in srgb,var(--c) 40%,transparent);text-decoration:none;background:var(--card)}
+  .pmall:hover{background:var(--cs)}
+  .tblock:not(.empty)>.thead+.pmall{margin-top:0}
+  @media (max-width:560px){.rseg{width:100%}.rseg button{flex:1;padding:7px 4px}}
 </style>
 </head>
 <body>
@@ -296,9 +312,17 @@
 
   <main>
     <div class="weekbar" id="weekbar" hidden>
-      <label for="week">📅 週次</label>
-      <select id="week"></select>
-      <span class="wnav"><button id="prevW" title="上一週">‹ 上一週</button><button id="nextW" title="下一週">下一週 ›</button></span>
+      <div class="rrow">
+        <span class="rlabel">🗓 搜尋區間</span>
+        <div class="rseg" id="rseg">
+          <button data-r="7d" class="on">7 天</button><button data-r="30d">30 天</button><button data-r="1y">1 年</button><button data-r="2y">2 年</button>
+        </div>
+      </div>
+      <div class="wrow" id="wrow">
+        <label for="week">📅 週次</label>
+        <select id="week"></select>
+        <span class="wnav"><button id="prevW" title="上一週">‹ 上一週</button><button id="nextW" title="下一週">下一週 ›</button></span>
+      </div>
       <span class="range" id="range"></span>
     </div>
     <div class="status" id="status">載入中…</div>
@@ -315,6 +339,7 @@
         <li>資料庫：<b>PubMed</b>（美國國家醫學圖書館，透過 NCBI E-utilities 自動擷取）。</li>
         <li>更新時間：<b>每週一 06:00（台北時間）</b>自動執行。</li>
         <li>收錄範圍：每一週固定為<b>上週一 ～ 上週日</b>（共 <b id="mDays">7</b> 天）<b>新進 PubMed</b> 的文獻（依 PubMed 收錄日期 Entrez Date，而非期刊出刊日）。各週範圍不重疊，同一週不論何時執行結果都相同。</li>
+        <li>可切換搜尋區間：<b>7 天</b>（即每週資料，可回看各週）、<b>30 天、1 年、2 年</b>（截至上週日）。長區間對每個「次專科 × 文章類型」分別查詢，區塊上的數字為 PubMed 實際總數，網頁顯示最新 40 篇，其餘可點「在 PubMed 查看全部」。</li>
         <li>每個次專科每週最多取 <b id="mRetmax">150</b> 篇，依出版日期由新到舊；若超過上限，次專科標題會註明實際總數。</li>
         <li>同一篇文章若符合多個次專科，會同時出現在各次專科之下。</li>
       </ul>
@@ -391,7 +416,7 @@ function classify(a){
   if(has('review','scoping review','narrative review')) return 'review';
   return 'original';
 }
-const state = { sort:'date', expanded:new Set(), data:null, cats:new Set(), types:new Set(TYPES.map(t=>t.id)), core:false, q:'', view:'group' };
+const state = { mode:'7d', sort:'date', expanded:new Set(), data:null, cats:new Set(), types:new Set(TYPES.map(t=>t.id)), core:false, q:'', view:'group' };
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
@@ -400,8 +425,24 @@ const fmtD = s => s ? s.replaceAll('-', '/') : '';
 const md = s => s ? s.slice(5).replace('-', '/') : '';
 const weekLabel = w => w.range_start ? `${fmtD(w.range_start)} – ${md(w.range_end)}（${w.count} 篇）` : `${fmtD(w.week)} 那週（${w.count} 篇）`;
 let weeks = [], bound = false;
+const absCache = {};
+document.addEventListener('toggle', e => {
+  const el = e.target;
+  if(!el.matches?.('details.lazy') || !el.open) return;
+  const pmid = el.dataset.pmid, p = el.querySelector('p');
+  if(absCache[pmid]){ p.textContent = absCache[pmid]; return; }
+  fetch(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=${pmid}&rettype=abstract&retmode=xml&tool=obgyn-weekly`)
+    .then(r => r.text()).then(xml => {
+      const doc = new DOMParser().parseFromString(xml, 'text/xml');
+      const parts = [...doc.querySelectorAll('AbstractText')].map(n => (n.getAttribute('Label') ? n.getAttribute('Label') + ': ' : '') + n.textContent.trim());
+      absCache[pmid] = parts.join('\n') || '（PubMed 上沒有摘要）';
+      p.textContent = absCache[pmid];
+    })
+    .catch(() => { p.innerHTML = `讀取失敗，<a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank" rel="noopener">到 PubMed 閱讀摘要 ↗</a>`; });
+}, true);
 
 function load(){
+  $('rseg').addEventListener('click', e => { const b = e.target.closest('[data-r]'); if(b) selectRange(b.dataset.r); });
   getJSON('archive/index.json')
     .then(idx => {
       weeks = idx.weeks || [];
@@ -411,7 +452,7 @@ function load(){
       showUpdate(weeks[0].updated);
       return selectWeek(0);
     })
-    .catch(() => getJSON('data.json').then(d => { showUpdate(d.updated); useData(d); }))
+    .catch(() => getJSON('data.json').then(d => { showUpdate(d.updated); $('weekbar').hidden = false; $('wrow').hidden = true; useData(d); }))
     .catch(() => { $('updTime').textContent = '尚未更新'; $('nextTime').textContent = fmtTW(nextMonday()); $('status').textContent = ''; $('list').innerHTML = '<div class="empty">尚無資料：第一次執行的自動更新通常幾分鐘內就會完成，請稍後重新整理。</div>'; });
 }
 
@@ -492,6 +533,24 @@ function showUpdate(iso){
   $('nextTime').textContent = fmtTW(nextMonday()) + ' 左右';
 }
 
+const RANGE_NAMES = {'7d':'7 天','30d':'30 天','1y':'1 年','2y':'2 年'};
+function selectRange(key){
+  state.mode = key;
+  document.querySelectorAll('#rseg [data-r]').forEach(b => b.classList.toggle('on', b.dataset.r === key));
+  state.expanded.clear();
+  if(key === '7d'){
+    $('wrow').hidden = !weeks.length;
+    if(weeks.length) return selectWeek(+$('week').value || 0);
+    return getJSON('data.json').then(useData).catch(() => {});
+  }
+  $('wrow').hidden = true;
+  $('list').style.opacity = .4;
+  return getJSON(`range/${key}.json`).then(d => { $('list').style.opacity = 1; useData(d); })
+    .catch(() => { $('list').style.opacity = 1; $('range').textContent = '';
+      $('status').textContent = '';
+      $('list').innerHTML = `<div class="empty">「${RANGE_NAMES[key]}」區間的資料尚未產生，下一次自動更新後即可使用。</div>`; });
+}
+
 function selectWeek(i){
   i = Math.max(0, Math.min(weeks.length - 1, i));
   $('week').value = i;
@@ -504,10 +563,12 @@ function selectWeek(i){
 
 function useData(d){
   const first = !state.data;
-  d.articles.forEach(a => a.type = classify(a));
+  if(d.mode !== 'range') d.articles.forEach(a => a.type = classify(a));
   state.data = d;
   if(first) d.categories.forEach(c => state.cats.add(c.id));
-  const r = d.range_start ? `收錄 ${fmtD(d.range_start)}（一）– ${fmtD(d.range_end)}（日）新進 PubMed 的文獻` : '';
+  const r = d.mode === 'range'
+    ? `收錄 ${fmtD(d.range_start)} – ${fmtD(d.range_end)}（${d.range_label}）新進 PubMed 的文獻 · 每個區塊顯示最新 ${d.per_block} 篇，數字為 PubMed 實際總數，可點連結到 PubMed 看全部`
+    : d.range_start ? `收錄 ${fmtD(d.range_start)}（一）– ${fmtD(d.range_end)}（日）新進 PubMed 的文獻` : '';
   $('range').textContent = r;
   if(!methodDone) renderMethod(d);   // 以最新一週的設定為準，只產生一次
   buildControls();
@@ -586,9 +647,17 @@ function card(a, showCats){
     <div class="meta"><i>${esc(a.ta || a.journal)}</i>${ifBadge(a)} · ${esc(a.date)}${a.authors ? ' · ' + esc(a.authors) : ''}</div>
     <div class="tags"><span class="tag t-${a.type}">${tz ? tz.zh : a.type}</span>${a.core ? '<span class="tag t-core">重點期刊</span>' : ''}
       ${showCats ? a.cats.filter(c => state.cats.has(c)).map(c => `<span class="tag">${esc(catName[c])}</span>`).join('') : ''}</div>
-    ${a.abstract ? `<details><summary>摘要 Abstract</summary><p>${esc(a.abstract)}</p></details>` : ''}
+    ${a.abstract ? `<details><summary>摘要 Abstract</summary><p>${esc(a.abstract)}</p></details>`
+      : state.data?.mode === 'range' ? `<details class="lazy" data-pmid="${a.pmid}"><summary>摘要 Abstract</summary><p>讀取中…</p></details>` : ''}
     <div class="links" style="margin-top:6px">${links.join('')}</div>
   </article>`;
+}
+
+function pubmedLink(catId, typeId, total){
+  const d = state.data, c = d.categories.find(x => x.id === catId), m = d.method || {};
+  if(!c?.q || !m.type_clauses) return '';
+  const term = `${c.q} ${m.type_filter} ${m.type_clauses[typeId]} AND ${d.range_start.replaceAll('-','/')}:${d.range_end.replaceAll('-','/')}[edat]`;
+  return `<a class="pmall" href="https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(term)}&sort=date" target="_blank" rel="noopener">在 PubMed 查看全部 ${total.toLocaleString()} 篇 ↗</a>`;
 }
 
 function blocks(items, scope, showCats, n){
@@ -596,12 +665,15 @@ function blocks(items, scope, showCats, n){
     let list = items.filter(a => a.type === t.id);
     if(state.sort === 'if') list = [...list].sort((x, y) => (y.if ?? -1) - (x.if ?? -1));
     const key = scope + '|' + t.id, open = state.expanded.has(key), rest = list.length - n;
+    const d = state.data, isRange = d.mode === 'range' && scope !== 'all';
+    const total = isRange ? (d.block_totals?.[scope]?.[t.id] ?? list.length) : list.length;
+    const link = isRange && total > 0 ? pubmedLink(scope, t.id, total) : '';
     const head = `<div class="thead"${rest > 0 ? ` data-toggle="${key}" role="button" tabindex="0"` : ''}>
-        <span class="tdot"></span><span class="tname">${t.en}<small>${t.zh}</small></span><b class="tcount">${list.length}</b></div>`;
-    if(!list.length) return `<div class="tblock tb-${t.id} empty" data-key="${key}">${head}</div>`;
+        <span class="tdot"></span><span class="tname">${t.en}<small>${t.zh}</small></span><b class="tcount">${total.toLocaleString()}</b></div>`;
+    if(!list.length) return `<div class="tblock tb-${t.id}${total ? '' : ' empty'}" data-key="${key}">${head}${link}</div>`;
     const visible = open ? list : list.slice(0, n);
     const more = rest > 0 ? `<button class="more" data-toggle="${key}">${open ? '收合 ▴' : `展開其餘 ${rest} 篇 ▾`}</button>` : '';
-    return `<div class="tblock tb-${t.id}" data-key="${key}">${head}${visible.map(a => card(a, showCats)).join('')}${more}</div>`;
+    return `<div class="tblock tb-${t.id}" data-key="${key}">${head}${visible.map(a => card(a, showCats)).join('')}${more}${link}</div>`;
   }).join('') + `</div>`;
 }
 
@@ -614,7 +686,7 @@ function render(){
   $('list').innerHTML = d.categories.filter(c => state.cats.has(c.id)).map(c => {
     const items = shown.filter(a => a.cats.includes(c.id));
     if(!items.length) return '';
-    return `<section class="cat"><h3><i class="badge">${icon(c.id,'ic-lg')}</i>${esc(c.en)} <span>${esc(c.zh)} · ${items.length} 篇${c.total > (c.fetched ?? c.total) ? `（本週共 ${c.total} 篇，取最新 ${c.fetched} 篇）` : ''}</span></h3>${blocks(items, c.id, false, PREVIEW.group)}</section>`;
+    return `<section class="cat"><h3><i class="badge">${icon(c.id,'ic-lg')}</i>${esc(c.en)} <span>${esc(c.zh)} · ${d.mode === 'range' ? `共 ${(c.total||0).toLocaleString()} 篇（顯示 ${items.length} 篇）` : `${items.length} 篇${c.total > (c.fetched ?? c.total) ? `（本週共 ${c.total} 篇，取最新 ${c.fetched} 篇）` : ''}`}</span></h3>${blocks(items, c.id, false, PREVIEW.group)}</section>`;
   }).join('');
 }
 load();
