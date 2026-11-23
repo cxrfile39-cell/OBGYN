@@ -24,6 +24,15 @@
 在 **Settings → Secrets and variables → Actions** 新增：
 - `NCBI_API_KEY`：NCBI API key（免費申請，抓取較快較穩）
 - `NCBI_EMAIL`：你的 email（NCBI 建議提供）
+- `OPENALEX_API_KEY`：OpenAlex API key（免費，到 openalex.org 註冊後在 openalex.org/settings/api 複製）。用來取得期刊 IF 近似值；沒設定也能跑，但每日額度很小，可能偶爾抓不到。
+
+## 期刊 IF
+- **IF≈**：OpenAlex 期刊 2 年平均被引次數，每週自動更新；計算概念同 IF，但與官方數值有落差。
+- **JIF**：官方 Clarivate JCR 數值，需手動填在 `scripts/jif_override.json`，例如：
+  ```json
+  { "_jcr_year": "2025", "Obstet Gynecol": 7.2, "BJOG": 4.8 }
+  ```
+  鍵為網頁卡片上的期刊縮寫。有填的期刊優先顯示官方 JIF。
 
 ## 調整
 - 搜尋字串（MeSH／關鍵字）：`scripts/fetch_pubmed.py` 中的 `CATEGORIES`
@@ -37,6 +46,9 @@
 scripts/fetch_pubmed.py        PubMed 擷取（僅用 Python 標準函式庫）
 docs/index.html                網頁
 docs/data.json                 自動產生的文獻資料
+docs/archive/                  每週存檔
+docs/journals.json             期刊 IF 快取
+scripts/jif_override.json      手動填寫的官方 JIF（選填）
 ```
 
 分類依 MeSH 與關鍵字自動判定，同一篇可能出現在多個次專科；內容僅供參考，臨床決策請以原文為準。
