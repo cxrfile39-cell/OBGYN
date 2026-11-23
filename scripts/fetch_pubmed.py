@@ -41,6 +41,23 @@ DAYS = 7
 RETMAX = int(os.environ.get("RETMAX", "150"))
 BACKFILL_WEEKS = int(os.environ.get("BACKFILL_WEEKS", "4"))
 SCHEME = 2   # 存檔格式版本：2 = 固定「週一～週日」範圍
+RANGES = [("30d", "30 天", 30), ("1y", "1 年", 365), ("2y", "2 年", 730)]
+RANGE_DIR = ROOT / "docs" / "range"
+RANGE_N = int(os.environ.get("RANGE_N", "40"))   # 長區間：每個「次專科 × 文章類型」區塊最多取幾篇（最新）
+
+# 四類文章的 PubMed 語法（彼此互斥），與網頁上的分類規則一致
+_GL = ('(guideline[pt] OR practice guideline[pt] OR consensus development conference[pt]'
+       ' OR guideline*[ti] OR consensus[ti] OR "committee opinion"[ti] OR "practice bulletin"[ti]'
+       ' OR "position statement"[ti] OR "position paper"[ti] OR green-top[ti])')
+_MA = ('(meta-analysis[pt] OR systematic review[pt] OR meta-analys*[ti] OR metaanalys*[ti]'
+       ' OR "systematic review"[ti])')
+_RV = '(review[pt] OR scoping review[pt])'
+TYPE_CLAUSES = {
+    "original": f" NOT {_GL} NOT {_MA} NOT {_RV}",
+    "review": f" AND {_RV} NOT {_GL} NOT {_MA}",
+    "meta": f" AND {_MA} NOT {_GL}",
+    "guideline": f" AND {_GL}",
+}
 SLEEP = 0.12 if API_KEY else 0.4  # NCBI 速率限制：無 key 3 次/秒，有 key 10 次/秒
 
 # 共用篩選：英文、文章類型、排除評論/社論/勘誤/個案報告
@@ -179,10 +196,10 @@ def http(endpoint, params, retries=4):
     raise RuntimeError(f"{endpoint} 多次失敗：{last}")
 
 
-def search(cat, start, end):
-    term = cat["q"] + TYPE_FILTER
+def search(cat, start, end, extra="", retmax=None):
+    term = cat["q"] + TYPE_FILTER + extra
     raw = http("esearch.fcgi", {
-        "db": "pubmed", "term": term, "retmax": RETMAX, "sort": "pub_date",
+        "db": "pubmed", "term": term, "retmax": RETMAX if retmax is None else retmax, "sort": "pub_date",
         "datetype": "edat", "mindate": start.strftime("%Y/%m/%d"), "maxdate": end.strftime("%Y/%m/%d"),
         "retmode": "json",
     })
@@ -321,6 +338,9 @@ def get_json(url, params, retries=3):
     raise RuntimeError(f"OpenAlex 失敗：{last}")
 
 
+_QUERIED, _FRESH = set(), {}   # 本次執行已查過的 ISSN（多個區間共用，避免重複呼叫 OpenAlex）
+
+
 def journal_metrics(articles):
     """以 ISSN 向 OpenAlex 查詢期刊 2 年平均被引次數（計算方式同 IF，但非 Clarivate 官方 JIF）。
     查不到或連線失敗時，沿用上次的快取。"""
@@ -330,8 +350,9 @@ def journal_metrics(articles):
             cache = json.loads(JOURNAL_CACHE.read_text(encoding="utf-8")).get("by_issn", {})
         except Exception:
             cache = {}
-    issns = sorted({i for a in articles for i in a.get("issn", [])})
-    fresh, ok = {}, 0
+    issns = sorted({i for a in articles for i in a.get("issn", [])} - _QUERIED)
+    _QUERIED.update(issns)
+    fresh, ok = _FRESH, 0
     for k in range(0, len(issns), 50):
         chunk = issns[k:k + 50]
         params = {"filter": "issn:" + "|".join(chunk), "per_page": 100,
@@ -449,6 +470,83 @@ def build_week(week_monday):
     }
 
 
+def build_range(key, label, days, end):
+    """長區間（30 天／1 年／2 年）：每個「次專科 × 四類文章」分別查詢，
+    取得真實總數與最新 RANGE_N 篇。為了讓檔案小，不含摘要（網頁點開時再向 PubMed 讀取）。"""
+    start = end - timedelta(days=days - 1)
+    print(f"\n== 區間 {label}：{start} ～ {end}，每區塊最多 {RANGE_N} 篇 ==")
+    block_totals, found, failed = {}, {}, []
+    for cat in CATEGORIES:
+        block_totals[cat["id"]] = {}
+        for tid, clause in TYPE_CLAUSES.items():
+            try:
+                ids, total = search(cat, start, end, clause, RANGE_N)
+            except Exception as e:
+                failed.append(f"{cat['id']}:{tid}")
+                print(f"  ! {cat['id']}/{tid} 失敗 {e}", file=sys.stderr)
+                continue
+            block_totals[cat["id"]][tid] = total
+            for pmid in ids:
+                found.setdefault(pmid, {"cats": [], "type": tid})["cats"].append(cat["id"])
+        t = block_totals[cat["id"]]
+        print(f"- {cat['en']}: " + "、".join(f"{k} {v}" for k, v in t.items()))
+    if not found:
+        print("沒有取得任何文獻，此區間不覆寫。", file=sys.stderr)
+        return None
+    details = fetch_details(found.keys())
+    articles = []
+    for pmid, info in found.items():
+        a = details.get(pmid)
+        if not a:
+            continue
+        a["cats"], a["type"] = info["cats"], info["type"]
+        a["abstract"] = ""          # 長區間不存摘要
+        articles.append(a)
+    articles.sort(key=lambda a: (a["sort"], a["pmid"]), reverse=True)
+    try:
+        jcr_year = journal_metrics(articles)
+    except Exception as e:
+        jcr_year = ""
+        print(f"  ! 期刊 IF 取得失敗：{e}", file=sys.stderr)
+    return {
+        "scheme": SCHEME, "mode": "range", "range_key": key, "range_label": label,
+        "updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "range_start": start.isoformat(), "range_end": end.isoformat(), "window_days": days,
+        "per_block": RANGE_N, "block_totals": block_totals,
+        "categories": [{k: c[k] for k in ("id", "en", "zh", "q")}
+                       | {"total": sum(block_totals.get(c["id"], {}).values())} for c in CATEGORIES],
+        "method": {"type_filter": TYPE_FILTER.strip(), "type_clauses": TYPE_CLAUSES, "jcr_year": jcr_year,
+                   "core_journals": sorted(CORE_JOURNALS_DISPLAY)},
+        "failed": failed,
+        "articles": articles,
+    }
+
+
+def range_is_current(key, end):
+    f = RANGE_DIR / f"{key}.json"
+    if not f.exists():
+        return False
+    try:
+        d = json.loads(f.read_text(encoding="utf-8"))
+    except Exception:
+        return False
+    return d.get("range_end") == end.isoformat() and d.get("per_block") == RANGE_N and not d.get("failed")
+
+
+def build_ranges(this_monday):
+    end = this_monday - timedelta(days=1)       # 與每週資料對齊：截至上週日
+    RANGE_DIR.mkdir(parents=True, exist_ok=True)
+    for key, label, days in RANGES:
+        if range_is_current(key, end):
+            print(f"\n== 區間 {label}：本週已更新，略過 ==")
+            continue
+        data = build_range(key, label, days, end)
+        if data:
+            (RANGE_DIR / f"{key}.json").write_text(
+                json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+            print(f"區間 {label}：{len(data['articles'])} 篇 → docs/range/{key}.json")
+
+
 def needs_build(week_monday, is_current):
     """本週一律重建；過去的週次只有在缺檔、舊格式或上次有失敗時才補建。"""
     if is_current:
@@ -482,6 +580,10 @@ def main():
         OUT.parent.mkdir(parents=True, exist_ok=True)
         OUT.write_text(json.dumps(latest, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
         print(f"\n完成：本週 {len(latest['articles'])} 篇 → {OUT.relative_to(ROOT)}")
+    try:
+        build_ranges(this_monday)
+    except Exception as e:      # 長區間失敗不影響每週資料
+        print(f"  ! 長區間更新失敗：{e}", file=sys.stderr)
     return 0
 
 
