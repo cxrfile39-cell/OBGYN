@@ -38,7 +38,8 @@
 - 搜尋字串（MeSH／關鍵字）：`scripts/fetch_pubmed.py` 中的 `CATEGORIES`
 - 重點期刊清單：`CORE_JOURNALS`
 - 更新時間：`.github/workflows/update.yml` 中的 `cron`（UTC 時間）
-- 收錄天數、每類篇數：環境變數 `DAYS`（預設 7）、`RETMAX`（預設 60）
+- 每類篇數上限：環境變數 `RETMAX`（預設 150）；補建最近幾週：`BACKFILL_WEEKS`（預設 4）
+- 每週範圍固定為上週一～上週日（台北時間），各週不重疊
 
 ## 檔案結構
 ```
