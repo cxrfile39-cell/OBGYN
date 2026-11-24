@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-24T04:26:17+00:00",
+"updated": "2026-11-24T04:26:57+00:00",
 "items": [
 {
 "pmid": "43068838",
@@ -16,14 +16,6 @@
 "ta": "J Minim Invasive Gynecol",
 "title": "Patient-centered perioperative pain management in hysterectomy: a systematic review and meta-analysis.",
 "key": "CONCLUSION: Perioperative analgesic strategies may reduce early postoperative pain after hysterectomy, although consistent benefits were not demonstrated at 24 hours. High-quality studies are warranted to establish standardized multimodal protocols and assess longer-term pain outcomes."
-},
-{
-"pmid": "43068752",
-"src": "week",
-"type": "review",
-"ta": "Pharmacol Res",
-"title": "Spatial Immunometabolic Context of Tertiary Lymphoid Structures in Ovarian Cancer: Evidence, Hypotheses, and Pharmacological Considerations.",
-"key": "We further discuss the context-dependent roles of lactate transport and hypoxia, including evidence that physiological germinal-center hypoxia and MCT1-dependent pyruvate metabolism can support selected B-cell functions. Spatial metabolomics and imaging mass cytometry may help test these relationships, but they do not by themselves establish causality or therapeutic predictiveness. Accordingly, pharmacological strategies are presented as mechanistically relevant candidates rather than validated TLS-directed treatments."
 },
 {
 "pmid": "43068623",
@@ -50,22 +42,6 @@
 "key": "RESULTS: Nine RCTs involving 5,933 patients were included, of which seven trials comprising 4,995 patients contributed to the meta-analysis. Adding PD-1/PD-L1 inhibition did not significantly affect EORTC QLQ-C30 global health status/quality of life (MD -0.07; 95% CI -1.50 to 1.35; I²=0%; 7 studies; 4,995 patients). Results were also non-significant for physical, role, emotional,…\nCONCLUSION: Adding PD-1/PD-L1 inhibitors to standard therapy did not detectably change global HRQoL, and the pooled confidence interval excluded clinically important deterioration. No functional or symptom domain differed significantly, although small effects cannot be excluded for domains informed by few trials."
 },
 {
-"pmid": "43068207",
-"src": "week",
-"type": "review",
-"ta": "Cureus",
-"title": "Effectiveness of Prenatal Screening for Gestational Diabetes: A Narrative Review.",
-"key": "Particular attention was given to the clinical implications of identifying milder degrees of dysglycemia and to the economic and practical consequences of different screening approaches. This review concluded that prenatal GDM screening should aim to achieve clinically meaningful detection while minimizing unnecessary intervention and patient burden. Future research should focus on standardized outcomes, simplified and accessible screening approaches, and context-specific strategies that integrate clinical effectiveness, economic considerations, and healthcare resources."
-},
-{
-"pmid": "43067971",
-"src": "week",
-"type": "review",
-"ta": "J Liq Biopsy",
-"title": "Urinary miRNAs for non-invasive detection of gynecological cancers: opportunities and challenges in liquid biopsy applications.",
-"key": "s across malignancies can limit cancer-type discrimination, while variability in sample collection, extracellular vesicle (EV) separation, analytical methods, and data normalization impedes reproducibility and clinical translation. Advances in NGS have enhanced the sensitivity and precision of miRNA analysis, and the integration of multiple miRNA biomarkers may improve diagnostic accuracy and cancer-type discrimination, although these applications require clinical validation. Future research should focus on standardizing methodologies, characterizing miRNA-tumor interactions, and addressing tumor heterogeneity to fully realize the clinical utility of urinary miRNAs in gynecological oncology."
-},
-{
 "pmid": "43067495",
 "src": "week",
 "type": "meta",
@@ -80,14 +56,6 @@
 "ta": "Epilepsy Behav",
 "title": "Maternal exposure to lacosamide and zonisamide during pregnancy and risk of major congenital malformations: A systematic review and meta-analysis.",
 "key": "RESULTS: Ten studies encompassing registry and observational cohorts met the inclusion criteria. The primary random effects meta-analysis of five registries with 303 patients demonstrated a pooled MCM rate for zonisamide of 1.3% (95% CI: 0.5-3.5%;I2 = 1.2%). Out of a total of 142 pregnancies…\nCONCLUSION: Current evidence on zonisamide and lacosamide in pregnancy is constrained by small numbers of exposed pregnancies and imprecise estimates. Although observed malformation rates were low, the data do not permit reliable exclusion of a clinically meaningful increase in risk. Further large, prospective registry data are required before the safety of these agents can be considered established."
-},
-{
-"pmid": "43066897",
-"src": "week",
-"type": "review",
-"ta": "Mol Diagn Ther",
-"title": "The Global Landscape of Liquid Biopsy Technology in Oncology: From Biological Foundations to Commercial and Clinical Frontiers.",
-"key": "The global liquid biopsy market, projected to grow from US$6.17 billion in 2024 to approximately US$22.69 billion by 2034, is analysed by technology, application and geography. We argue that, despite the technical progress documented herein, three structural barriers, namely reimbursement fragmentation, clonal-haematopoiesis-driven biological noise and the persistent absence of prospective mortality data for multi-cancer early detection, together with the fundamental biological limits on ctDNA shedding in low-shedding tumour types and in early-stage disease, must be resolved before liquid biopsy can be applied effectively at the…"
 },
 {
 "pmid": "43066852",
@@ -106,28 +74,12 @@
 "key": "Additional upstream mechanisms included gut microbiota-associated metabolic disruption and lead-induced SOD2 dysfunction. STING inhibition or knockout and interventions targeting mitochondrial homeostasis, including ketogenic diet, β-hydroxybutyrate, 3-hydroxyanthranilic acid, and SOD2 enhancement, attenuated inflammatory or PCOS-like phenotypes. Overall, STING may represent a molecular link between mitochondrial damage and inflammation in PCOS, although predominantly preclinical evidence warrants further clinical investigation."
 },
 {
-"pmid": "43066560",
-"src": "week",
-"type": "review",
-"ta": "Prenat Diagn",
-"title": "Prenatal Genetics and Investigational in Utero Gene Therapy for Sickle Cell Disease: Clinical, Ethical, and Justice Considerations.",
-"key": "There is currently no evidence that prenatal somatic gene therapy is cost-effective or would overcome access barriers. Its reliance on fetal medicine, molecular, and manufacturing infrastructure could initially widen disparities. Clinical translation would be ethically defensible only after disease-specific comparative evidence, independent oversight, non-directive consent, lifelong follow-up and a credible equitable-access plan. Strengthening newborn screening and proven care remains the immediate justice priority."
-},
-{
 "pmid": "43066499",
 "src": "week",
 "type": "meta",
 "ta": "Neurosciences (Riyadh)",
 "title": "Neuroinflammation as a Unifying Mechanism in Major Psychiatric Disorders: From Molecular Pathways to Clinical Implications: A Systematic Search and Review.",
 "key": "RESULTS: All 2288 records were identified. 52 duplicates were removed; 2236 records were screened. Twenty-one full text reports were assessed for eligibility, and 15 studies were included in the final synthesis after exclusion of six full-text reports, including one study with high risk of bias. The included studies covered…\nCONCLUSION: The available evidence supports an important but heterogeneous role of neuroinflammation across major psychiatric disorders. Current findings suggest shared immune-related mechanisms, but no single biomarker is sufficient as a universal diagnostic marker. Larger and better-designed studies are needed to clarify clinical relevance and therapeutic potential."
-},
-{
-"pmid": "43066391",
-"src": "week",
-"type": "review",
-"ta": "Cureus",
-"title": "A Narrative Review of Intravesical OnabotulinumtoxinA for the Treatment of Overactive Bladder and Practical Implications for UK-Based Practice: Do Injection Distribution and Site Matter?",
-"key": "This narrative review considers what the current literature on injection number, distribution and depth means for UK outpatient practice, and whether the conventional technique remains the best-supported approach or whether alternative, simpler techniques could make the procedure quicker and more tolerable without loss of effectiveness. We conclude that total dose, rather than how it is distributed, appears to be the main determinant of clinical response, and we consider the practical implications of this for UK services, along with the gaps in the evidence that UK-generated research could address."
 },
 {
 "pmid": "43066269",
@@ -144,70 +96,6 @@
 "ta": "EClinicalMedicine",
 "title": "Projected clinical utility of polygenic risk score-stratified cancer screening: a systematic review.",
 "key": "FINDINGS: Of 20,Simulated 100 million 058 records identified, 25 studies were included (22 decision-analytic modelling studies, 3 observational studies) covering five malignancies; no eligible studies were identified for cervical cancer. Modelled PRS-stratified strategies were projected to improve QALYs for breast, colorectal, gastric, and lung cancer, whereas results for prostate cancer were heterogeneous. Modelled mortality reductions were projected for colorectal, gastric, and lung cancer, although evidence for the latter two rested on single…\nINTERPRETATION: PRS-stratified screening shows consistent but modest potential to improve the efficiency of cancer screening, particularly for…"
-},
-{
-"pmid": "43066068",
-"src": "week",
-"type": "review",
-"ta": "Cureus",
-"title": "Building Demand for Human Papillomavirus (HPV) Vaccination in India: A Review of the Behavioural and Social Drivers of Parental and Community Acceptance.",
-"key": "Before 2026, cost was a dominant practical barrier; with free provision, the remaining practical barriers are mostly access, consent processes, and reaching girls outside school. The national campaign removes the cost barrier but not the belief-based and social barriers. Demand generation should prioritise equipping trusted health workers and teachers to recommend vaccination, engaging extended families and community leaders, pre-empting misinformation, and making consent and access easy. Standardised measurement of behavioural drivers, using tools such as the WHO BeSD surveys, should be built into campaign monitoring."
-},
-{
-"pmid": "43066036",
-"src": "week",
-"type": "review",
-"ta": "Front Cell Dev Biol",
-"title": "Immune cell mediated fibrosis after kidney transplantation: mechanisms and emerging immunomodulatory therapies.",
-"key": "Established immunosuppression remains essential for preventing immune mediated graft injury, whereas regulatory T cell therapies, macrophage state modulation, cytokine blockade, and CD38 directed therapy remain investigational. None has been proven to reverse established allograft fibrosis. Future diagnosis and treatment should integrate Banff histology, donor specific antibodies, donor derived cell free DNA, urinary chemokines, and biopsy-based transcriptomics. Clinical trials should determine whether targeted immunomodulation can slow the progression of allograft fibrosis and preserve long-term graft function and survival."
-},
-{
-"pmid": "43065877",
-"src": "week",
-"type": "review",
-"ta": "Front Cell Dev Biol",
-"title": "Clonal hematopoiesis in solid tumors: mutant hematopoietic cells as a tumor-microenvironment component across source, lineage and treatment.",
-"key": "Genotype-specific findings, particularly involving TET2 and myeloid function, provide mechanistic explanations for some treatment associations, but aggregate CH has shown inconsistent relationships with immune-checkpoint efficacy and toxicity. The resulting framework links each measurement to its appropriate biological or clinical use: source correction is already actionable, while treatment prediction and organ-specific risk assessment require evidence that CH adds information beyond established tumor and patient characteristics."
-},
-{
-"pmid": "43065827",
-"src": "week",
-"type": "review",
-"ta": "Pregnancy (Hoboken)",
-"title": "Modernizing reporting and communication of isolated echogenic intracardiac foci and choroid plexus cysts in the cell-free DNA era.",
-"key": "In pregnancies with low-risk cfDNA results and a normal detailed fetal anatomic survey, isolated EIF and CPCs should be regarded as benign findings without clinical significance. Contemporary evidence no longer supports the routine reporting and communication of these findings in the context of aneuploidy risk. When disclosure occurs, communication should be non-alarmist, emphasize that these are normal variants, and avoid terminology suggesting increased risk for chromosomal abnormalities. Aligning reporting and communication with current evidence has the potential to reduce patient harm while promoting patient-centered prenatal care."
-},
-{
-"pmid": "43065763",
-"src": "week",
-"type": "review",
-"ta": "Front Med (Lausanne)",
-"title": "An analysis of the mechanisms of phlegm-stasis and subthreshold lactate and lactate-modified levels in polycystic ovary syndrome, and research progress.",
-"key": "ramework, it is essential to thoroughly investigate whether abnormalities in lactate metabolism and dysregulation of lactylation serve as common molecular nodes for key pathological processes in PCOS-such as insulin resistance (IR), chronic inflammation, and impaired follicular development. We also aim to explore the potential value of traditional Chinese medicine (TCM) and integrated Chinese-Western medicine strategies-guided by the therapeutic principle of \"resolving phlegm and removing stasis\"-in targeting the lactate metabolic network, with the goal of providing molecular-level evidence and new insights for the prevention and treatment of PCOS through integrated Chinese-Western medicine."
-},
-{
-"pmid": "43065747",
-"src": "week",
-"type": "review",
-"ta": "Front Urol",
-"title": "Laparoscopic versus robot-assisted radical prostatectomy: trifecta outcomes in prostate cancer surgery.",
-"key": "Within the two approaches, oncological outcomes such as positive surgical margin and biochemical recurrence were comparable. There was reduced postoperative pain, faster recovery, and higher satisfaction scores associated with RARP. However, there are significant barriers to adoption of RARP like high cost and limited access particularly in low- and middle-income countries. The choice between RARP and LRP should be individualized. Further research should focus on integrating AI, AR and ePROMSs to improve surgical care. RARP offers advantages in early functional recovery, while long-term oncological outcomes remain comparable between techniques."
-},
-{
-"pmid": "43065433",
-"src": "week",
-"type": "review",
-"ta": "Front Cell Dev Biol",
-"title": "DDX3X and DDX3Y in human reproduction and development: from molecular mechanisms to clinical implications.",
-"key": "early development: DDX3Y in the early male germline, where loss in complete AZFa deletion gives Sertoli cell only syndrome; maternal DDX3X through oocyte maturation, the oocyte-to-embryo transition, the placenta, and corticogenesis, where loss causes the DDX3X neurodevelopmental disorder. Which paralog becomes limiting in a given tissue reflects the local balance between them, set against a shared requirement to keep their combined output within a narrow range. The narrow, near-categorical male phenotype and the graded, multisystem female one may reflect this shared activity acting at different developmental moments. What the two phenotypes share is that activity, not a common causal lesion."
-},
-{
-"pmid": "43065415",
-"src": "week",
-"type": "review",
-"ta": "Exp Biol Med (Maywood)",
-"title": "Pathophysiological mechanisms and next-generation therapeutic opportunities in endometriosis.",
-"key": "We further examine the roles of aberrant steroid hormone signaling, angiogenesis, and lymphangiogenesis in lesion maintenance and progression, as well as how these interconnected processes contribute to lesion heterogeneity and treatment resistance. Finally, we highlight how emerging multi-omics approaches and patient-derived organoid and assembloid models may facilitate mechanistic validation, biomarker discovery, and therapeutic development. By connecting the mechanisms of lesion initiation and progression with current therapeutic limitations, this review provides a framework for developing more precise, mechanism-based diagnostic and therapeutic strategies."
 },
 {
 "pmid": "43065291",
@@ -242,36 +130,12 @@
 "key": "RESULTS: Among 1,709 young women with heavy menstrual bleeding across 16 studies, 199 were found to have von Willebrand disease, yielding an overall occurrence rate of 11.64%. Subgroup analysis by clinical referral setting…\nCONCLUSION: von Willebrand disease is a highly significant underlying cause of heavy menstrual bleeding in young women, affecting 11.64% of patients presenting to hospital-based settings, including nearly 1 in 11 patients (8.70%) evaluated in specialized Pediatric & Adolescent Gynaecology (PAG) clinics. These findings support targeted diagnostic testing rather than universal screening, specifically for patients who present to hospital-based settings and PAG clinics."
 },
 {
-"pmid": "43064176",
-"src": "week",
-"type": "review",
-"ta": "Cell Signal",
-"title": "AKT as a central node integrating multidrug resistance mechanisms in ovarian Cancer.",
-"key": "We evaluate therapeutic strategies (AKT and poly(ADP-ribose) polymerase inhibitors, folate receptor alpha-targeted antibody-drug conjugates such as mirvetuximab soravtansine, and metabolic modulation through the AKT/mTORC1 axis) by targeting multiple nodes simultaneously. Patient-derived organoids, CRISPR/Cas9 screening, and circulating tumor DNA monitoring enable clinical translation, supporting rationally designed combinations over sequential monotherapy and reframing AKT from a poor-prognosis marker to a therapeutic target in recurrent, chemoresistant ovarian cancer."
-},
-{
-"pmid": "43064171",
-"src": "week",
-"type": "review",
-"ta": "Front Neuroendocrinol",
-"title": "Estrogen loss and Alzheimer's disease: five exposures ordered by age, and why timing is the variable to test.",
-"key": "he ordering is difficult to reconcile with residual estrogen level as the operative variable (the lowest level carries no observed excess), weighs against abruptness (surgical and natural menopause did not differ in 233,802 women once age at menopause was adjusted), and is consistent with age: menopause before 40 carried a hazard ratio of 1.47, and in one breast-cancer cohort hormone-modulating therapy was associated with dementia at 0.48 at ages 65-69 and 2.39 at ≥90. The comparison is hypothesis-generating: current evidence does not support a simple monotonic model in which less estrogen means more disease; age at estrogen loss, and tissue state at that age, are the variables to test next."
-},
-{
 "pmid": "43063991",
 "src": "week",
 "type": "meta",
 "ta": "Eur J Pediatr Surg",
 "title": "OVARIAN PRESERVATION IN PEDIATRIC OVARIAN TORSION: A SYSTEMATIC REVIEW SUPPORTING DETORSION REGARDLESS OF TIMING OR INTRAOPERATIVE APPEARANCE.",
 "key": "These studies were heterogenous in their reporting and overall have a level of evidence of 4. Ovarian conservation surgery was performed in 234/250 (94%) ovaries. Among those with documented follow-up (222/234, 95%), postoperative ultrasound demonstrated ovarian viability in 190/222 (86%). Delayed presentation and ischemic appearance did not reliably predict loss of function. Conclusion Ovarian conservation should be attempted in all cases of benign pediatric ovarian torsion, regardless of symptom duration or intraoperative appearance. Postoperative ultrasound within three months of detorsion is recommended to confirm ovarian viability and standardize follow-up care."
-},
-{
-"pmid": "43063770",
-"src": "week",
-"type": "review",
-"ta": "Placenta",
-"title": "Endometriosis, a high-risk obstetric condition: pathophysiology of the maternal-placenta axis.",
-"key": "Potential precision-obstetrics approaches include preconception phenotyping, early uterine artery Doppler at 11-14 weeks' gestation, intensified fetal biometry and low-dose aspirin (75-150 mg daily before 16 weeks); however, the clinical benefit of these strategies specifically in endometriosis requires further evaluation in prospective studies. Reframing endometriosis as a potential vascular risk equivalent opens perspectives for prospective trials on immune-modulatory therapies and personalized biomarkers, potentially improving maternal-fetal outcomes in this high-burden population."
 },
 {
 "pmid": "43063116",
@@ -282,52 +146,12 @@
 "key": "RESULTS: Three RCTs involving 100 participants were included in the meta-analysis, showing that telerehabilitation PFMT significantly improved urinary incontinence symptoms (weighted mean difference [WMD] = -2.53, P < .001) and bladder overactivity (WMD = -7.13, P < .001). However, no significant improvement was found in quality of life…\nCONCLUSION: Telerehabilitation PFMT demonstrated positive effects on urinary incontinence and bladder overactivity in MS patients, although its impact on quality of life remains unclear. Further large-scale, high-quality RCTs are needed to confirm long-term efficacy and guide the development of clinical guidelines for telerehabilitation in MS rehabilitation."
 },
 {
-"pmid": "43063059",
-"src": "week",
-"type": "review",
-"ta": "Medicine (Baltimore)",
-"title": "Global research trends in asthma during pregnancy: A multidisciplinary bibliometric analysis utilizing multiple databases (2008-2024).",
-"key": "RESULTS: This study comprised 4088 publications focusing on asthma during pregnancy. Annual publication counts demonstrated a gradual increase with intermittent fluctuations. The United States dominated both in publication output and international collaboration. Litonjua AA, Bisgaard H, and Weiss ST…\nCONCLUSION: This work examined the evolving trends and trajectories within pregnancy asthma research, offering a systematic roadmap for subsequent studies. The article highlighted the main contributors, research hotspots, emerging frontier topics, and key directions for future research. This study can serve as a crucial reference for researchers in this field and relevant stakeholders."
-},
-{
 "pmid": "43063058",
 "src": "week",
 "type": "meta",
 "ta": "Medicine (Baltimore)",
 "title": "Effects of Chinese herbal medicine with hCG on luteinized unruptured follicle syndrome: A systematic review and meta-analysis of randomized controlled trials.",
 "key": "RESULTS: Seventeen RCTs were included in the review. After exclusion of Zhang LX 2015, the ovulation analysis included 16 RCTs and showed a higher ovulation rate with CHM plus hCG than with hCG alone (RR 1.48, 95% CI: 1.37-1.59; P < .001; I2 = 2%). The…\nCONCLUSION: Adjunctive CHM may enhance ovulation and clinical pregnancy rates and improve ovarian arterial hemodynamics in infertile women with LUFS. However, these findings should be interpreted cautiously given methodological limitations, heterogeneous herbal regimens, and sparse hemodynamic data. Well-designed, multicenter RCTs using standardized CHM formulations and live birth as a primary endpoint are warranted to confirm these findings."
-},
-{
-"pmid": "43062976",
-"src": "week",
-"type": "review",
-"ta": "Hum Mol Genet",
-"title": "Motile ciliopathies: a focus on primary ciliary dyskinesia.",
-"key": "Currently, treatment options for PCD are limited, with prevalent therapies mainly aimed at limiting lung damage. In this review, we will introduce motile cilia disorders under the umbrella of PCD and discuss key genetic factors involved in their aetiology, also highlighting what we currently know about PCD in the context of the Indian population. We will also explore how motile cilia have been linked to other diseases, such as COVID-19. Lastly, we will discuss how PCD is being researched and how these investigations could provide better treatment options, and possibly, a cure for the disease in the years ahead."
-},
-{
-"pmid": "43062892",
-"src": "week",
-"type": "review",
-"ta": "Expert Opin Pharmacother",
-"title": "Current perspective in the pharmacological management of platinum-resistant ovarian cancer.",
-"key": "rgeted narrative search of PubMed/MEDLINE and ClinicalTrials.gov was conducted, including literature available up to 27 July 2026.\nEXPERT OPINION: Treatment should move beyond a fixed platinum-free interval toward an individualized assessment of platinum appropriateness. The new regimens are not interchangeable and should not be ranked by indirect comparisons. Biomarker availability, previous therapy, residual toxicity, disease kinetics, and patient priorities should guide selection. Over the next five years, the main challenge will be treatment sequencing and the development of dynamic models that estimate the probability of benefit from platinum and non-platinum options at each recurrence."
-},
-{
-"pmid": "43061943",
-"src": "week",
-"type": "review",
-"ta": "Can J Physiol Pharmacol",
-"title": "Antimuscarinic medication use and risk of glaucoma in patients with overactive bladder: a literature review and disproportionality analysis using individual case safety reports from FAERS.",
-"key": "Compared with mirabegron, antimuscarinics demonstrated a higher reporting rate of glaucoma (adjusted ROR: 3.02; 95% CI: 2.03-4.50; IC025: 0.15), with tolterodine showing the strongest signal (adjusted ROR: 7.67; 95% CI: 4.90-12.02; IC025: 1.24), followed by darifenacin, fesoterodine, and solifenacin. No signals were observed for oxybutynin or trospium. These findings suggest that certain antimuscarinics, particularly tolterodine, darifenacin, and fesoterodine, may be associated with an increased risk of glaucoma and warrant further pharmacoepidemiologic investigation to confirm safety and inform prescribing decisions."
-},
-{
-"pmid": "43061932",
-"src": "week",
-"type": "review",
-"ta": "Expert Opin Drug Metab Toxicol",
-"title": "Pembrolizumab plus lenvatinib in advanced endometrial cancer: pharmacology, efficacy, safety and future perspectives.",
-"key": "DLINE, Embase, Scopus, Web of Science and the Cochrane Library from database inception to 14 August 2026, supplemented by ClinicalTrials.gov, regulatory documents and major congress proceedings.\nEXPERT OPINION: Pembrolizumab plus lenvatinib improves survival after platinum therapy in immune checkpoint inhibitor-naive advanced endometrial cancer, but substantial toxicity requires proactive monitoring and frequent lenvatinib dose modification. Its therapeutic position is being redefined by first-line chemoimmunotherapy and the negative ENGOT-en9/LEAP-001 trial, while post-immunotherapy efficacy, predictive biomarkers and prospectively validated dosing strategies remain key research priorities."
 },
 {
 "pmid": "43061917",
@@ -338,28 +162,12 @@
 "key": "The evidence is very uncertain for five-year disease-free survival (HR 1.28, 95% CI 0.97 to 1.69; 1 study, 635 participants; very low-certainty evidence) and five-year progression-free survival (HR 1.37, 95% CI 1.07 to 1.75; 1 study, 626 participants; very low-certainty evidence). NACT + radical surgery probably increases grade ≥ 3 acute toxicity (risk ratio (RR) 1.82, 95% CI 1.45 to 2.29; I² = 0%; 2 studies, 1224 participants; moderate-certainty evidence). The evidence is very uncertain for grade ≥ 3 late toxicity (RR 0.71, 95% CI 0.50 to 1.01; 1 study, 591 participants; very low-certainty evidence). NACT…\nREGISTRATION: doi: 10.1002/14651858.CD014684."
 },
 {
-"pmid": "43061848",
-"src": "week",
-"type": "review",
-"ta": "J Glob Health",
-"title": "Underrecognised legacies of preeclampsia: a biosocial DOHaD perspective for research in sub-Saharan Africa.",
-"key": "We review evidence and identify four priority domains for investigation: understanding context-specific causes and mechanisms; improving detection, care-seeking, and health system pathways; examining long-term maternal and offspring outcomes; and strengthening research infrastructures. We argue that advancing research on preeclampsia in SSA requires interdisciplinary approaches that integrate biological, clinical, epidemiological, and qualitative research. Such a research agenda has the potential to improve understanding of preeclampsia beyond its acute manifestations and to inform more equitable strategies for maternal and child health across the life course."
-},
-{
 "pmid": "43061847",
 "src": "week",
 "type": "meta",
 "ta": "Trauma Violence Abuse",
 "title": "Sexual Violence/Abuse and Cervical Cancer: A Systematic Review of the Relationship.",
 "key": "Findings point to a need for prevention strategies that consider how gender intersects with exposure to sexual violence/abuse. The review also suggests elevated co-occurrence between cervical cancer and sexual violence/abuse relative to global population estimates (~10% intimate-partner violence and ~6% non-partner violence). Limitations include small samples and measurement heterogeneity. Findings support co-produced, survivor-centred and trauma-informed approaches to cervical cancer prevention and oncology care that address barriers to healthcare engagement. Larger studies using validated measures and confounder-aware designs are needed."
-},
-{
-"pmid": "43061780",
-"src": "week",
-"type": "review",
-"ta": "Curr Med Res Opin",
-"title": "Ferric derisomaltose for the treatment of iron deficiency with or without anemia in women's health: an expert review.",
-"key": "Although efficacy is largely comparable among IV iron formulations when equivalent doses are used, there are factors that distinguish certain IV iron formulations from others. This review aims to discuss available evidence for the treatment of ID/IDA in women with ferric derisomaltose (FDI; a high-dose IV iron formulation), focusing on AUB, pregnancy, and PPH. Based on existing data, FDI represents a clinically-effective option for iron repletion in these contexts, and a low risk of hypersensitivity reactions and hypophosphatemia. There is scope for further research within the field of ID/IDA in women's health to address unmet needs and evidence gaps across the patient care pathway."
 },
 {
 "pmid": "43061631",
@@ -370,44 +178,12 @@
 "key": "Pregnancy-related mortality surveillance further showed that a substantial proportion of deaths occurred beyond 42 days after pregnancy, underscoring the importance of care throughout the…\nCONCLUSIONS AND GLOBAL HEALTH IMPLICATIONS: Persistent racial disparities in U.S. maternal and postpartum health likely reflect intersecting clinical, healthcare-system, socioeconomic, and structural factors. Reducing these inequities requires sustained postpartum surveillance and care, rigorous evaluation of interventions, attention to structural determinants, culturally responsive mental-health services, and transparent validation of emerging predictive technologies across diverse populations."
 },
 {
-"pmid": "43061435",
-"src": "week",
-"type": "review",
-"ta": "Front Immunol",
-"title": "Aging-related immune remodeling in ovarian cancer: endocrine cues, cellular senescence, and tumor-immune crosstalk.",
-"key": "Tumor-driven immune escape, therapy-induced senescence, and systemic immunosenescence can generate overlapping phenotypes and require explicit separation in study design and interpretation. This review highlights an evidence framework based on histotype, tissue compartment, treatment exposure, functional age, and longitudinal sampling. Progress requires prospective cohorts that include older and frail adults and jointly assess tumor biology, immune state, treatment toxicity, and clinical outcome."
-},
-{
-"pmid": "43061046",
-"src": "week",
-"type": "review",
-"ta": "Cureus",
-"title": "Testosterone Therapy and Sexual Health in Men and Women: Is There a Role for Long-Acting Subcutaneous Pellets?",
-"key": "This narrative review describes the physiology of testosterone in both sexes, the diagnostic criteria and validated instruments used to assess sexual function, the trial evidence for testosterone therapy, and the pharmacology, effectiveness, and safety of pellets. Pellets are a reasonable option for selected hypogonadal men who do not seek fertility, accept a formulation that cannot be quickly reversed, and agree to hematocrit monitoring. In women, current guidance does not support their use, and any exception requires informed consent, close monitoring, and acknowledgment that it departs from that guidance."
-},
-{
 "pmid": "43061003",
 "src": "week",
 "type": "meta",
 "ta": "Front Endocrinol (Lausanne)",
 "title": "Luteal phase support strategies in ovarian stimulation-intrauterine insemination cycles: a systematic review and network meta-analysis of randomized controlled trials.",
 "key": "RESULTS: 22 RCTs involving 4,994 women were included. For clinical pregnancy, 21 RCTs involving 4,547 women contributed to a network of 8 LPS strategies. The results showed that vaginal progesterone (VP) was associated with a significantly higher clinical pregnancy rate than no…\nCONCLUSION: In OS-IUI cycles, VP was associated with higher clinical pregnancy and live birth rates than NP. Compared with VP combined with a GnRH agonist, VP was associated with a higher multiple pregnancy rate, although the certainty of evidence was very low and this finding should be interpreted cautiously. Further well-designed RCTs are needed to confirm these findings and determine the optimal LPS strategy."
-},
-{
-"pmid": "43059391",
-"src": "week",
-"type": "review",
-"ta": "Oncol Rep",
-"title": "Bidirectional regulatory roles of COMMD1 in tumorigenesis and progression: Translational prospects as a diagnostic and therapeutic target (Review).",
-"key": "Furthermore, translational strategies targeting COMMD1 are discussed, including COMMD1‑dependent peptide therapeutics, small‑molecule stabilisers, copper chelation‑based combination therapies and gene regulatory interventions. Collectively, the evidence supports COMMD1 as a potential integrated diagnostic and therapeutic target in precision oncology. However, its tissue‑specific and bidirectional functions highlight the need for further mechanistic investigation and patient stratification to enable precise clinical translation."
-},
-{
-"pmid": "43059309",
-"src": "week",
-"type": "review",
-"ta": "J Dev Orig Health Dis",
-"title": "Maternal-fetal considerations of CFTR modulator therapy during pregnancy.",
-"key": "Emerging evidence demonstrates that CFTRm cross the placenta and can be detected in cord blood, neonatal plasma, and infant tissues. However, the extent of fetal exposure, tissue accumulation and potential developmental implications remain incompletely understood. Herein, we emphasise the mechanistic and pharmacological evidence underlying fetal exposure to CFTRm . This review synthesises current evidence regarding the transplacental transfer, fetal exposure and developmental implications of CFTRm during pregnancy. We discuss emerging pharmacokinetic data, reported maternal and infant outcomes and key knowledge gaps that remain regarding the safety of in utero CFTRm exposure."
 },
 {
 "pmid": "43059072",
@@ -426,14 +202,6 @@
 "key": "In reported cases of assisted reproductive technology, conventional in vitro fertilization was frequently associated with fertilization failure, whereas intracytoplasmic sperm injection often achieved favorable fertilization outcomes and pregnancies. Based on this evidence, we propose a multilevel assessment framework integrating phenotypic screening, physiological functional assays, and genetic testing. This framework should be regarded as a translational approach, rather than a validated diagnostic pathway. Larger prospective studies are required to establish standardized protocols, reference thresholds, and clinical utility."
 },
 {
-"pmid": "43058824",
-"src": "week",
-"type": "review",
-"ta": "Biomark Res",
-"title": "Cell-free DNA-guided detection, surveillance, and therapeutic adaptation for breast cancer.",
-"key": "ine switching have demonstrated progression-free survival benefits with specific treatment strategies, providing evidence beyond biomarker-outcome associations, although overall survival benefit remains to be established. Across applications, interpretation depends on assay characteristics, molecular input, disease setting, sampling schedule, and the clinical decision being evaluated. Future studies should connect assay performance to patient benefit through comparison with existing care, clinically meaningful endpoints, and assessment of treatment burden and downstream investigations. This approach will help define where cfDNA testing can contribute meaningfully to breast cancer management."
-},
-{
 "pmid": "43055436",
 "src": "week",
 "type": "meta",
@@ -442,124 +210,12 @@
 "key": "RESULTS: Twenty-two eligible reports representing 21 unique studies or cohorts were included; 2 randomized rehabilitation studies contributed to quantitative synthesis. Dyspareunia and broader sexual dysfunction remained clinically relevant beyond 6 months postpartum, with incomplete recovery persisting in a substantial subset of women. Persistent morbidity was most…\nCONCLUSIONS: Persistent dyspareunia and broader sexual dysfunction remain clinically relevant beyond 6 months postpartum and warrant proactive assessment within routine postpartum and gynecologic follow-up, with multidisciplinary management and referral for pelvic floor rehabilitation or urogynecologic evaluation when indicated."
 },
 {
-"pmid": "43057606",
-"src": "week",
-"type": "review",
-"ta": "Fertil Steril",
-"title": "Endometrial fertility. Management of adenomyosis in gynecology and infertility.",
-"key": "IVF may overcome some adverse effects of adenomyosis on fertility, but its impact on embryo implantation remains problematic. Accordingly, available evidence suggests a possible reduction in live birth rates following IVF. However, current studies are limited by potential confounders. Studies investigating the use of medical pretreatment before IVF, including GnRH agonists, dienogest, or levonorgestrel-releasing intrauterine systems, remain insufficient and inconsistent. Further prospective studies and randomized controlled trials using standardized inclusion criteria are needed."
-},
-{
-"pmid": "43057501",
-"src": "week",
-"type": "review",
-"ta": "Crit Rev Oncol Hematol",
-"title": "Cyclin-dependent kinase 4/6 inhibitors in non-breast malignancies.",
-"key": "RESULTS: The most compelling randomized signal is in dedifferentiated liposarcoma: SARC041 (108 randomized patients) improved median progression-free survival (PFS; 9.67 vs 1.52 months; HR 0.39, 95% CI 0.25-0.59), whereas overall survival (OS) remains inconclusive (HR 0.55, 95% CI 0.28-1.07), with crossover complicating interpretation. Endocrine combinations show…\nCONCLUSIONS: Clinical development beyond breast cancer should be organized by lineage-specific dependence, demonstrable RB-axis function, rational combination partners, and endpoints suited to cytostatic treatment. Evidence strength, competing options, and toxicity must determine whether a promising signal warrants practice change."
-},
-{
-"pmid": "43056510",
-"src": "week",
-"type": "review",
-"ta": "Biomol Biomed",
-"title": "Wharton's jelly insufficiency and its implications for perinatal outcomes and regenerative medicine: A review.",
-"key": "Whether reduced WJ content or a lean cord independently lowers MSC potency remains untested. For preeclampsia and intrauterine infection, the proposed effects on WJ-MSC quality are inferred from adjacent evidence rather than demonstrated directly. Sonographic WJ-area assessment, Doppler monitoring, molecular biomarkers, and potency-based donor stratification are proposed research approaches. Prospective studies linking antenatal WJ measurements to perinatal outcomes and post-isolation MSC function are needed before the severity framework or proposed surveillance and cord-banking strategies can be adopted clinically."
-},
-{
 "pmid": "43056475",
 "src": "week",
 "type": "meta",
 "ta": "Gynecol Obstet Invest",
 "title": "Ovarian cancer screening using serum CA125 and transvaginal ultrasound: A systematic review and meta-analysis.",
 "key": "RESULTS: Four randomised controlled trials were included in this meta-analysis, comprising 188147 participants in the screening group and 187394 in the control group. Pooled results showed no statistically significant difference in overall ovarian cancer incidence and ovarian…\nCONCLUSION: For asymptomatic women in the general population, combined serum cancer antigen 125 and transvaginal ultrasound screening should be approached with caution. Current evidence indicates that this screening strategy neither reduced​ the overall incidence of ovarian cancer nor improved​ overall survival, despite potentially increasing the detection rate of Stage I and early-stage serous carcinoma."
-},
-{
-"pmid": "43056390",
-"src": "week",
-"type": "review",
-"ta": "Am J Mens Health",
-"title": "Popularity Without Proof: A Narrative Review of Peptide Adjuncts to Testosterone Therapy in Body Composition and Functional-Driven Use.",
-"key": "Evidence for restorative peptides, such as BPC-157 and TB-500, remains largely preclinical, with minimal to no data supporting their efficacy in humans. Variable product quality from unregulated sources is a cause for concern. Testosterone and peptide regimens are increasingly utilized despite significant gaps in the evidence. This necessitates distinguishing between established indications and experimental uses, and informed, nonjudgmental counseling as a harm-reduction strategy. The aim of this review is to examine the available human evidence regarding GH secretagogues and restorative peptides used as adjuncts to testosterone therapy, focusing on body composition, strength, and safety."
-},
-{
-"pmid": "43056276",
-"src": "week",
-"type": "review",
-"ta": "Radiographics",
-"title": "3D and 4D Hysterosalpingo-Contrast Sonography: Advanced Tubal Patency Assessment.",
-"key": "This article is intended to serve as a practical guide to performing 3D-4D HyCoSy with microbubble contrast agents, including preparation, technical parameters, and findings interpretation. In addition, the authors compare HyCoSy with conventional techniques, review characteristic imaging patterns of tubal patency and occlusion, and discuss potential pitfalls and preventive strategies. As an advanced US technology combined with a dynamic functional perspective, 3D-4D HyCoSy represents a powerful, cost-effective, and patient-friendly tool for integrated fertility evaluation in modern radiology practices."
-},
-{
-"pmid": "43056058",
-"src": "week",
-"type": "review",
-"ta": "Reprod Sci",
-"title": "Maternal KIR-Fetal HLA-C Interactions in IVF and Pregnancy: Evidence, Clinical Implications, and Ethics; A Narrative Review.",
-"key": "Current guidelines do not recommend routine HLA-C matching or KIR-directed immune modulation for recurrent implantation failure (RIF). The results of KIR/HLA-C testing also do not currently alter evidence-based prenatal care, which still depends on the patient's medical history and the presence of clear clinical findings. Although preliminary studies provide substantial evidence, the findings still require validation through larger studies and randomized trials, and adverse effects and equity concerns need to be addressed before embryo selection or specific treatments can be formally introduced into standard clinical practice."
-},
-{
-"pmid": "43056017",
-"src": "week",
-"type": "review",
-"ta": "Curr Oncol Rep",
-"title": "Vulvar Paget Disease: From Empirical Management to Emerging Precision Oncology Strategies.",
-"key": "However, most evidence remains preclinical or derives from small case series. Immune checkpoint inhibitors have shown sporadic but clinically meaningful activity in selected patients, particularly in tumors with high tumor mutational burden, supporting biomarker-driven immunotherapeutic strategies. Advanced EMPD should be regarded not simply as a rare chemoresistant malignancy, but as a biologically heterogeneous disease requiring comprehensive pathological, immunohistochemical, and molecular characterization to guide future precision-based therapies."
-},
-{
-"pmid": "43055840",
-"src": "week",
-"type": "review",
-"ta": "Mol Biol Rep",
-"title": "Mechanism-based targeted drug delivery strategies for uterine fibroids (leiomyomas): from pathogenesis to therapy.",
-"key": "However, future strategies are based on individualized nanomedicine, AI-driven drug discovery and multi-target combo therapy to increase effectiveness, limit recurrence, and maintain fertility. In summary, mechanism-based targeted drug delivery is a promising but still largely preclinical strategy for uterine fibroids. By linking molecular pathology with delivery technology, it may enable more precise and patient-centred therapies, but this potential must be confirmed in clinically relevant models and clinical trials."
-},
-{
-"pmid": "43055777",
-"src": "week",
-"type": "review",
-"ta": "Pediatr Surg Int",
-"title": "Persistent bowel dysfunction and health-related quality of life after surgery for Hirschsprung disease: generic versus disease-specific outcomes and measurement heterogeneity in children and adolescents.",
-"key": "No statistically significant difference in generic HRQoL at the group level was shown between healthy comparison and available evidence, though results indicated a great degree of heterogeneity, precluding a general interpretation; disease-specific instruments and symptom-stratified analyses showed evidence of statistically important impairment in a sub-group with chronic dysfunction. Parent- proxy and child self-reports are not interchangeable but rather give complementary views. A standardized follow-up ought to thus combine effective bowel-function evaluation, generic and disease-specific HRQoL questionnaires, in addition to child plus parent reports."
-},
-{
-"pmid": "43054964",
-"src": "week",
-"type": "review",
-"ta": "J Midlife Health",
-"title": "Cancer Risk in Premature Ovarian Insufficiency: Current Evidence and Clinical Implications.",
-"key": "tiology: autoimmune POI is associated with increased thyroid cancer incidence, while genetic subgroups such as fragile X mental retardation 1 premutation carriers may exhibit altered ovarian cancer susceptibility. Importantly, physiological HRT in POI differs fundamentally from postmenopausal hormone therapy and does not appear to increase overall cancer risk when continued until the average age of natural menopause. POI is typically associated with lower risks of hormone-dependent malignancies, though subgroup-specific variations exist. Individualized counseling, appropriate progestin opposition, and further POI-specific cohort studies are essential to refine cancer surveillance strategies."
-},
-{
-"pmid": "43054734",
-"src": "week",
-"type": "review",
-"ta": "J Midlife Health",
-"title": "Precision Menopause Care in the Era of Artificial Intelligence: Bridging Global Evidence and Indian Realities.",
-"key": "RESULTS: Precision menopause care extends beyond genomics to encompass multi omics, behavioural, and contextual determinants. AI offers potential for risk prediction, digital phenotyping, and decision support,…\nCONCLUSION: Precision menopause care must balance innovation with equity, ethics, and compassion. Vision 2035 anticipates proactive, preventive, and participatory care shaped by validated AI, digital health, and population specific evidence. Current applications remain largely investigational; robust validation, inclusive datasets, and context sensitive implementation are essential to ensure meaningful improvements in autonomy, equity, and health outcomes for midlife and older women."
-},
-{
-"pmid": "43054730",
-"src": "week",
-"type": "review",
-"ta": "J Midlife Health",
-"title": "Association between Menopause-related Knowledge, Attitude, Coping Practices, and Perceived Stress among Postmenopausal Women: A Cross-sectional Study.",
-"key": "RESULTS: The mean age of the participants was 56.2 ± 5.8 years. Good menopause-related knowledge was observed in 38.3% of women, favorable attitude in 46.7%, and good coping practices in 34.2%. Moderate-to-high perceived stress was present in 61.7% of participants. Knowledge, attitude, and coping practice scores showed significant negative correlations with perceived stress. Poor…\nCONCLUSION: Better menopause-related knowledge, favorable attitude, and healthier coping practices were associated with lower perceived stress among postmenopausal women. Integrating menopause education, counseling, and stress screening into primary healthcare may improve psychological well-being in this population."
-},
-{
-"pmid": "43054568",
-"src": "week",
-"type": "review",
-"ta": "Pregnancy (Hoboken)",
-"title": "Racial and ethnic disparities in cervical length screening for spontaneous preterm birth prediction.",
-"key": "Findings for Hispanic and Asian patients were less consistent. Prediction models that combine CL with race and social factors perform better than CL alone, but differences in the test performance of CL itself across groups have not been established. Evidence on the remaining questions are limited, and whether CL screening reduces disparities in sPTB remains uncertain. Further research is needed to answer the questions that remain and to identify the structural factors that may contribute to these disparities."
-},
-{
-"pmid": "43054258",
-"src": "week",
-"type": "review",
-"ta": "Front Cell Dev Biol",
-"title": "Rewiring immune cell death in ovarian cancer: pyroptosis, apoptosis, and the immunosuppressive microenvironment.",
-"key": "Importantly, apoptosis and pyroptosis are interconnected through shared regulatory nodes, including caspase-8, gasdermin proteins, mitochondrial stress, and inflammatory signaling pathways. This review summarizes the characteristics, key signaling pathways, and functional consequences of pyroptosis and apoptosis in major immune-cell populations within the ovarian cancer microenvironment, with particular emphasis on their context-dependent roles in tumor immune evasion and on opportunities to overcome immunosuppression and improve immunotherapy."
 },
 {
 "pmid": "43053765",
@@ -578,28 +234,12 @@
 "key": "RESULTS: Systematic review and meta-analysis of ABSI (eight studies, 3193 participants) association with PMOS (SMD = 0.45, 95%CI = 0.07, 0.83; I 2 = 90.5%, τ2 = 0.18) and body mass index (BMI) (MD = 3.76, 95%CI = 1.61, 5.91 kg/m2; I 2 = 93.8%, τ2 = 5.84). In five studies (840 participants), BRI levels were higher in PMOS patients than in the control group (SMD = 1.09, 95%CI = 0.53-1.66) 95%CI = 0.53-1.66; I 2 = 85.9%; τ2 = 0.17), and BMI MD = 4.31 kg/m2, 95%CI = 1.98,…\nCONCLUSION: PMOS patients have enhanced ABSI and BRI levels compared to women without the syndrome. Further high-quality studies from other world regions are needed to evaluate heterogeneity at different PMOS clinical stages."
 },
 {
-"pmid": "43053253",
-"src": "week",
-"type": "review",
-"ta": "Biomark Res",
-"title": "Circulating biomarkers in early-stage hepatocellular carcinoma for risk stratification, diagnosis and prognosis.",
-"key": "In early-stage HCC, blood candidates may complement or outperform conventional approaches by enabling earlier diagnosis and more accurate risk stratification. In this review, we summarize recent advances and current challenges in the clinical translation of circulating biomarkers. We focus on key liquid biopsy components, including circulating cell-free DNA, particularly circulating tumor DNA, circulating tumor cells, non-coding RNAs, extracellular vesicles, proteins and metabolites, such as bile acids and lipids, highlighting their diagnostic and prognostic potential and their possible integration into personalized management strategies for patients with early-stage HCC."
-},
-{
 "pmid": "43052958",
 "src": "week",
 "type": "meta",
 "ta": "BMC Womens Health",
 "title": "The effects of different types of hormonal contraception on bone mineral density in women of reproductive age: a systematic review and meta-analysis.",
 "key": "RESULTS: Seven studies (k = 15 comparisons; n = 1,488 completers) met all inclusion criteria. The pooled WMD for lumbar spine BMD at 12 months was - 0.003 g/cm² (95% CI: -0.010 to + 0.005; p = 0.470; I² = 38.7%), below DXA precision limits and representing…\nCONCLUSIONS: COCs do not materially alter BMD over 12 months in reproductive-age women, with consistent null effects across all progestin classes. A biologically plausible EE dose gradient was identified; DMPA use warrants individualized counselling given clinically relevant, though reversible, bone loss. Adequately powered long-term randomized trials targeting low-dose formulations, adolescents, and DMPA continuers are urgently needed."
-},
-{
-"pmid": "43052828",
-"src": "week",
-"type": "review",
-"ta": "BMC Med Imaging",
-"title": "Unilateral uterine artery embolization for symptomatic uterine fibroids: retrospective review of clinical outcomes of 78 patients in single center over 15 years and literature review.",
-"key": "RESULTS: Seventy-eight patients underwent unilateral UAE (T: n = 54; Ni: n = 24). Median uterine volume decreased by 18.0% in the T group (p = 0.0007) and 22.4% in the Ni group (p = 0.032). Median largest fibroid volume decreased by 45.4% (T, p = 0.0056) and 48.2% (Ni, p = 0.013). Clinical follow-up was available for 50 patients (T: n = 35; Ni: n = 15). QoL scores improved significantly in both groups (T: 20 to 90; Ni: 35 to 100; p < 0.01), with no significant…\nCONCLUSION: Unilateral UAE results in significant morphological and clinical improvement in both groups. These findings support unilateral UAE as a clinically effective alternative when bilateral embolization is not feasible."
 },
 {
 "pmid": "43052822",
@@ -610,52 +250,12 @@
 "key": "CONCLUSIONS: Cervical cancer among women in Ethiopia is consistently associated with sexual behavior, infectious comorbidities, and reproductive factors. These findings highlight the importance of strengthening integrated prevention strategies, including expanding HPV vaccination coverage, improving access to cervical cancer screening, and enhancing integration with HIV care services. Addressing modifiable associated factors may help reduce the burden of cervical cancer in Ethiopia."
 },
 {
-"pmid": "43052673",
-"src": "week",
-"type": "review",
-"ta": "Methods Mol Biol",
-"title": "Beyond Fertility: Pioneering AI-Enhanced Health Solutions with AMH and Inhibin B.",
-"key": "The future of these biomarkers in clinical practice looks promising, with ongoing research aimed at refining their predictive power and expanding their application. Innovations in biomarker technology and data analytics are expected to further enhance the precision of reproductive health diagnostics, enabling earlier and more accurate interventions that can lead to better health outcomes for women worldwide. By deepening the understanding of these hormonal interactions and their implications, the field moves closer to a more comprehensive and nuanced approach to managing reproductive health, illustrating the profound impact of integrating endocrine science with cutting-edge technology."
-},
-{
-"pmid": "43052076",
-"src": "week",
-"type": "review",
-"ta": "Semin Nephrol",
-"title": "Lupus Nephritis in Pregnancy: A Case-Based Approach to Diagnosis and Management.",
-"key": "Advances in angiogenic biomarkers, fetal surveillance, and multidisciplinary care have improved the ability to distinguish these conditions and optimize outcomes. Using a real clinical case scenario, this review discusses current evidence on the diagnosis and management of LN before and during pregnancy, including preconception counseling, disease monitoring, therapeutic considerations, and maternal and fetal risk assessment, emphasizing the importance of individualized, multidisciplinary care."
-},
-{
 "pmid": "43052046",
 "src": "week",
 "type": "meta",
 "ta": "Emerg Infect Dis",
 "title": "Management of Infants Born to Mothers with Q Fever During Pregnancy.",
 "key": "There were no cases of transmission through breastmilk. Infection-control precautions ranged from standard to airborne. Evidence indicated that vertical transmission to the fetus or live-born infant is rare. Maternal illness and fetal loss appear related to placental infection. Separation of mother and infant or avoidance of breastfeeding are not supported. Management should prioritize placental handling precautions and structured infant follow-up. No published clinical consensus guidelines exist for management of infants born to mothers with Q fever (Coxiella burnetii) during pregnancy. Global collaboration and evidence gathering can inform evidence-based guidelines."
-},
-{
-"pmid": "43051393",
-"src": "week",
-"type": "review",
-"ta": "Clin Chim Acta",
-"title": "AI-assisted liquid biopsy for early breast cancer detection: a laboratory translation framework for future multimodal integration.",
-"key": "ased on the purpose of the test for average-risk screening, dense breast triage, symptomatic assessment, high-risk surveillance, recurrence monitoring for breast cancer, and metastatic disease detection, and differentiated between direct breast cancer evidence and indirect methodological analogies. Translation involves modality-specific specimen processing, modality-specific analytical and clinical validation, locked/version-controlled pipelines, patient-, site-, and time-level data partitioning, leakage control, pre-specified thresholds and abstention rules, calibration assessment, external validation, subgroup analyses, reportable quality-control metrics, and defined revalidation triggers."
-},
-{
-"pmid": "43051313",
-"src": "week",
-"type": "review",
-"ta": "Prog Retin Eye Res",
-"title": "Retinopathy of prematurity: causes, treatment and prevention.",
-"key": "Timed topical corticosteroids during early ROP which alter metabolism to promote normal vessel growth, show great promise in preventing severe disease. Risk algorithms with near 100% sensitivity and high specificity can reduce the number of screening examinations. AI-augmented photography and ultrawide field optical coherence tomography may further refine prediction, diagnosis and treatment. This review synthesizes recent clinical paradigm shifts toward early disease prevention, highlighting how novel metabolic, pharmacological, and digital health strategies can prevent ROP-related vision loss."
-},
-{
-"pmid": "43051281",
-"src": "week",
-"type": "review",
-"ta": "BJOG",
-"title": "Injectable Hyaluronic Acid for Genitourinary Syndrome of Menopause.",
-"key": "CONCLUSIONS: Injectable hyaluronic acid-based therapies are emerging non-hormonal interventions for vulvovaginal symptoms associated with GSM. Current evidence does not yet establish their role as routine or guideline-recommended treatments. This evidentiary position should be considered separately from the intended purpose and regulatory status of individual devices. Larger independent trials, longer-term safety data, and health-economic evaluations are needed to define their comparative clinical role."
 },
 {
 "pmid": "43051034",
@@ -682,28 +282,12 @@
 "key": "RESULTS: Fifty-six studies (96 pregnancies, 81 women) from 19 countries were included. Among pregnancies with available outcome data, reported maternal complications included gestational diabetes mellitus (GDM) (11.5%), oligohydramnios (9.4%), and preeclampsia/hemolysis, elevated liver enzymes, and low platelets…\nCONCLUSIONS: Preconception counseling and multidisciplinary care with close electrolyte monitoring and individualized supplementation may benefit GS-complicated pregnancies, but evidence is limited by case-report data, publication bias, and heterogeneity. Larger prospective studies with standardized outcome reporting are needed to clarify risk factors and guide clinical management."
 },
 {
-"pmid": "43050530",
-"src": "week",
-"type": "review",
-"ta": "Sci Adv",
-"title": "Reconciling the medical relevance of mitochondrial transplantation in vivo.",
-"key": "Mitochondria transplantation is a proposed therapeutic approach to improve the function of diseased or injured tissue. It has garnered attention and sparked debate."
-},
-{
 "pmid": "43050436",
 "src": "week",
 "type": "meta",
 "ta": "PLoS One",
 "title": "Multidisciplinary care models for managing pregnancies complicated with chronic diseases: A systematic review.",
 "key": "Reduced maternal and fetal morbidity was also reported. Clinicians and policymakers can use this collective description to select strategies for effective multidisciplinary care models appropriate for the socio-economic, health system, and disease-related context of their specific setting. Studies with robust methodology would provide stronger evidence supporting multidisciplinary care during pregnancy. Standardized reporting of multidisciplinary care provision is also important for deriving sound conclusions about the effectiveness of the models and their adaptability across different health systems."
-},
-{
-"pmid": "43050434",
-"src": "week",
-"type": "review",
-"ta": "PLoS One",
-"title": "The vitamin D-vitamin D receptor axis in uterine leiomyomas: A scoping review of clinical, molecular, and genetic evidence.",
-"key": "The evidence maps parallel associations of lower circulating vitamin D, lower VDR expression and higher CYP24A1 expression in leiomyoma tissue with the disease; no included study tested whether VDR mediates or modifies the relationship between vitamin D and leiomyoma. Findings remain heterogeneous and largely observational. Well-designed prospective cohort studies incorporating LC-MS/MS vitamin D measurement, concurrent tissue sampling, and full confounder adjustment are needed to clarify the clinical and mechanistic significance of this pathway."
 },
 {
 "pmid": "43050412",
@@ -714,92 +298,12 @@
 "key": "Postnatal drought exposure was consistently associated with acute and chronic malnutrition and increased mortality risk, whereas evidence for infectious diseases and micronutrient deficiencies was more heterogeneous across studies. Across studies, the magnitude of these effects varied according to drought severity, socioeconomic conditions, and access to health services. Overall, the evidence suggests that drought exposure from pregnancy through early childhood is associated with multiple adverse health outcomes. Strengthening social protection, food security, and health interventions in drought-prone settings may help reduce the burden of these impacts on child health."
 },
 {
-"pmid": "43050241",
-"src": "week",
-"type": "review",
-"ta": "Cancer J",
-"title": "Multimodal Biomarkers in Pancreatic Cancer: From Early Detection to Precision Therapy.",
-"key": "Blood-based multianalyte assays integrating circulating proteins, glycoproteins, methylated cell-free DNA, and tumor-derived signals, together with imaging-based deep learning, are improving early detection beyond CA19-9 alone. Molecular subtyping and postoperative circulating tumor DNA further refine prognosis, while germline and somatic alterations-including BRCA1/2/PALB2, MSI-H/dMMR, NRG1 fusions, KRAS G12C, NTRK, FGFR2, and BRAF V600E-are increasingly enabling biomarker-directed therapy. The next frontier is prospective validation and clinical integration of multimodal biomarkers to enable earlier diagnosis, more precise risk stratification, and equitable delivery of precision therapy."
-},
-{
-"pmid": "43050084",
-"src": "week",
-"type": "review",
-"ta": "Immunol Res",
-"title": "Pregnancy as an important factor in female autoimmunity.",
-"key": "Fetal microchimerism (FMc) may have long-term immunological consequences, potentially contributing to either immune regulation or autoimmune pathology. These mechanisms may help explain the variable effects of pregnancy on autoimmune disease activity and obstetric outcomes, as illustrated by SLE, RA, MS, and T1D. The pregnancy compensation hypothesis offers an additional evolutionary perspective. However, it remains speculative and requires further investigation. Pregnancy induces complex, disease-specific immunomodulatory changes. Instead of one-size-fits-all regimens, caring for pregnant women with autoimmune disease requires a…"
-},
-{
-"pmid": "43049825",
-"src": "week",
-"type": "review",
-"ta": "Curr Atheroscler Rep",
-"title": "The Menopausal Transition as a Critical Window for Cardiovascular Risk Modification and Intervention Opportunities.",
-"key": "Growing evidence suggests that the MT represents a distinct period of cardiometabolic vulnerability and provides an opportunity for early risk identification and prevention. Lifestyle and behavioral modifications, as well as control of blood pressure, lipids, and other established risk factors, are the foundations of risk-reducing management and treatment. Early cardiometabolic risk assessment and individualized, lifestyle -centered management are essential to optimize cardiovascular outcomes during the MT. Further research is needed to clarify therapeutic strategies for this critical window in women's cardiometabolic health."
-},
-{
-"pmid": "43049677",
-"src": "week",
-"type": "review",
-"ta": "J Perinat Med",
-"title": "Interleukin-6 and the maternal-placental immune axis in preeclampsia: from implantation to postpartum cardiovascular disease.",
-"key": "Causal evidence, however, rests largely on animal and in vitro work; human data are associative and confounded by shared cardiometabolic risk; and the first large trial of IL-6 ligand inhibition lowered inflammation without reducing cardiovascular events.\nOUTLOOK: Longitudinal, signalling-specific measurement, explicit separation of marker from mediator and target, and safety-led evaluation in pregnancy are required before this axis can inform prevention or postpartum cardiovascular risk stratification."
-},
-{
-"pmid": "43049573",
-"src": "week",
-"type": "review",
-"ta": "Cancer Sci",
-"title": "Genomic Correlates of Chemoradiation Response in Locally Advanced Cervical Cancer: Implications for Precision Oncology.",
-"key": "No single genomic marker yet supports routine clinical use, and genome-only models omit complementary contributions from the tumor microenvironment, hypoxia, cancer stem cell biology, and clinicopathological or imaging-derived parameters. We further discuss the translational gap between genomic discovery and clinical implementation, with particular attention to population representation and resource constraints in high-burden settings. Prospective, population-inclusive genomic trials are urgently needed to translate these findings into equitable precision radiotherapy for patients with LACC worldwide."
-},
-{
 "pmid": "43049177",
 "src": "week",
 "type": "meta",
 "ta": "Cochrane Database Syst Rev",
 "title": "Inositol for infertile women with polycystic ovary syndrome.",
 "key": "Our important outcomes were clinical pregnancy and gestational diabetes.\nRISK OF BIAS: We assessed risk of bias using the Cochrane RoB 1 tool.\nSYNTHESIS METHODS: Two review authors independently selected eligible studies, extracted data, and assessed risk of bias. We pooled studies using a fixed-effect model, and calculated odds ratios (ORs) with 95% confidence intervals (CIs). We assessed the overall certainty of evidence by applying…\nREGISTRATION: Protocol (2016) available at https://doi.org/10.1002/14651858.CD012378. Previous review (2018) available at https://doi.org/10.1002/14651858.CD012378.pub2."
-},
-{
-"pmid": "43048619",
-"src": "week",
-"type": "review",
-"ta": "Front Immunol",
-"title": "Maternal thyroid status and immune adaptation at the maternal-fetal interface: distinguishing direct from indirect pathways.",
-"key": "Direct evidence for decidual regulatory or effector T cells and dendritic cells is lacking, and many proposed mechanisms come from animal or nonpregnant settings. The available data do not support a single TH-driven immune phenotype or establish whether maternal thyroid status acts mainly through immune cells or surrounding tissues. Studies combining paired blood and interface tissue, longitudinal sampling, local T3/T4 measurements, pathway-specific perturbation, and human multicellular models are needed to test both routes and connect hormone supply and metabolism with immune and vascular function. Thyroid autoimmunity should be analyzed separately from local TH receptor signaling."
-},
-{
-"pmid": "43048590",
-"src": "week",
-"type": "review",
-"ta": "Open Access J Contracept",
-"title": "Prevalence and Predictors of Intrauterine Device Failure Among Women in Sub-Saharan Africa: A Scoping Review.",
-"key": "CONCLUSION: Over the past 10 years, very few studies in sub-Saharan Africa have credibly estimated the prevalence of IUD failure or identified predictors of IUD failure. Only six studies made such an attempt; however, none were designed with methodological rigor to allow credible quantification of the prevalence of IUD failure. Although all six studies included IUD failure as an outcome, none explicitly examined the predictors of IUD failure. Nonetheless, the few available studies indicate that IUD failure is a reality, with significant variation across regions ranging from 0.2% to 7.4%. Both intrapersonal and service provision characteristics predict IUD failure, with the service provision factors taking precedence."
-},
-{
-"pmid": "43048435",
-"src": "week",
-"type": "review",
-"ta": "Front Med (Lausanne)",
-"title": "Research progress of artificial intelligence applications in obstetrics.",
-"key": "omplications does not establish that AI implementation itself improves maternal or neonatal outcomes, and the clinical benefit of treatment should not be attributed to the predictive model without intervention studies. Across obstetric applications, limited external validation, dataset shift, class imbalance, calibration, interpretability, workflow integration, and data governance remain major barriers to clinical translation. This review therefore emphasizes the distinction between technical model performance and demonstrated clinical utility, and highlights the evidence required to move AI applications from retrospective development toward prospective, clinically integrated obstetric care."
-},
-{
-"pmid": "43048285",
-"src": "week",
-"type": "review",
-"ta": "Diabetes Metab Syndr Obes",
-"title": "Interplay of Insulin Resistance, Hyperandrogenism, and Obesity in Polycystic Ovary Syndrome: Pathogenesis and Therapeutic Insights.",
-"key": "The management of PCOS is evolving from a symptomatic approach towards a more pathophysiologically-targeted and personalized strategy. A deep understanding of the IR-hyperandrogenism-obesity cycle is crucial for developing and implementing these novel therapies, which hold promise for improving long-term reproductive, metabolic, and cardiovascular outcomes for patients with PCOS. Future research should focus on validating these emerging treatments through robust clinical trials and defining their place within individualized treatment algorithms."
-},
-{
-"pmid": "43048205",
-"src": "week",
-"type": "review",
-"ta": "Ther Adv Reprod Health",
-"title": "The status of preimplantation genetic testing for aneuploidy (PGT-A) - A critical appraisal.",
-"key": "Several studies also suggest that PGT-A does not universally improve live birth rates and may inadvertently exclude embryos with reproductive potential, especially in patients with few blastocysts. Professional societies, including PGDIS, highlight favorable outcomes but may underemphasize conflicting evidence. Currently, the broad application of PGT-A is not supported, especially in low embryo yield scenarios. Individualized counseling, transparent laboratory reporting, and further prospective trials are essential to define PGT-A's role in modern IVF."
 },
 {
 "pmid": "43048196",
@@ -816,38 +320,6 @@
 "ta": "Int J Reprod Biomed",
 "title": "Effectiveness of mobile applications in pregnancy care: An umbrella review of systematic reviews and meta-analyses.",
 "key": "RESULTS: Findings consistently showed that mobile applications can improve maternal knowledge, self-management, physical activity, diet, weight control, and adherence to prenatal care recommendations. Positive effects were also reported for mental health, including…\nCONCLUSION: Mobile health interventions demonstrate considerable potential as complementary strategies in prenatal care. Future research should focus on high-quality, large-scale, long-term trials with culturally sensitive, personalized approaches. Strong collaboration among researchers, healthcare providers, and technology developers is essential to fully harness the impact of mobile applications on maternal and neonatal health."
-},
-{
-"pmid": "43047688",
-"src": "week",
-"type": "review",
-"ta": "Front Cell Dev Biol",
-"title": "Mechanotransduction in the placental endothelium: molecular mechanisms and implications for pregnancy complications.",
-"key": "This review integrates current understanding of placental endothelial mechanotransduction, examines its dysregulation in pregnancy-related complications including PE, fetal growth restriction (FGR), and gestational hypertension (GH). While partial mechanistic overlap exists between these conditions, GH represents a distinct and generally milder clinical phenotype; fetoplacental endothelial-specific molecular features of GH remain largely uncharacterized and constitute an important knowledge gap. We further identify priorities for the development of mechanism-based precision interventions for PE, FGR and GH."
-},
-{
-"pmid": "43047661",
-"src": "week",
-"type": "review",
-"ta": "Int J Reprod Biomed",
-"title": "Ovarian rejuvenation: Ways to restart the ovaries: A narrative review.",
-"key": "Mounting evidence has suggested promising outcomes, such as restored hormone levels, increased follicle counts and maturation, and higher-quality oocytes. Besides, their working principles are based on countering fibrosis and inflammation, which often support the decline in ovarian function. While these methods aim to revive ovarian function under different circumstances, inconsistent findings are still being reported, emphasizing their uncertainty in practical terms. This review discusses novel therapies showing potential for ovarian rejuvenation and provides new insights into their specific roles in ameliorating ovarian conditions of various natures and at different stages."
-},
-{
-"pmid": "43047445",
-"src": "week",
-"type": "review",
-"ta": "Front Cell Dev Biol",
-"title": "Orchestrating implantation: endometrial receptivity as a convergence point of endocrine, metabolic, and immune signals.",
-"key": "tly, emerging evidence supports a conceptual shift from viewing impaired receptivity as the consequence of isolated molecular defects toward understanding it as a systems-level disruption of interconnected endocrine, metabolic, immune, and cellular networks, a common pathological feature across infertility-associated disorders such as endometriosis, polycystic ovary syndrome, chronic endometritis, and adenomyosis. Defining the temporal and spatial coordination of these networks may facilitate the development of more reliable biomarkers and mechanism-based, personalized strategies for assessing and restoring endometrial receptivity, ultimately improving implantation and reproductive outcomes."
-},
-{
-"pmid": "43046968",
-"src": "week",
-"type": "review",
-"ta": "Hypertension",
-"title": "2025 Harriet Dustan Lecture: Sex Differences in Immune-Mediated Hypertension: Why Menopause Matters.",
-"key": "Despite these sex differences, sex-specific clinical practice guidelines are still sparse, as is the consideration of a woman's hormonal status. In addition, preclinical models of immune-mediated hypertension are still mainly performed in male animals. The goal of this review is to highlight recent advancements in the field of sex differences in immune-mediated hypertension and to identify the major gaps in understanding immune mechanisms that lead to hypertension development in males and females, and as menopause progresses."
 },
 {
 "pmid": "43046905",
@@ -890,76 +362,12 @@
 "key": "RESULTS: Thirteen studies with 24712 cases were included. The incidence rates of SGA among the ICP and non-ICP patients were 14.04% (294/2094) and 4.66% (1053/22618), respectively. Pooled results demonstrated that ICP was significantly related to the occurrence of SGA (RR=3.12, 95% CI: 1.99-4.88, P＜0.001) in Chinese pregnant women. Subgroup analysis based on specific comorbidity also showed the relationship between ICP and SGA among patients with gestational diabetes mellitus (RR=6.09, 95% CI: 2.96-12.55, P＜0.001) and hepatitis B virus…\nCONCLUSION: In China, ICP was associated with the occurrence of SGA in China and pregnant patients with ICP experienced a significantly higher risk of SGA."
 },
 {
-"pmid": "43045763",
-"src": "week",
-"type": "review",
-"ta": "Prostate Cancer Prostatic Dis",
-"title": "Anatomy of periprostatic nerves and nerve-sparing strategy for radical prostatectomy.",
-"key": "RESULTS: Anatomical and histological studies show substantial variation in periprostatic nerve distribution. Nerve fibres are not confined to conventional posterolateral neurovascular bundles. Some extend into the anterolateral prostate and course through multilayered, heterogeneous fascial structures. Anatomy-based grading systems provide practical intraoperative frameworks but…\nCONCLUSIONS: A detailed understanding of individualized periprostatic nerve and fascial anatomy underpins effective nerve-sparing surgery. Integrating anatomy-based grading, patient-specific planning, and advanced adjunctive technologies may improve the balance between oncological control and functional preservation."
-},
-{
 "pmid": "43045762",
 "src": "week",
 "type": "meta",
 "ta": "Pediatr Res",
 "title": "Risk factors for congenital anomalies of the kidney and urinary tract.",
 "key": "RESULTS: Frequentist analysis identified increased risk for pre-pregnancy BMI 25.0-29.9 (OR, 1.24; 95% CI, 1.06-1.45), ≥30 (OR, 1.27; 95% CI, 1.07-1.51), and ≥25 kg/m² (OR, 1.24; 95% CI, 1.11-1.37). Maternal age <20 years was protective (OR, 0.61; 95% CI, 0.51-0.73). Other predictors included family history of CAKUT/kidney disease, maternal diabetes subtypes (type 1, type 2, pre-gestational, and gestational diabetes), preterm birth (OR, 1.59; 95% CI, 1.25-2.03),…\nCONCLUSIONS: Confirming established risks and identifying novel associations, these findings identify maternal metabolic factors as consistent correlates of CAKUT and support their evaluation as potentially modifiable targets."
-},
-{
-"pmid": "43045450",
-"src": "week",
-"type": "review",
-"ta": "Surg Oncol Clin N Am",
-"title": "Uterine Sarcomas: Updates and Challenges.",
-"key": "They arise as mesenchymal tumors from muscle and connective tissues. The most common subtypes include uterine leiomyosarcoma at 63%, low-grade and high-grade endometrial stromal sarcoma at 21%, and the remainder include the less common subtypes like undifferentiated uterine sarcoma, adenosarcoma, perivascular epithelioid cell tumor, SMARCA4-deficient uterine sarcoma, uterine tumor resembling ovarian sex cord tumor, NTRK-rearranged sarcoma, rhabdomyosarcoma, and inflammatory myofibroblastic tumor. Through a surgical lens, this review will explore the most current diagnostic criteria and management strategies available."
-},
-{
-"pmid": "43045329",
-"src": "week",
-"type": "review",
-"ta": "Rheum Dis Clin North Am",
-"title": "Systemic Lupus and Other Autoimmune Disorders During Pregnancy.",
-"key": "Patients require coordinated care with obstetrics, maternal fetal medicine, and rheumatology. Many drugs used for the care of rheumatologic conditions are safe in pregnancy, but detailed review should occur, ideally preconception, so the patient can be on the safest regimen while maintaining disease control. Anti-Ro/SSA and anti-La/SSB antibodies particularly pose unique risks of neonatal lupus syndrome, including cardiac manifestations. Medical management is unique to each disease and includes ultrasounds and antenatal testing to optimize both maternal and fetal well-being and minimize perinatal risks."
-},
-{
-"pmid": "43045301",
-"src": "week",
-"type": "review",
-"ta": "Hematol Oncol Clin North Am",
-"title": "Thrombocytopenia in Pregnancy: Diagnosis and Management.",
-"key": "In an uncomplicated pregnancy with platelet counts greater than 80 x 109/L, gestational thrombocytopenia is the most likely etiology. More severe thrombocytopenia, particularly those presenting in first or early second trimester, should prompt consideration of alternative causes including immune thrombocytopenia. When thrombocytopenia is accompanied by hemolytic anemia, patients should be evaluated for thrombotic microangiopathy. Hypertensive disorders of pregnancy, including pre-eclampsia and hemolysis, elevated liver enzymes, low platelet syndrome, are most common etiologies in late second and third trimesters."
-},
-{
-"pmid": "43045242",
-"src": "week",
-"type": "review",
-"ta": "Clin Geriatr Med",
-"title": "Menopause and Sexual Health in Older Adults.",
-"key": "Menopause is a systemic endocrine transition characterized by estrogen deficiency, driving a cascade of vasomotor, musculoskeletal, and genitourinary sequelae in older women. Hormonal shifts, specifically declining estrogen and testosterone, contribute to vaginal dryness, dyspareunia, and decreased libido. These physiologic changes are further complicated by comorbidities, polypharmacy, and functional limitations. Similarly, gradual testosterone decline in men may impair libido and erectile function. This review provides a clinically focused framework for the evaluation and management of sexual dysfunction in geriatric practice."
-},
-{
-"pmid": "43045241",
-"src": "week",
-"type": "review",
-"ta": "Clin Geriatr Med",
-"title": "Hypogonadism in Older Men.",
-"key": "Hypogonadism in older men refers to the late-onset clinical syndrome of impaired androgen production and/or spermatogenesis. Aging in men is associated with a gradual decline in serum testosterone concentrations. Some older hypogonadal men may benefit from testosterone therapy while others may not. The decision of whether to prescribe testosterone for an older hypogonadal man should be based on the severity of hypogonadism, an assessment of the potential benefits and risks of treatment, and the patient's willingness to accept the risks of treatment and monitoring. The choice of testosterone formulation depends on the patient's preferences, pharmacokinetics, treatment burden, and cost."
-},
-{
-"pmid": "43045185",
-"src": "week",
-"type": "review",
-"ta": "Med Clin North Am",
-"title": "Common Outpatient Procedures: Outpatient Gynecologic Procedures.",
-"key": "This review summarizes key outpatient gynecologic procedures, including cervical cancer screening, insertion and removal of intrauterine devices and contraceptive implants, and endometrial biopsies. Evidence-based approaches to pain management for intrauterine procedures are reviewed, including intracervical and paracervical blocks. Procedural pitfalls and strategies to reduce complications are discussed. Competence in these procedures enables timely, patient-centered preventative and reproductive care while minimizing need for specialist referral."
-},
-{
-"pmid": "43044486",
-"src": "week",
-"type": "review",
-"ta": "Eur J Obstet Gynecol Reprod Biol",
-"title": "Polypharmacy and the ageing brain: Anticholinergic burden in the ageing population and the impact of gynaecological medications.",
-"key": "CONCLUSION: Although the evidence linking cumulative anticholinergic exposure with long-term cognitive decline and dementia remains inconsistent and predominantly observational, higher anticholinergic burden has been associated with adverse outcomes including delirium, drowsiness, and an increased risk of falls, particularly in older adults. Routine assessment, careful medication review, and appropriate deprescribing may reduce avoidable harm. Integrating burden assessment into prescribing systems and clinical decision-support tools may further promote safer pharmacotherapy in an ageing society."
 },
 {
 "pmid": "43044308",
@@ -976,14 +384,6 @@
 "ta": "Cochrane Database Syst Rev",
 "title": "Interventions for women with endometrioma prior to assisted reproductive technology.",
 "key": "We summarised key findings from individual studies descriptively and we structured them by outcome domain. We used GRADE to assess the certainty of evidence for the critical outcomes.\nINCLUDED STUDIES: We included a total of seven parallel-arm RCTs with 646 participants randomised. Two studies (173 participants) evaluated medical interventions and five studies (473 participants) evaluated surgical interventions for endometrioma prior to ART. No studies evaluated combination therapy.\nSYNTHESIS OF RESULTS: No…\nREGISTRATION: Protocol (2010) https://doi.org/10.1002/14651858.CD008571. Original review (2010) https://doi.org/10.1002/14651858.CD008571.pub2."
-},
-{
-"pmid": "43042610",
-"src": "week",
-"type": "review",
-"ta": "J Neuroendocrinol",
-"title": "Neuroendocrine drivers of polyendocrine metabolic ovarian syndrome (PMOS) and the modifying role of adiposity.",
-"key": "Given the high prevalence of obesity in PMOS, dampening of raised LH concentrations with obesity challenges its use as part of diagnostic criteria for PMOS in populations where obesity is prevalent. Obesity-induced metabolic dysfunction also leads to hyperinsulinaemia, which further exacerbates ovarian hyperandrogenism. The interplay between metabolic dysfunction and reproductive health is illustrated by weight-management interventions, which consistently improve ovulatory function in women with obesity and PMOS. Understanding the neuroendocrine impact of obesity on the pathophysiology of PMOS can inform both diagnostic accuracy and therapeutic targets."
 },
 {
 "pmid": "43042579",
@@ -1018,94 +418,6 @@
 "key": "BRCA1, BRCA2, RAD51D, and RAD51C exhibited the greatest disparities in the proportions of PV and VUS, indicating a positive risk-benefit balance regarding clinical decision-making. Our findings suggest that the probability of detecting a VUS in other panel genes is significantly higher than in classic DDR genes, highlighting the underreporting of VUS in clinical studies. Routine clinical reporting may prioritize well-established EOC-risk genes, with multigene panel testing reserved for selected subgroups. Improving the reporting and classification of VUS is essential, and future studies should prioritize gene-specific VUS evaluation."
 },
 {
-"pmid": "43041916",
-"src": "week",
-"type": "review",
-"ta": "Front Immunol",
-"title": "Oral microenvironmental dysregulation and female reproductive health: clinical evidence, immunological mechanisms, and bidirectional crosstalk.",
-"key": "Conversely, hormonal fluctuations and endocrine-metabolic disturbances may alter periodontal susceptibility and inflammatory responses to dental biofilm. Current evidence supports biologically plausible and potentially bidirectional interactions between oral mucosal dysregulation and female reproductive health, although their direction, magnitude, disease specificity, and clinical significance remain incompletely defined. Future longitudinal and interventional studies integrating periodontal phenotyping, microbiome profiling, immune-metabolic assessment, and reproductive evaluation are required to…"
-},
-{
-"pmid": "43041860",
-"src": "week",
-"type": "review",
-"ta": "Front Immunol",
-"title": "VISTA as an emerging immune checkpoint in cervical cancer: spatial immune regulation, myeloid-T Cell crosstalk, and therapeutic opportunities.",
-"key": "Experimental studies support investigating VISTA blockade alongside established checkpoint inhibitors, but available clinical data have not demonstrated efficacy in cervical cancer. Future studies should integrate compartment-specific VISTA assessment, spatial immune profiling, and functional analyses of paired pretreatment and on-treatment specimens to identify VISTA-dependent immune states. Such an approach may provide a basis for biomarker-guided patient selection and rational development of VISTA-targeted immunotherapies."
-},
-{
-"pmid": "43041828",
-"src": "week",
-"type": "review",
-"ta": "Front Endocrinol (Lausanne)",
-"title": "Potential synergy between GLP-1 receptor agonists and follicle-stimulating hormone in improving spermatogenesis: biological rationale and future directions.",
-"key": "CONCLUSIONS: The convergence of GLP-1 and FSH signaling in testicular cells, combined with GLP-1RA metabolic benefits in obese infertile men, provides a strong biological rationale for combination therapy. Preliminary clinical evidence supports GLP-1RA efficacy in improving reproductive outcomes in men with obesity-associated hypogonadism; this benefit appears conditional on pre-existing metabolic dysfunction, with negligible or mildly adverse effects in eugonadal metabolically healthy men. Prospective randomized controlled trials are urgently needed to evaluate combined GLP-1RA and FSH therapy, with particular attention to responder profiles and long-term reproductive outcomes."
-},
-{
-"pmid": "43041791",
-"src": "week",
-"type": "review",
-"ta": "Front Bioeng Biotechnol",
-"title": "Gynecological cancers on a chip: status, advances, and future.",
-"key": "tegrating organoids and other biofabrication concepts, provide a fresh approach to elaborate tumor molecular mechanisms and treatment strategies since physiological variables (signaling and cellular processes) can be controlled. Although gynecological cancer chips have many advantages, the number of related studies is limited. Currently, the research landscape is primarily focused on TME reconstruction and drug screening, while the incorporation of tissue-derived samples and organoids has yet to gain traction. This review summarizes the current status of research, along with technical progress and future challenges, thus providing a comprehensive reference for further research in this field."
-},
-{
-"pmid": "43041737",
-"src": "week",
-"type": "review",
-"ta": "Front Oncol",
-"title": "Multiomic liquid biopsy: emerging applications in disease quantification, biomarker detection, molecular phenotyping, and cancer signal of origin prediction.",
-"key": "This evolution has facilitated the clinical application of liquid biopsy across the cancer care continuum, from screening/early detection to determining minimal residual disease (MRD) in early-stage cancers to selecting treatment and determining mechanisms of acquired resistance in advanced-stage cancers. These new multiomic assays may also support prospective biomarker-driven clinical trials incorporating complementary measures of tumor burden, genomic alterations, and molecular phenotype. Collectively, these advances suggest that multiomic liquid biopsy platforms may represent a major advance in precision oncology, enabling dynamic and comprehensive characterization of tumor biology."
-},
-{
-"pmid": "43041720",
-"src": "week",
-"type": "review",
-"ta": "Front Endocrinol (Lausanne)",
-"title": "Integrating paternal preconception health and sperm molecular biology into proportionate clinical counseling.",
-"key": "Nevertheless, the 74-90-day window of spermatogenesis and epididymal transit provides an actionable timeline for preconception risk mitigation, rather than a proven \"epigenetic reset.\" We therefore propose an evidence-informed clinical framework delineating guideline-endorsed baseline evaluations and low-risk lifestyle counseling from investigational assays and commercial claims. Importantly, this framework does not assume that paternal exposure-associated sperm epigenetic alterations persist after fertilization, are transmitted across generations, or determine offspring health."
-},
-{
-"pmid": "43041696",
-"src": "week",
-"type": "review",
-"ta": "Front Oncol",
-"title": "Early detection and interception in hepato-pancreatic-biliary cancers: endoscopic imaging, liquid biopsy, and emerging molecular biomarkers.",
-"key": "Across organs, case-control accuracy does not establish surveillance utility. Liquid biopsy complements rather than generally replaces histopathological diagnosis. Established adjuncts must be distinguished from investigational assays, including those with prospective diagnostic validation but no demonstrated surveillance utility. Integration requires specimen-specific analytical validation, independent testing in the intended-use population, and evidence of incremental clinical value over standard imaging and endoscopy. Interventional studies must show that this approach reduces late-stage diagnosis without excessive false-positive procedures."
-},
-{
-"pmid": "43041686",
-"src": "week",
-"type": "review",
-"ta": "Front Oncol",
-"title": "Impact of cervical cancer education on knowledge, attitudes and preventive practices among adolescent girls in secondary schools: a scoping review.",
-"key": "CONCLUSION: School-based cervical cancer education represents a feasible and scalable strategy for improving cervical cancer literacy among African adolescents. However, achieving the WHO's cervical cancer elimination targets will require a shift from isolated educational sessions toward sustainable, curriculum-integrated, multilevel interventions involving schools, families, healthcare providers, and policymakers. Future research should prioritize the evaluation of long-term behavioral outcomes, particularly HPV vaccine uptake and participation in cervical cancer screening programmes."
-},
-{
-"pmid": "43041668",
-"src": "week",
-"type": "review",
-"ta": "Front Oncol",
-"title": "Factors influencing parental hesitancy toward HPV vaccination in Sub-Saharan Africa: a scoping review.",
-"key": "CONCLUSION: Parental hesitancy toward HPV vaccination across Sub-Saharan Africa is shaped by overlapping informational, sociocultural, economic, and trust-related factors that vary substantially by country, delivery platform, and rollout maturity. Closing the region's HPV vaccination gap may require country and community-tailored, multicomponent strategies combining trusted-messenger communication, dedicated safety-concern counseling, and continued attention to cost and access barriers, particularly in under-studied countries and rural settings."
-},
-{
-"pmid": "43041639",
-"src": "week",
-"type": "review",
-"ta": "Front Endocrinol (Lausanne)",
-"title": "The ovarian cellular ecosystem in polycystic ovary syndrome: from cellular heterogeneity to clinical relevance.",
-"key": "lti-omics, computational and artificial intelligence approaches can be used to test these ecosystem-level hypotheses, explicitly distinguishing direct measurement from computational inference and identifying the validation required for functional or causal interpretation. Finally, we discuss the translational implications of this framework for biologically informed patient stratification, ecosystem-derived biomarker discovery, mechanism-informed therapeutic development, and precision reproductive endocrinology. By integrating current evidence within a falsifiable framework, this Review defines measurable features and validation criteria for testing ovarian ecosystem organization in PCOS and…"
-},
-{
-"pmid": "43041546",
-"src": "week",
-"type": "review",
-"ta": "Front Cell Dev Biol",
-"title": "Metabolic regulation of oocyte developmental competence: cellular cooperation, developmental transitions, and human evidence.",
-"key": "Direct oocyte profiling, associated follicular samples and embryo measurements therefore address different questions. The Goldilocks concept helps frame the possibility that both insufficient activity and excessive demand can accompany developmental failure; it does not establish a common metabolic threshold for clinical selection. We discuss metabolic interventions as tests of mechanism and distinguish developmental rescue in experimental systems from benefit in vitro fertilization. The central challenge is to determine which metabolic changes contribute to loss of competence and which arise as responses to aging, culture or developmental arrest."
-},
-{
 "pmid": "43041533",
 "src": "week",
 "type": "meta",
@@ -1130,100 +442,12 @@
 "key": "RESULTS: Eighteen publications, corresponding to 19 study/substudy records and 2,224 randomized or allocated participants, were included. Five interventions were significantly more effective than placebo: escitalopram (SMD -1.08, 95% CI -1.80 to -0.37), desvenlafaxine 50 mg (SMD -0.87, 95% CI -1.60 to -0.15), desvenlafaxine 100 mg (SMD -0.80, 95% CI -1.44 to -0.15), elinzanetant (SMD -0.51, 95% CI -0.95 to -0.07), and venlafaxine 75 mg (SMD -0.42, 95% CI -0.76 to…\nCONCLUSION: Nonhormonal prescription drugs are not interchangeable for breast cancer-related VMS. Elinzanetant provides the strongest high-certainty evidence among newer targeted options, and venlafaxine 75 mg is the best-supported…"
 },
 {
-"pmid": "43041299",
-"src": "week",
-"type": "review",
-"ta": "Front Bioeng Biotechnol",
-"title": "The estrogen-ECM-integrin- cytoskeleton axis in pelvic organ prolapse: a mechanobiological framework linking matrix remodeling to repair failure.",
-"key": "However, POP-associated mechanics vary with tissue compartment, measurement scale and disease state. Reduced counter-resistance and clutch slippage therefore represent a testable scenario, not a universal disease sequence. We identify experiments that could distinguish matrix-mediated effects from intrinsic fibroblast dysfunction and connect these questions to biomaterial design, controlled loading and local pathway modulation. Clinical estrogen therapy and experimental mechanopharmacology must remain distinct: improved local tissue quality does not establish prevention of prolapse recurrence, and no YAP/TAZ-targeted drug is approved for POP."
-},
-{
-"pmid": "43040880",
-"src": "week",
-"type": "review",
-"ta": "J Genet Couns",
-"title": "Genetic Counseling When One Partner Carries a CF-Causing Variant and the Other Has the Intronic IVS8-5T Variant.",
-"key": "One of the most common scenarios is when one reproductive partner carries a CF-causing variant such as c.1521-1523del (or p.F508del) and the other partner carries the c.1210-12T[5] (or IVS8-5T) variant. Questions arise as to what information to provide about the likely outcome if the fetus or newborn has both variants in trans, as well as implications for future pregnancies and other family members. In this paper, we consider an approach to genetic counseling based on knowledge of CFTR biology and available clinical data."
-},
-{
-"pmid": "43040878",
-"src": "week",
-"type": "review",
-"ta": "Bioessays",
-"title": "GATA2: A Custodian of Endometrial Identity: Guarding the Uterine Lining in Health and Disease.",
-"key": "Acting in a cross-regulatory feedback loop with the progesterone receptor (PGR), GATA2 both maintains endometrial PGR expression and cooperates with PGR on chromatin to enable PGR signaling ensembles. Now, numerous studies are beginning to provide additional mechanistic insights into the critical roles of GATA2 in both normal reproductive biology and in the pathogenesis of multiple uterine disorders. Recently, GATA2 dysregulation has also been implicated in the progression of multiple uterine cancer subtypes. This review aims to organize the seminal findings on uterine GATA2 functions to date and plot a path forward toward resolving major unanswered questions in this rapidly evolving area."
-},
-{
-"pmid": "43040611",
-"src": "week",
-"type": "review",
-"ta": "Endocrinol Diabetes Metab",
-"title": "Bibliometric Insights Into Research Trends on Insulin Resistance in Gestational Diabetes Mellitus Based on the Web of Science Core Collection (1997-2025).",
-"key": "RESULTS: Annual publication output increased over time, particularly after 2014, with 322 publications in 2022. China contributed the largest number of publications, whereas citation indicators varied across countries after…\nCONCLUSION: This bibliometric study provides an overview of the global research landscape of GDM and IR from 1997 to 2025. The findings demonstrate increasing research activity and evolving themes, including gut microbiota, biomarkers, epigenetic regulation and environmental exposures. These findings reflect patterns of scientific attention rather than established mechanisms or clinical efficacy, highlighting the need for further epidemiological and clinical validation."
-},
-{
-"pmid": "43039883",
-"src": "week",
-"type": "review",
-"ta": "ChemMedChem",
-"title": "Multiple Chemical Class-Based Potent VEGFR2 Inhibitors as Anticancer Therapeutics: Structure-Activity Relationship and Chemicobiological Interactions Studies.",
-"key": "Researchers have developed several VEGFR2 inhibitors over the past few decades. This review examines the structure-activity relationships (SARs) of several recently developed chemical classes, including chalcones, quinazolines, pyridines, pyrimidines, thiadiazoles, indazoles, triazoles, quinoxalines, and pyrazoles, as VEGFR2 inhibitors, with an emphasis on anticancer activity. We also analyze the chemico-biological interaction profiles of several small-molecule VEGFR2 inhibitors. This review article provides an overview of the latest advances in medicinal chemistry approaches to VEGFR2 inhibitors."
-},
-{
 "pmid": "43039735",
 "src": "week",
 "type": "meta",
 "ta": "BMJ Open Respir Res",
 "title": "Association between polycystic ovary syndrome and asthma: a systematic review and meta-analysis.",
 "key": "RESULTS: 13 studies (including over 28 million women, 11 cross-sectional and 2 longitudinal) were included. Of these, eight were assessed as moderate or high risk of bias. Meta-analyses showed that PCOS was associated with a higher odds of asthma in both crude (OR 1.59, 95% CI 1.44 to 1.76, I²=72.0%, τ²=0.009) and adjusted analyses (OR 1.57, 95% CI 1.40 to 1.77, I²=90.6%, τ²=0.007). The…\nCONCLUSIONS: PCOS appeared to be associated with asthma but this was driven by findings from cross-sectional studies which are at risk of reverse causation. Lung function evidence remains inconclusive. Future studies should prioritise standardised methods and longitudinal designs to establish temporality."
-},
-{
-"pmid": "43039513",
-"src": "week",
-"type": "review",
-"ta": "Emerg Med Clin North Am",
-"title": "Trauma in Pregnancy.",
-"key": "This article reviews a maternal-first resuscitation approach, emphasizing that fetal survival hinges on maternal stabilization. It details pregnancy-specific alterations affecting the primary survey including difficult airway, respiratory compensation, aortocaval compression, and delayed recognition of hemorrhagic shock. It also provides guidance on blood product resuscitation, RhD considerations, TXA, and resuscitative hysterotomy. Diagnostic evaluation covers imaging recommendations and laboratory nuances. Finally, it addresses mechanism-specific injuries, intimate partner violence, fetal monitoring, patient counseling, and criteria for discharge."
-},
-{
-"pmid": "43039505",
-"src": "week",
-"type": "review",
-"ta": "Magn Reson Imaging Clin N Am",
-"title": "FDG PET/CT in Gynecologic Malignancies.",
-"key": "This review examines its clinical roles and diagnostic limitations across cervical, endometrial, ovarian, vulvar, and vaginal cancers, focusing on nodal staging, recurrence detection, treatment response assessment, and prognostication. Its distinct strengths-nodal staging in cervical cancer and recurrence detection in endometrial and ovarian cancers-are highlighted alongside key interpretive pitfalls. Emerging approaches, including PET/MRI, volumetric parameters, FAPI and other novel radiopharmaceuticals, and radiomics, are discussed as future directions in gynecologic oncology."
-},
-{
-"pmid": "43039041",
-"src": "week",
-"type": "review",
-"ta": "J Am Acad Dermatol",
-"title": "Cutaneous Manifestations of the Menopausal Transition - Part 2: Hormonal Frameworks and Management of Skin and Hair Concerns.",
-"key": "We summarize management strategies for barrier dysfunction, dermal aging, hair and pigmentary disorders, perimenopausal acne, rosacea, and genitourinary syndrome and vulvar dermatoses. Throughout, we highlight therapies supported by high-quality evidence, flag areas where evidence remains limited, and offer counseling points for an increasingly complex therapeutic landscape. We aim to equip dermatologists to evaluate menopausal skin disease, apply hormonal and nonhormonal therapies, recognize conditions warranting interdisciplinary referral, and counsel patients on benefits, limitations, and uncertainties."
-},
-{
-"pmid": "43038917",
-"src": "week",
-"type": "review",
-"ta": "J Photochem Photobiol B",
-"title": "Photodynamic therapy for cervical cancer: Mapping current status and trends with bibliometrics.",
-"key": "RESULTS: A total of 374 valid publications were included. Keyword co-occurrence analysis yielded five main clusters, covering basic PDT mechanisms, photosensitizer application, clinical efficacy, macro-level frameworks, and combination therapy.\nCONCLUSION: Research on PDT for cervical lesions continues to expand. In our view, current hotspots cluster around 5-aminolevulinic acid (5-ALA) photodynamic therapy and combination therapy. New photosensitizers and standardized clinical application are likely to become major future trends."
-},
-{
-"pmid": "43038857",
-"src": "week",
-"type": "review",
-"ta": "Reprod Biomed Online",
-"title": "Ovarian function and fertility after childhood cancer: risk assessment in the era of novel treatments.",
-"key": "This review examines the effect of conventional cancer treatments on ovarian function and fertility, as well as the methods currently used to assess ovarian reserve in female childhood cancer survivors and preserve fertility. It also considers how evolving treatment strategies across major cancers affecting adolescents and young adults may influence reproductive outcomes. Particular attention is given to the limited evidence available on the reproductive effects of targeted treatments and immunotherapies. Further prospective studies integrating ovarian reserve markers with long-term reproductive outcomes are needed, particularly for newer anticancer treatments."
-},
-{
-"pmid": "43038658",
-"src": "week",
-"type": "review",
-"ta": "Clin Appl Thromb Hemost",
-"title": "Beyond Factor Levels: A Narrative Review of Pregnancy Outcome and Bleeding Risk in Congenital Factor VII Deficiency.",
-"key": "Five of 45 published pregnancies (11%) met contemporary criteria for primary PPH. Five additional cases had other clinically significant primary or peripartum bleeding requiring therapeutic intervention but did not meet contemporary PPH criteria. One source-reported PPH case could not be classified because blood-loss volume and hypovolemia were insufficiently reported. Secondary PPH and clinically significant antepartum hemorrhage occurred in one case each. Most bleeding episodes with a documented etiology were attributable to obstetric or surgical causes, including uterine atony, genital tract laceration, or placental abruption with…"
 },
 {
 "pmid": "43038352",
@@ -1242,30 +466,6 @@
 "key": "RESULTS: The meta-analysis included 41 studies. The overall pooled prevalence of IPV was 42.8% (95% CI: 38.3-47.9%), indicating high heterogeneity (I2 = 99.6%). Subgroup analyses revealed significant variation: the highest prevalence was among contraceptive users (72.6%, based on a single study) and ever-married/partnered women (55.1%), while the lowest was…\nCONCLUSION: This meta-analysis confirms a high prevalence of IPV among women in East Africa, with substantial variation across subpopulations, countries, and methodological factors. Findings highlight the need for targeted, context-specific interventions and the importance of standardized measurement tools in surveillance and research."
 },
 {
-"pmid": "43037957",
-"src": "week",
-"type": "review",
-"ta": "FP Essent",
-"title": "Menstrual Disorders: Postmenopausal Uterine Bleeding.",
-"key": "Management of postmenopausal uterine bleeding is based on the underlying cause and can range from hormone therapy to polypectomy for intracavitary polyps or surgical referral for atypical hyperplasia, endometrial intraepithelial neoplasia, or carcinoma. Postmeno-pausal bleeding can also lead to significant patient concern and distress, largely due to fear of underlying malignancy. A systematic, evidence-based approach to postmenopausal uterine bleeding evaluation allows clinicians to diagnose serious pathology early and address patient concerns with clear guidance and follow-up treatment plans."
-},
-{
-"pmid": "43037956",
-"src": "week",
-"type": "review",
-"ta": "FP Essent",
-"title": "Menstrual Disorders: Premenopausal Abnormal Uterine Bleeding.",
-"key": "Endometrial sampling is indicated in patients at increased risk for endometrial pathology, including those with obesity, chronic anovulation, a family history of malignancy, or age of 45 years or older. Management options include medical and surgical therapies. The levonorgestrel-releasing intrauterine system is a highly effective medical treatment, whereas hysterectomy remains the most definitive option, particularly for patients who have completed childbearing. Medical management adequately controls symptoms for many, although structural conditions often require procedural or surgical intervention."
-},
-{
-"pmid": "43037955",
-"src": "week",
-"type": "review",
-"ta": "FP Essent",
-"title": "Menstrual Disorders: Amenorrhea.",
-"key": "merly polycystic ovary syndrome), functional hypothalamic amenorrhea, thyroid disease, hyperprolactinemia (including macroprolactinemia), primary ovarian insufficiency, and anatomic outflow tract disorders. The recommended workup includes a history, physical examination, and selected laboratory tests (eg, levels of thyroid-stimulating hormone [thyrotropin], prolactin, follicle-stimulating hormone, and luteinizing hormone), with imaging guided by findings. Management addresses the underlying cause and reduces short- and long-term risks to other organ systems, such as the bone, endometrial, metabolic, and cardiovascular systems; it should involve shared decision-making and may entail referral."
-},
-{
 "pmid": "43037897",
 "src": "week",
 "type": "meta",
@@ -1274,36 +474,12 @@
 "key": "CONCLUSION: The high prevalence of NYHA class III/IV symptoms at diagnosis underscores the importance of early detection and monitoring, while the variation in reported use of guideline-directed medical therapy (GDMT) across studies highlights potential opportunities to optimize treatment in patients with PPCM. The observed improvement in LVEF during follow-up indicates that cardiac recovery is possible in patients with PPCM. However, these findings should be interpreted cautiously given the observational nature and substantial heterogeneity of the included studies."
 },
 {
-"pmid": "43037784",
-"src": "week",
-"type": "review",
-"ta": "Curr Cardiol Rep",
-"title": "Markers of Cardiovascular Risk Associated With Pregnancy.",
-"key": "We also discuss maternal cardiovascular risk stratification of survivors of childhood and adolescent cancer and congenital heart disease and identify gaps in knowledge.\nRECENT FINDINGS: The modified WHO 2.0 I-IV in conjunction with the CARPREG II provides the most robust risk score to date but still has shortcomings. No score specifically addresses cardiovascular risk of pregnancy in survivors of cancer. While several tools for assessing risk exist, consideration of patient-specific factors also play an important role. Moderate and high-risk patients may be best cared for by multidisciplinary teams."
-},
-{
-"pmid": "43037367",
-"src": "week",
-"type": "review",
-"ta": "Climacteric",
-"title": "Intracrinology and tissue-selective effects of tibolone: mechanisms and implications.",
-"key": "RESULTS: Tibolone acts predominantly as a prodrug and is converted into three active metabolites: the estrogenic compounds 3α-hydroxytibolone and 3β-hydroxytibolone, and the Δ4-isomer, which has progestogenic and androgenic properties. Experimental evidence indicates that tissue-specific differences in enzyme expression, sulfation,…\nCONCLUSION: Intracrinology provides a biologically plausible framework for understanding the tissue-selective effects of tibolone. However, clinical findings are largely compatible with, rather than confirmatory of, this mechanism, and the balance of benefits and risks appears to vary according to tissue, clinical context and individual patient characteristics."
-},
-{
 "pmid": "43036805",
 "src": "week",
 "type": "meta",
 "ta": "EClinicalMedicine",
 "title": "Interventions to prevent suicide and suicidal thoughts or behaviours in the perinatal period: a global mixed-methods systematic review.",
 "key": "System or community-level strategies in three trials and the modelling were associated with reduced suicide or suicidal ideation by integrating routine screening within multidisciplinary pathways that ensured immediate linkage to care. Informal or crisis support mechanisms facilitated immediate access and worked as protective buffers against self-harm in two feasibility and qualitative studies; faith practices helped counter barriers to formal care while…\nFUNDING: The National Institute for Health and Care Research."
-},
-{
-"pmid": "43036580",
-"src": "week",
-"type": "review",
-"ta": "Int J Womens Health",
-"title": "Beyond Layer Count at Caesarean Delivery: A Focused Clinical Review and Trial-Design Framework for Endometrium-Sparing Uterine Closure.",
-"key": "Current evidence neither identifies a universally superior layer count nor demonstrates prevention of Caesarean scar pregnancy or placenta accreta spectrum by a particular closure strategy. We propose a trial comparing two fully specified, optimized endometrium-sparing packages with equivalent surgeon training and fidelity monitoring, blinded standardized imaging, symptom and reproductive outcomes, and prospective assessment of safety, feasibility, and maternal, operator, and center factors. This framework separates plausible healing mechanisms from demonstrated clinical benefit and defines the comparison needed to determine whether an anatomical third layer adds value."
 },
 {
 "pmid": "43035953",
@@ -1328,22 +504,6 @@
 "ta": "J Int Med Res",
 "title": "KRAS and endometriosis: A systematic review and meta-analysis.",
 "key": "Variant allele fractions were consistently low (<20%), reflecting clonal epithelial expansion. KRAS-positive patients demonstrated greater disease extent and surgical complexity, though associations with pain, infertility, and recurrence were not statistically significant.ConclusionPreliminary evidence suggests that KRAS mutations are common in endometriosis; however, findings should be interpreted cautiously owing to substantial study heterogeneity and limited available data. KRAS may hold biological significance as a biomarker; however, current evidence is insufficient to support routine clinical use."
-},
-{
-"pmid": "43035217",
-"src": "week",
-"type": "review",
-"ta": "J Am Acad Dermatol",
-"title": "Cutaneous Manifestations of the Menopausal Transition - Part 1: Epidemiology, Biology, Diagnosis and Workup.",
-"key": "ts-including the epidermis, dermis, hair follicle unit, sebaceous glands, vasculature, pigmentary system, and immune milieu-is examined, with emphasis on mechanisms underlying xerosis, impaired barrier function, dermal atrophy, alopecia, vasomotor instability, dyschromia, delayed wound healing, and vulvovaginal dermatoses. Dermatology-specific examination findings, limited utility of routine hormonal testing, and specific laboratory workup in patients with atypical or rapid-onset cutaneous hyperandrogenism are covered. This review equips clinicians with a mechanistic understanding of menopause-associated skin changes to support accurate diagnosis, appropriate workup, and informed management."
-},
-{
-"pmid": "43035194",
-"src": "week",
-"type": "review",
-"ta": "Fertil Steril",
-"title": "The challenge of Adenomyosis across the ART journey: insights from the Naples Workshop group.",
-"key": "This expert narrative review integrates available evidence with multidisciplinary clinical expertise to provide practical considerations for patient management while identifying areas of uncertainty and priorities for future research. Overall, management should be individualized according to disease phenotype, symptoms, reproductive potential, previous ART history, and coexisting conditions, while several commonly proposed interventions still require confirmation in well-designed prospective studies."
 }
 ]
 }
