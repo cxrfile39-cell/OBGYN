@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""把新寫好的中文重點（指引、統合分析、綜論）併入 docs/zh.json。
+"""把新寫好的中文重點（指引、統合分析）併入 docs/zh.json。
 用法：python scripts/zh_merge.py 新檔.json   （內容為 {"PMID": "一句中文重點", ...}）
 會檢查：PMID 必須在待辦清單中、內容不可空白、長度 8–90 字，並移除換行。"""
 import json, sys
