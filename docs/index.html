@@ -239,10 +239,6 @@
   .pmall:hover{background:var(--cs)}
   .tblock:not(.empty)>.thead+.pmall{margin-top:0}
   @media (max-width:560px){.rseg{width:100%}.rseg button{flex:1;padding:7px 4px}}
-
-  .zh{margin:4px 0 2px;font-size:.92rem;line-height:1.5;color:var(--ink)}
-  .zhk{display:inline-block;margin-right:6px;padding:0 6px;border-radius:5px;font-size:.72rem;font-weight:700;
-    color:var(--on-accent);background:var(--accent);vertical-align:1px}
 </style>
 </head>
 <body>
@@ -346,7 +342,6 @@
         <li>可切換搜尋區間：<b>7 天</b>（即每週資料，可回看各週）、<b>30 天、1 年、2 年</b>（截至上週日）。長區間對每個「次專科 × 文章類型」分別查詢，區塊上的數字為 PubMed 實際總數，網頁顯示最新 40 篇，其餘可點「在 PubMed 查看全部」。</li>
         <li>每個次專科每週最多取 <b id="mRetmax">150</b> 篇，依出版日期由新到舊；若超過上限，次專科標題會註明實際總數。</li>
         <li>同一篇文章若符合多個次專科，會同時出現在各次專科之下。</li>
-        <li><b>中文重點</b>：每週新文章中的共識／指引、統合分析／系統性回顧兩類，每週一由 Claude 依標題與摘要自動撰寫一句中文重點（綜論、原著研究與較早的長區間文章不撰寫）。AI 撰寫可能有誤，請以原文為準。</li>
       </ul>
     </div>
     <div class="mcard">
@@ -446,9 +441,7 @@ document.addEventListener('toggle', e => {
     .catch(() => { p.innerHTML = `讀取失敗，<a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank" rel="noopener">到 PubMed 閱讀摘要 ↗</a>`; });
 }, true);
 
-let ZH = {};   // Claude 撰寫的一句中文重點（指引、統合分析）{pmid: 文字}
 function load(){
-  getJSON('zh.json').then(z => { ZH = z || {}; if(state.data) render(); }).catch(() => {});
   $('rseg').addEventListener('click', e => { const b = e.target.closest('[data-r]'); if(b) selectRange(b.dataset.r); });
   getJSON('archive/index.json')
     .then(idx => {
@@ -627,7 +620,7 @@ function passes(a){
   if(!state.types.has(a.type)) return false;
   if(state.core && !a.core) return false;
   if(state.q){
-    const hay = (a.title+' '+a.abstract+' '+a.journal+' '+a.ta+' '+a.authors+' '+(ZH[a.pmid]||'')).toLowerCase();
+    const hay = (a.title+' '+a.abstract+' '+a.journal+' '+a.ta+' '+a.authors).toLowerCase();
     if(!state.q.split(/\s+/).every(w => hay.includes(w))) return false;
   }
   return true;
@@ -651,7 +644,6 @@ function card(a, showCats){
   if(a.pmc) links.push(`<a href="https://pmc.ncbi.nlm.nih.gov/articles/${a.pmc}/" target="_blank" rel="noopener">PMC 免費全文</a>`);
   return `<article>
     <h4><a href="https://pubmed.ncbi.nlm.nih.gov/${a.pmid}/" target="_blank" rel="noopener">${esc(a.title)}</a></h4>
-    ${ZH[a.pmid] ? `<p class="zh"><span class="zhk">中文重點</span>${esc(ZH[a.pmid])}</p>` : ''}
     <div class="meta"><i>${esc(a.ta || a.journal)}</i>${ifBadge(a)} · ${esc(a.date)}${a.authors ? ' · ' + esc(a.authors) : ''}</div>
     <div class="tags"><span class="tag t-${a.type}">${tz ? tz.zh : a.type}</span>${a.core ? '<span class="tag t-core">重點期刊</span>' : ''}
       ${showCats ? a.cats.filter(c => state.cats.has(c)).map(c => `<span class="tag">${esc(catName[c])}</span>`).join('') : ''}</div>
