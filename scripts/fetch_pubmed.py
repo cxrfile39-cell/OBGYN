@@ -35,6 +35,9 @@ OPENALEX = "https://api.openalex.org/sources"
 OPENALEX_KEY = os.environ.get("OPENALEX_API_KEY", "").strip()
 JOURNAL_CACHE = ROOT / "docs" / "journals.json"          # 期刊指標快取（OpenAlex 失敗時沿用）
 JIF_OVERRIDE = ROOT / "scripts" / "jif_override.json"   # 手動填入的官方 JCR JIF（優先使用）
+ZH_FILE = ROOT / "docs" / "zh.json"                     # Claude 撰寫的一句中文重點 {pmid: 文字}
+ZH_QUEUE = ROOT / "data" / "zh_queue.json"              # 待撰寫清單（給每週 Claude 排程任務使用）
+ZH_QUEUE_MAX = 800
 API_KEY = os.environ.get("NCBI_API_KEY", "").strip()
 EMAIL = os.environ.get("NCBI_EMAIL", "").strip()
 DAYS = 7
@@ -270,8 +273,12 @@ def parse_article(pa):
         if body:
             parts.append(f"{label}: {body}" if label else body)
     abstract = "\n".join(parts)
-    if len(abstract) > 2500:
-        abstract = abstract[:2500].rsplit(" ", 1)[0] + "…"
+    if len(abstract) > 2500:            # 太長時縮短前段，但保留最後一段（通常是結論）
+        last = parts[-1] if len(parts) > 1 else ""
+        head = "\n".join(parts[:-1]) if last else abstract
+        room = max(400, 2500 - len(last))
+        head = head[:room].rsplit(" ", 1)[0] + "…" if len(head) > room else head
+        abstract = head + ("\n" + last if last else "")
 
     authors = []
     for au in art.findall("AuthorList/Author"):
@@ -592,7 +599,82 @@ def main():
         build_ranges(this_monday)
     except Exception as e:      # 長區間失敗不影響每週資料
         print(f"  ! 長區間更新失敗：{e}", file=sys.stderr)
+    try:
+        build_zh_queue(latest)
+    except Exception as e:
+        print(f"  ! 中文重點待辦清單建立失敗：{e}", file=sys.stderr)
     return 0
+
+
+def zh_eligible(a):
+    """需要中文重點的文章：共識／指引、統合分析／系統性回顧、重點期刊。"""
+    return a.get("type") in ("guideline", "meta") or a.get("core")
+
+
+def key_text(abstract, limit=700):
+    """從摘要取出最關鍵的段落：結論優先，再補結果，控制長度。"""
+    if not abstract:
+        return ""
+    lines = abstract.split("\n")
+    lab = lambda l: l.split(":", 1)[0].strip().upper()
+    concl = [l for l in lines if lab(l) in ("CONCLUSION", "CONCLUSIONS", "INTERPRETATION", "CONCLUSIONS AND RELEVANCE",
+             "MAIN CONCLUSIONS", "AUTHORS' CONCLUSIONS", "SUMMARY ANSWER", "IMPLICATIONS")]
+    res = [l for l in lines if lab(l) in ("RESULTS", "RESULT", "FINDINGS", "MAIN RESULTS", "MAIN RESULTS AND THE ROLE OF CHANCE")]
+    if concl:
+        txt = "\n".join(concl)
+        room = limit - len(txt)
+        if res and room > 150:
+            r = res[0] if len(res[0]) <= room else res[0][:room].rsplit(" ", 1)[0] + "…"
+            txt = r + "\n" + txt
+        return txt if len(txt) <= limit + 200 else txt[:limit + 200].rsplit(" ", 1)[0] + "…"
+    tail = abstract[-limit:]
+    if len(abstract) > limit:           # 從句子開頭起算
+        i = tail.find(". ")
+        tail = tail[i + 2:] if 0 <= i < 200 else tail
+    return tail
+
+
+def build_zh_queue(latest):
+    """整理還沒有中文重點的文章：本週優先，其次 30 天、1 年、2 年區間。"""
+    done = {}
+    if ZH_FILE.exists():
+        try:
+            done = json.loads(ZH_FILE.read_text(encoding="utf-8"))
+        except Exception:
+            done = {}
+    if latest is None and OUT.exists():
+        latest = json.loads(OUT.read_text(encoding="utf-8"))
+    sources = [("week", (latest or {}).get("articles", []))]
+    for key, _, _ in RANGES:
+        f = RANGE_DIR / f"{key}.json"
+        if f.exists():
+            sources.append((key, json.loads(f.read_text(encoding="utf-8")).get("articles", [])))
+    items, seen = [], set(done)
+    for src, arts in sources:
+        for a in arts:
+            if a["pmid"] in seen or not zh_eligible(a):
+                continue
+            seen.add(a["pmid"])
+            items.append({"pmid": a["pmid"], "src": src, "type": a.get("type", ""), "ta": a.get("ta", ""),
+                          "title": a.get("title", ""), "abstract": a.get("abstract", "")})
+            if len(items) >= ZH_QUEUE_MAX:
+                break
+    # 長區間的文章沒有存摘要，補抓（只抓佇列中的）
+    need = [it["pmid"] for it in items if not it["abstract"]]
+    if need:
+        try:
+            got = fetch_details(need)
+            for it in items:
+                if not it["abstract"] and it["pmid"] in got:
+                    it["abstract"] = got[it["pmid"]].get("abstract", "")
+        except Exception as e:
+            print(f"  ! 補抓摘要失敗：{e}", file=sys.stderr)
+    for it in items:
+        it["key"] = key_text(it.pop("abstract"))
+    ZH_QUEUE.parent.mkdir(parents=True, exist_ok=True)
+    ZH_QUEUE.write_text(json.dumps({"updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                                    "items": items}, ensure_ascii=False, indent=0), encoding="utf-8")
+    print(f"中文重點待辦：{len(items)} 篇（已完成 {len(done)} 篇）→ data/zh_queue.json")
 
 
 def save_archive(data):
