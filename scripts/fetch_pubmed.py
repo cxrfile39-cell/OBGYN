@@ -35,7 +35,7 @@ OPENALEX = "https://api.openalex.org/sources"
 OPENALEX_KEY = os.environ.get("OPENALEX_API_KEY", "").strip()
 JOURNAL_CACHE = ROOT / "docs" / "journals.json"          # 期刊指標快取（OpenAlex 失敗時沿用）
 JIF_OVERRIDE = ROOT / "scripts" / "jif_override.json"   # 手動填入的官方 JCR JIF（優先使用）
-ZH_FILE = ROOT / "docs" / "zh.json"                     # Claude 撰寫的一句中文重點 {pmid: 文字}
+ZH_FILE = ROOT / "docs" / "zh.json"                     # Claude 翻譯的中文標題（共識／指引）{pmid: 文字}
 ZH_QUEUE = ROOT / "data" / "zh_queue.json"              # 待撰寫清單（給每週 Claude 排程任務使用）
 ZH_QUEUE_MAX = 800
 API_KEY = os.environ.get("NCBI_API_KEY", "").strip()
@@ -607,8 +607,8 @@ def main():
 
 
 def zh_eligible(a):
-    """需要中文重點的文章：共識／指引、統合分析／系統性回顧、重點期刊。"""
-    return a.get("type") in ("guideline", "meta") or a.get("core")
+    """需要中文標題翻譯的文章：只限共識／指引。"""
+    return a.get("type") == "guideline"
 
 
 def key_text(abstract, limit=700):

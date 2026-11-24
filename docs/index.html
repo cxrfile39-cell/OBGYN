@@ -346,7 +346,7 @@
         <li>可切換搜尋區間：<b>7 天</b>（即每週資料，可回看各週）、<b>30 天、1 年、2 年</b>（截至上週日）。長區間對每個「次專科 × 文章類型」分別查詢，區塊上的數字為 PubMed 實際總數，網頁顯示最新 40 篇，其餘可點「在 PubMed 查看全部」。</li>
         <li>每個次專科每週最多取 <b id="mRetmax">150</b> 篇，依出版日期由新到舊；若超過上限，次專科標題會註明實際總數。</li>
         <li>同一篇文章若符合多個次專科，會同時出現在各次專科之下。</li>
-        <li><b>中文重點</b>：共識／指引、統合分析與重點期刊的文章，每週一由 Claude 依標題與摘要結論自動撰寫一句中文重點；本週文章優先，再逐週補齊 30 天至 2 年區間。AI 撰寫可能有誤，請以原文為準。</li>
+        <li><b>中文標題</b>：共識／臨床指引類文章，每週一由 Claude 自動翻譯標題為中文；本週文章優先，再逐週補齊 30 天至 2 年區間。AI 翻譯可能有誤，請以原文為準。</li>
       </ul>
     </div>
     <div class="mcard">
@@ -446,7 +446,7 @@ document.addEventListener('toggle', e => {
     .catch(() => { p.innerHTML = `讀取失敗，<a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank" rel="noopener">到 PubMed 閱讀摘要 ↗</a>`; });
 }, true);
 
-let ZH = {};   // Claude 撰寫的一句中文重點 {pmid: 文字}
+let ZH = {};   // Claude 翻譯的中文標題（共識／指引）{pmid: 文字}
 function load(){
   getJSON('zh.json').then(z => { ZH = z || {}; if(state.data) render(); }).catch(() => {});
   $('rseg').addEventListener('click', e => { const b = e.target.closest('[data-r]'); if(b) selectRange(b.dataset.r); });
@@ -651,7 +651,7 @@ function card(a, showCats){
   if(a.pmc) links.push(`<a href="https://pmc.ncbi.nlm.nih.gov/articles/${a.pmc}/" target="_blank" rel="noopener">PMC 免費全文</a>`);
   return `<article>
     <h4><a href="https://pubmed.ncbi.nlm.nih.gov/${a.pmid}/" target="_blank" rel="noopener">${esc(a.title)}</a></h4>
-    ${ZH[a.pmid] ? `<p class="zh"><span class="zhk">中文重點</span>${esc(ZH[a.pmid])}</p>` : ''}
+    ${ZH[a.pmid] ? `<p class="zh"><span class="zhk">中文標題</span>${esc(ZH[a.pmid])}</p>` : ''}
     <div class="meta"><i>${esc(a.ta || a.journal)}</i>${ifBadge(a)} · ${esc(a.date)}${a.authors ? ' · ' + esc(a.authors) : ''}</div>
     <div class="tags"><span class="tag t-${a.type}">${tz ? tz.zh : a.type}</span>${a.core ? '<span class="tag t-core">重點期刊</span>' : ''}
       ${showCats ? a.cats.filter(c => state.cats.has(c)).map(c => `<span class="tag">${esc(catName[c])}</span>`).join('') : ''}</div>
