@@ -35,7 +35,7 @@ OPENALEX = "https://api.openalex.org/sources"
 OPENALEX_KEY = os.environ.get("OPENALEX_API_KEY", "").strip()
 JOURNAL_CACHE = ROOT / "docs" / "journals.json"          # 期刊指標快取（OpenAlex 失敗時沿用）
 JIF_OVERRIDE = ROOT / "scripts" / "jif_override.json"   # 手動填入的官方 JCR JIF（優先使用）
-ZH_FILE = ROOT / "docs" / "zh.json"                     # Claude 撰寫的一句中文重點（共識／指引）{pmid: 文字}
+ZH_FILE = ROOT / "docs" / "zh.json"                     # Claude 撰寫的一句中文重點（指引、統合分析、綜論）{pmid: 文字}
 ZH_QUEUE = ROOT / "data" / "zh_queue.json"              # 待撰寫清單（給每週 Claude 排程任務使用）
 ZH_QUEUE_MAX = 800
 API_KEY = os.environ.get("NCBI_API_KEY", "").strip()
@@ -607,8 +607,8 @@ def main():
 
 
 def zh_eligible(a):
-    """需要中文重點的文章：只限共識／指引。"""
-    return a.get("type") == "guideline"
+    """需要中文重點的文章：共識／指引、統合分析／系統性回顧、綜論。"""
+    return a.get("type") in ("guideline", "meta", "review")
 
 
 def key_text(abstract, limit=700):
@@ -635,7 +635,7 @@ def key_text(abstract, limit=700):
 
 
 def build_zh_queue(latest):
-    """整理還沒有中文重點的文章：本週優先，其次 30 天、1 年、2 年區間。"""
+    """整理本週還沒有中文重點的文章（只看最新一週，不回補長區間）。"""
     done = {}
     if ZH_FILE.exists():
         try:
@@ -645,10 +645,6 @@ def build_zh_queue(latest):
     if latest is None and OUT.exists():
         latest = json.loads(OUT.read_text(encoding="utf-8"))
     sources = [("week", (latest or {}).get("articles", []))]
-    for key, _, _ in RANGES:
-        f = RANGE_DIR / f"{key}.json"
-        if f.exists():
-            sources.append((key, json.loads(f.read_text(encoding="utf-8")).get("articles", [])))
     items, seen = [], set(done)
     for src, arts in sources:
         for a in arts:
