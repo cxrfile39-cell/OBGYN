@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""把新翻譯好的中文標題併入 docs/zh.json。
-用法：python scripts/zh_merge.py 新檔.json   （內容為 {"PMID": "中文標題翻譯", ...}）
-會檢查：PMID 必須在待辦清單中、內容不可空白、長度 4–150 字，並移除換行。"""
+"""把新寫好的中文重點（共識／指引）併入 docs/zh.json。
+用法：python scripts/zh_merge.py 新檔.json   （內容為 {"PMID": "一句中文重點", ...}）
+會檢查：PMID 必須在待辦清單中、內容不可空白、長度 8–90 字，並移除換行。"""
 import json, sys
 from pathlib import Path
 
@@ -15,7 +15,7 @@ for pmid, txt in new.items():
     pmid, txt = str(pmid).strip(), " ".join(str(txt).split())
     if pmid not in queue:
         bad.append((pmid, "不在待辦清單")); continue
-    if not 4 <= len(txt) <= 150:
+    if not 8 <= len(txt) <= 90:
         bad.append((pmid, f"長度 {len(txt)} 字不符")); continue
     done[pmid] = txt; ok += 1
 zh_path.write_text(json.dumps(dict(sorted(done.items(), key=lambda kv: int(kv[0]) if kv[0].isdigit() else 0, reverse=True)),

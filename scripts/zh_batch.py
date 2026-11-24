@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""列出下一批需要翻譯中文標題的共識／指引（給每週 Claude 排程任務使用）。
+"""列出下一批需要撰寫中文重點的共識／指引（給每週 Claude 排程任務使用）。
 用法：python scripts/zh_batch.py [篇數，預設 50] [略過前幾篇，預設 0]"""
 import json, sys
 from pathlib import Path
