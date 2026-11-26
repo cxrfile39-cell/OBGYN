@@ -17,6 +17,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  actions: read      # deploy-pages 需要讀取本次執行上傳的網頁檔案
 
 concurrency:
   group: pages
