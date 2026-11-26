@@ -106,6 +106,10 @@
   #list>article:nth-of-type(even){border-left:3px solid var(--accent2)}
   #list>article:nth-of-type(odd){border-left:3px solid var(--accent)}
   .links a+a{color:var(--accent2)}
+  .visits{display:flex;justify-content:center;align-items:center;gap:8px;margin:10px 0 8px;font-size:.88rem}
+  .visits[hidden]{display:none}
+  .visits .vlabel{color:var(--muted);font-weight:600}
+  .visits img{display:block;border-radius:4px}
   footer .maker .m1{color:var(--accent)} footer .maker .m2{color:var(--accent2)}
 
   /* ── 婦產科元素 ── */
@@ -342,6 +346,7 @@
         <li>可切換搜尋區間：<b>7 天</b>（即每週資料，可回看各週）、<b>30 天、1 年、2 年</b>（截至上週日）。長區間對每個「次專科 × 文章類型」分別查詢，區塊上的數字為 PubMed 實際總數，網頁顯示最新 40 篇，其餘可點「在 PubMed 查看全部」。</li>
         <li>每個次專科每週最多取 <b id="mRetmax">150</b> 篇，依出版日期由新到舊；若超過上限，次專科標題會註明實際總數。</li>
         <li>同一篇文章若符合多個次專科，會同時出現在各次專科之下。</li>
+        <li>瀏覽人次：頁尾徽章由免費服務 hits.sh 計算（每次開啟網頁計一次，顯示「今日／累計」），點擊徽章可看每日統計。</li>
       </ul>
     </div>
     <div class="mcard">
@@ -393,6 +398,14 @@
       <g class="sp sp2"><ellipse cx="82" cy="32" rx="2.6" ry="1.8" transform="rotate(-18 82 32)"/><path d="M79.5 33 C72 37 66 28 56 34"/></g>
     </g></svg>
   <div class="maker">製作者：<span class="m1">JH CHIU MD</span> · <span class="m2">Claude 5.5</span></div>
+  <div class="visits" id="visits">
+    <span class="vlabel">👁 瀏覽人次</span>
+    <a href="https://hits.sh/cxrfile39-cell.github.io/OBGYN/" target="_blank" rel="noopener" title="點擊查看每日瀏覽統計（hits.sh）">
+      <img id="hitsBadge" alt="瀏覽人次" height="20"
+        src="https://hits.sh/cxrfile39-cell.github.io/OBGYN.svg?view=today-total&amp;label=%E4%BB%8A%E6%97%A5%20%2F%20%E7%B4%AF%E8%A8%88&amp;color=94636c&amp;labelColor=5c7c66&amp;style=flat-square"
+        onerror="document.getElementById('visits').hidden=true">
+    </a>
+  </div>
   <div>資料每週一自動從 PubMed（NCBI E-utilities）擷取；分類依關鍵字與 MeSH 自動判定，僅供參考，臨床決策請以原文為準。</div>
 </footer>
 
